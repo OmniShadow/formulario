@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:formulario/FormuleManager.dart';
+
 import 'package:formulario/MaterieManager.dart';
 import 'package:formulario/UserDrawer.dart';
+import 'Formula.dart';
 
 void main() => runApp(MyApp());
 
@@ -40,6 +43,7 @@ class MyApp extends StatelessWidget {
         body: Container(
           padding: EdgeInsets.all(20.0),
           child: MaterieManagerWidget(),
+          // child: FormuleManager(),
         ),
         drawer: UserDrawer(),
       ),
