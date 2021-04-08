@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:formulario/FormuleManager.dart';
 
 import 'package:formulario/MaterieManager.dart';
 import 'package:formulario/UserDrawer.dart';
-import 'FormulaWidget.dart';
+import 'Assets.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,6 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(Assets.instance());
     return MaterialApp(
       theme: ThemeData(
         brightness: Brightness.light,
@@ -45,7 +45,12 @@ class MyApp extends StatelessWidget {
         ),
         body: Container(
           padding: EdgeInsets.all(20.0),
-          child: MaterieManagerWidget(),
+          child: MaterieManagerWidget([
+            Assets.instance().getMateriaData('matematica'),
+            Assets.instance().getMateriaData('fisica'),
+            Assets.instance().getMateriaData('geometria'),
+            Assets.instance().getMateriaData('probabilita'),
+          ]),
           // child: FormuleManager(),
         ),
         drawer: UserDrawer(),

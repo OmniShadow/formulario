@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-
-import 'FormuleManager.dart';
+import 'MateriaData.dart';
+import 'MaterieManager.dart';
 
 class MateriaWidget extends StatelessWidget {
+  MateriaData materiaData;
   Image _iconWidget;
-  String materiaTitle;
-  MateriaWidget(this.materiaTitle, String iconPath) {
-    _iconWidget = Image.asset(iconPath);
+  MateriaWidget(MateriaData materiaData) {
+    _iconWidget = Image.asset(materiaData.iconPath);
   }
 
   @override
@@ -20,7 +20,7 @@ class MateriaWidget extends StatelessWidget {
                 appBar: AppBar(
                   title: Text('test'),
                 ),
-                body: FormuleManager(),
+                body: MaterieManagerWidget(materiaData.subMaterie),
               ),
             ),
           );
@@ -29,7 +29,7 @@ class MateriaWidget extends StatelessWidget {
           footer: Container(
             alignment: Alignment.center,
             child: Text(
-              materiaTitle,
+              materiaData.materiaTitle,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 22,
