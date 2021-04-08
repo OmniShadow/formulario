@@ -11,9 +11,7 @@ class MateriaWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-        enableFeedback: true,
-        horizontalTitleGap: 0,
+    return GestureDetector(
         onTap: () {
           Navigator.push(
             context,
@@ -25,17 +23,26 @@ class MateriaWidget extends StatelessWidget {
                     body: FormuleManager())),
           );
         },
-        title: GridTile(
-          footer: AppBar(
-              shape: RoundedRectangleBorder(
-                side: BorderSide(color: Colors.black, width: 3),
-                borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(20),
-                ),
+        child: GridTile(
+          footer: Container(
+            alignment: Alignment.center,
+            child: Text(
+              materiaTitle,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
+                color: Colors.white,
               ),
-              title: Text(materiaTitle),
-              backgroundColor: Colors.deepOrange.withAlpha(200),
-              leading: Icon(Icons.article)),
+            ),
+            decoration: BoxDecoration(
+              color: Colors.deepOrange.withAlpha(200),
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(20),
+              ),
+              border: Border.all(
+                  color: Colors.black, width: 3, style: BorderStyle.solid),
+            ),
+          ),
           child: InkResponse(
             enableFeedback: true,
             child: Container(
