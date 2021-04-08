@@ -4,7 +4,7 @@ import 'package:formulario/FormuleManager.dart';
 
 import 'package:formulario/MaterieManager.dart';
 import 'package:formulario/UserDrawer.dart';
-import 'Formula.dart';
+import 'FormulaWidget.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,6 +22,9 @@ class MyApp extends StatelessWidget {
       title: _title,
       home: Scaffold(
         appBar: AppBar(
+          actions: [
+            IconButton(icon: Icon(Icons.search), onPressed: () {}),
+          ],
           title: Row(
             children: [
               Container(

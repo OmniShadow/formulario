@@ -38,9 +38,7 @@ class _FormulaState extends State<FormulaWidget> {
                 duration: Duration(milliseconds: 500),
               ));
             },
-            child: Card(
-              child: Icon(Icons.copy),
-            ),
+            child: Icon(Icons.copy),
           ),
           enabled: true,
           hoverColor: Colors.red.withAlpha(150),

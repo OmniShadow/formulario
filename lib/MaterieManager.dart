@@ -19,9 +19,6 @@ class _MaterieManagerState extends State<MaterieManagerWidget> {
     ['Geometria', 'assets/icons/geometria/materia.png'],
     ['Probabilità', 'assets/icons/probabilita/materia.png']
   ];
-
-  Color color = Colors.transparent;
-
   @override
   Widget build(BuildContext context) {
     return GridView(
