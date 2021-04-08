@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'Formula.dart';
+import 'FormulaWidget.dart';
 
 // ignore: must_be_immutable
 class FormuleManager extends StatelessWidget {

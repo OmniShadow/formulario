@@ -16,11 +16,13 @@ class MateriaWidget extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => Scaffold(
-                    appBar: AppBar(
-                      title: Text('test'),
-                    ),
-                    body: FormuleManager())),
+              builder: (context) => Scaffold(
+                appBar: AppBar(
+                  title: Text('test'),
+                ),
+                body: FormuleManager(),
+              ),
+            ),
           );
         },
         child: GridTile(
