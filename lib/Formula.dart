@@ -1,8 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/ast.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:flutter_math_fork/tex.dart';
 import 'package:flutter/services.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 class FormulaWidget extends StatefulWidget {
   String formulaTitle;
@@ -10,7 +14,6 @@ class FormulaWidget extends StatefulWidget {
   FormulaWidget(this.formulaTitle, this.formulaText);
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _FormulaState(formulaTitle, formulaText);
   }
 }
@@ -29,14 +32,17 @@ class _FormulaState extends State<FormulaWidget> {
           enableFeedback: true,
           trailing: GestureDetector(
             onTap: () {
-              print('asdasd');
+              Clipboard.setData(ClipboardData(text: formulaText));
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text('Formula copiata'),
+                duration: Duration(milliseconds: 500),
+              ));
             },
             child: Card(
               child: Icon(Icons.copy),
             ),
           ),
           enabled: true,
-          selected: isFavourite,
           hoverColor: Colors.red.withAlpha(150),
           onLongPress: () {
             setState(() {
@@ -55,11 +61,26 @@ class _FormulaState extends State<FormulaWidget> {
             });
           },
           onTap: () {
-            Clipboard.setData(ClipboardData(text: formulaText));
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text('Formula copiata'),
-              duration: Duration(milliseconds: 500),
-            ));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Scaffold(
+                      appBar: AppBar(
+                        title: Text(formulaTitle),
+                      ),
+                      body: Column(
+                        children: [
+                          FittedBox(
+                            child: Card(
+                              child: Math.tex(
+                                formulaText,
+                                textScaleFactor: 5.0,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )),
+                ));
           },
           leading: Icon(
             (isFavourite ? Icons.star : Icons.star_border),

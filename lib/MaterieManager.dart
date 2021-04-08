@@ -11,7 +11,7 @@ class MaterieManagerWidget extends StatefulWidget {
 }
 
 class _MaterieManagerState extends State<MaterieManagerWidget> {
-  List<ListTile> materieWidget;
+  List<MateriaWidget> materieWidget;
 
   List<List<String>> materieNomi = [
     ['Matematica', 'assets/icons/matematica/materia.png'],
@@ -32,51 +32,16 @@ class _MaterieManagerState extends State<MaterieManagerWidget> {
         crossAxisCount: 2,
         childAspectRatio: 1.0,
         crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
+        mainAxisSpacing: 1,
       ),
       children: creaMaterie(),
     );
   }
 
-  List<ListTile> creaMaterie() {
-    materieWidget = <ListTile>[];
+  List<MateriaWidget> creaMaterie() {
+    materieWidget = <MateriaWidget>[];
     for (int i = 0; i < 4; i++) {
-      materieWidget.add(ListTile(
-          onTap: () {
-            print('hello');
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => Scaffold(
-                      appBar: AppBar(
-                        title: Text('test'),
-                      ),
-                      body: FormuleManager())),
-            );
-          },
-          title: GridTile(
-            footer: AppBar(
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Colors.black, width: 3),
-                  borderRadius: BorderRadius.vertical(
-                    bottom: Radius.circular(20),
-                  ),
-                ),
-                title: Text(materieNomi[i][0]),
-                backgroundColor: Colors.deepOrange.withAlpha(200),
-                leading: Icon(Icons.article)),
-            child: InkResponse(
-              enableFeedback: true,
-              child: Container(
-                child: MateriaWidget(materieNomi[i][1]),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  border: Border.all(
-                      color: Colors.black, width: 3, style: BorderStyle.solid),
-                ),
-              ),
-            ),
-          )));
+      materieWidget.add(MateriaWidget(materieNomi[i][0], materieNomi[i][1]));
     }
     return materieWidget;
   }
