@@ -5,11 +5,17 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:formulario/MateriaData.dart';
 
 class Assets {
-  HashMap<String, MateriaData> _materieDataMap;
+  Map<String, MateriaData> _materieDataMap;
   static Assets _assets;
+  static List<String> materieNomi = [
+    'Matematica',
+    'Fisica',
+    'Geometria',
+    'Probabilita'
+  ];
 
   Assets._() {
-    _loadMaterie();
+    _materieDataMap = Map<String, MateriaData>();
   }
 
   static Assets instance() =>
@@ -18,24 +24,20 @@ class Assets {
     return _materieDataMap[key];
   }
 
-  Future<void> _loadMaterie() async {
-    List<String> materieNomi = [
-      'matematica',
-    ];
-    String jsonString;
-    var jsonResponse;
-
-    for (String nomeMateria in materieNomi) {
-      jsonString = await _loadMaterieAsset(nomeMateria);
-      jsonResponse = json.decode(jsonString);
-      _materieDataMap.putIfAbsent(
-          nomeMateria, () => MateriaData.fromJson(jsonResponse));
+  Future<void> loadMaterie() async {
+    try {
+      for (String materiaNome in materieNomi) {
+        print(materiaNome);
+        final String jsonString = await rootBundle
+            .loadString('/materieData/' + materiaNome.toLowerCase() + '.json');
+        var jsonResponse = await json.decode(jsonString);
+        MateriaData materiaData = MateriaData.fromJson(jsonResponse);
+        print('assets: ' + materiaData.materiaTitle);
+        _materieDataMap[materiaNome] = materiaData;
+        print('Materie caricate con successo');
+      }
+    } catch (e) {
+      print(e);
     }
-    print('Materie caricate con successo');
-  }
-
-  Future<String> _loadMaterieAsset(String materiaNome) async {
-    materiaNome = ('assets/' + materiaNome + '.json');
-    return await rootBundle.loadString(materiaNome);
   }
 }

@@ -1,0 +1,19 @@
+{
+    "icona" : "assets/icons/fisica/materia.png",
+    "materia":"Fisica",
+    "materie": [
+        {
+            "icona": "assets/icons/fisica/meccanica_classica.png",
+            "materia": "Meccanica Classica",
+            "materie": [],
+            "formule": []
+        },
+        {
+            "icona": "assets/icons/fisica/elettromagnetismo.png",
+            "materia": "Elettromagnetismo",
+            "materie": [],
+            "formule": []
+        }
+    ],
+    "formule": []
+}

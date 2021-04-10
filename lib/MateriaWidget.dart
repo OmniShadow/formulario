@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:formulario/FormuleManager.dart';
 import 'MateriaData.dart';
 import 'MaterieManager.dart';
 
 class MateriaWidget extends StatelessWidget {
   MateriaData materiaData;
   Image _iconWidget;
-  MateriaWidget(MateriaData materiaData) {
+  MateriaWidget(this.materiaData) {
     _iconWidget = Image.asset(materiaData.iconPath);
   }
 
@@ -13,17 +14,23 @@ class MateriaWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Scaffold(
-                appBar: AppBar(
-                  title: Text('test'),
+          if (materiaData.formule.isEmpty && materiaData.subMaterie.isEmpty) {
+          } else
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Scaffold(
+                  appBar: AppBar(
+                    title: Text(materiaData.materiaTitle),
+                  ),
+                  body: (materiaData.formule.isEmpty
+                      ? MaterieManagerWidget(materiaData.subMaterie)
+                      : FormuleManager(
+                          formule: materiaData.formule,
+                        )),
                 ),
-                body: MaterieManagerWidget(materiaData.subMaterie),
               ),
-            ),
-          );
+            );
         },
         child: GridTile(
           footer: Container(

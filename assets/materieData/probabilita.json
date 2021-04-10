@@ -1,0 +1,19 @@
+{
+    "icona" : "assets/icons/probabilita/materia.png",
+    "materia":"Probabilita",
+    "materie": [
+        {
+            "icona": "assets/icons/probabilita/cdf.png",
+            "materia": "Funzioni cumulative",
+            "materie": [],
+            "formule": []
+        },
+        {
+            "icona": "assets/icons/probabilita/pdf.png",
+            "materia": "Funzioni di distribuzione di probabilità",
+            "materie": [],
+            "formule": []
+        }
+    ],
+    "formule": []
+}

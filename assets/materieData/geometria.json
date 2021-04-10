@@ -1,0 +1,13 @@
+{
+    "icona" : "assets/icons/geometria/materia.png",
+    "materia":"Geometria",
+    "materie": [
+        {
+            "icona": "assets/icons/geometria/geometria_piana.png",
+            "materia": "Geometria piana",
+            "materie": [],
+            "formule": []
+        }
+    ],
+    "formule": []
+}

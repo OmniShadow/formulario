@@ -34,7 +34,9 @@ class _MaterieManagerState extends State<MaterieManagerWidget> {
 
   List<MateriaWidget> creaMaterie() {
     materieWidget = <MateriaWidget>[];
+    print('numero materie ' + materieData.length.toString());
     for (MateriaData materiaData in materieData) {
+      print('test ' + materiaData.iconPath);
       materieWidget.add(MateriaWidget(materiaData));
     }
     return materieWidget;

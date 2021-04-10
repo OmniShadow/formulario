@@ -1,18 +1,38 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 import 'package:formulario/MaterieManager.dart';
 import 'package:formulario/UserDrawer.dart';
 import 'Assets.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _MyAppState();
+  }
+}
+
+class _MyAppState extends State<MyApp> {
   static const String _title = 'Formulario';
+  Assets assets;
+  bool assetsLoaded = false;
+  @override
+  void initState() {
+    super.initState();
+    assets = Assets.instance();
+    if (assetsLoaded == false)
+      assets.loadMaterie().then((value) => setState(() {
+            assetsLoaded = true;
+          }));
+  }
 
   @override
   Widget build(BuildContext context) {
-    print(Assets.instance());
     return MaterialApp(
       theme: ThemeData(
         brightness: Brightness.light,
@@ -45,13 +65,14 @@ class MyApp extends StatelessWidget {
         ),
         body: Container(
           padding: EdgeInsets.all(20.0),
-          child: MaterieManagerWidget([
-            Assets.instance().getMateriaData('matematica'),
-            Assets.instance().getMateriaData('fisica'),
-            Assets.instance().getMateriaData('geometria'),
-            Assets.instance().getMateriaData('probabilita'),
-          ]),
-          // child: FormuleManager(),
+          child: (assetsLoaded
+              ? MaterieManagerWidget([
+                  assets.getMateriaData('Matematica'),
+                  assets.getMateriaData('Fisica'),
+                  assets.getMateriaData('Geometria'),
+                  assets.getMateriaData('Probabilita'),
+                ])
+              : Text('')),
         ),
         drawer: UserDrawer(),
       ),
