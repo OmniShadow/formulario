@@ -1,9 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:formulario/MaterieManager.dart';
-import 'package:formulario/UserDrawer.dart';
-import 'Assets.dart';
+import 'package:formulario/materieManager.dart';
+import 'package:formulario/userDrawer.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'assets.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +13,6 @@ void main() {
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _MyAppState();
   }
 }
@@ -21,6 +21,7 @@ class _MyAppState extends State<MyApp> {
   static const String _title = 'Formulario';
   Assets assets;
   bool assetsLoaded = false;
+  Brightness brightness = Brightness.light;
   @override
   void initState() {
     super.initState();
@@ -35,44 +36,67 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: Colors.deepOrange,
-        accentColor: Colors.deepPurple,
+        brightness: brightness,
       ),
       title: _title,
       home: Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(icon: Icon(Icons.search), onPressed: () {}),
-          ],
-          title: Row(
+        backgroundColor: Color(0xFFFDEBDF),
+        body: Container(
+          child: Column(
             children: [
-              Container(
-                width: 60,
-                height: 60,
-                child: Image.asset('assets/icons/appIcon.png'),
+              Image.asset('assets/icons/home.png'),
+              Padding(
+                padding: EdgeInsets.only(left: 40, right: 40),
+                child: Expanded(
+                  child: AspectRatio(
+                    aspectRatio: 6.95,
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: Color(0xFF332F2D),
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                      child: AutoSizeText(
+                        'FORMULARIO',
+                        maxLines: 1,
+                        minFontSize: 37,
+                        style: TextStyle(
+                            fontFamily: 'Brandon-Grotesque-black',
+                            color: Colors.white,
+                            letterSpacing: 2.5,
+                            fontStyle: FontStyle.normal),
+                      ),
+                    ),
+                  ),
+                ),
               ),
-              Text(
-                'Formulario',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30,
-                  letterSpacing: 2.5,
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(70),
+                          topRight: Radius.circular(70)),
+                      color: Color(0xFFC9BBB1),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(40),
+                      child: assetsLoaded
+                          ? MaterieManagerWidget(
+                              materieData: [
+                                assets.getMateriaData('Matematica'),
+                                assets.getMateriaData('Fisica'),
+                                assets.getMateriaData('Geometria'),
+                                assets.getMateriaData('Probabilita')
+                              ],
+                            )
+                          : Text(''),
+                    ),
+                  ),
                 ),
               ),
             ],
           ),
-        ),
-        body: Container(
-          padding: EdgeInsets.all(20.0),
-          child: (assetsLoaded
-              ? MaterieManagerWidget([
-                  assets.getMateriaData('Matematica'),
-                  assets.getMateriaData('Fisica'),
-                  assets.getMateriaData('Geometria'),
-                  assets.getMateriaData('Probabilita'),
-                ])
-              : Text('')),
         ),
         drawer: UserDrawer(),
       ),

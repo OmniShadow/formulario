@@ -1,13 +1,22 @@
-import 'package:formulario/FormulaData.dart';
+import 'package:formulario/formulaData.dart';
 
 class MateriaData {
   List<MateriaData> subMaterie;
   List<FormulaData> formule;
   String iconPath;
   String materiaTitle;
+  bool isFavouritable = false;
+  bool isFavourite = false;
+  int colorValue;
 
-  MateriaData(
-      {this.iconPath, this.materiaTitle, this.subMaterie, this.formule});
+  MateriaData({
+    this.iconPath,
+    this.materiaTitle,
+    this.subMaterie,
+    this.formule,
+    this.isFavouritable,
+    this.colorValue,
+  });
 
   factory MateriaData.fromJson(Map<String, dynamic> parsedJson) {
     List<dynamic> _subMaterie = [];
@@ -37,10 +46,12 @@ class MateriaData {
       formuleData = [];
     }
     return MateriaData(
+      colorValue: int.parse(parsedJson['color']),
       iconPath: parsedJson['icona'] as String,
       materiaTitle: parsedJson['materia'] as String,
       subMaterie: subMaterieData,
       formule: formuleData,
+      isFavouritable: parsedJson['isFavouritable'],
     );
   }
 }

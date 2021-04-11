@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:formulario/FormuleManager.dart';
-import 'MateriaData.dart';
-import 'MaterieManager.dart';
+import 'package:formulario/formuleManager.dart';
+import 'materiaData.dart';
+import 'materieManager.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
-class MateriaWidget extends StatelessWidget {
+class MateriaWidget extends StatefulWidget {
+  MateriaData materiaData;
+  MateriaWidget(this.materiaData);
+  @override
+  State<StatefulWidget> createState() {
+    return MateriaWidgetState(materiaData);
+  }
+}
+
+class MateriaWidgetState extends State<MateriaWidget> {
   MateriaData materiaData;
   Image _iconWidget;
-  MateriaWidget(this.materiaData) {
+  MateriaWidgetState(this.materiaData) {
     _iconWidget = Image.asset(materiaData.iconPath);
   }
 
@@ -20,49 +30,122 @@ class MateriaWidget extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => Scaffold(
+                  backgroundColor: Color(0xFFFDEBDF),
+                  extendBodyBehindAppBar: true,
                   appBar: AppBar(
-                    title: Text(materiaData.materiaTitle),
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
                   ),
-                  body: (materiaData.formule.isEmpty
-                      ? MaterieManagerWidget(materiaData.subMaterie)
-                      : FormuleManager(
-                          formule: materiaData.formule,
-                        )),
+                  body: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 100,
+                            height: 100,
+                            child: Hero(
+                              tag: materiaData.materiaTitle,
+                              child: _iconWidget,
+                            ),
+                          ),
+                          Text(materiaData.materiaTitle),
+                        ],
+                      ),
+                      (materiaData.formule.isEmpty
+                          ? Expanded(
+                              child: MaterieManagerWidget(
+                                  materieData: materiaData.subMaterie),
+                            )
+                          : Expanded(
+                              child: FormuleManager(
+                                formule: materiaData.formule,
+                              ),
+                            )),
+                    ],
+                  ),
                 ),
               ),
             );
         },
-        child: GridTile(
-          footer: Container(
-            alignment: Alignment.center,
-            child: Text(
-              materiaData.materiaTitle,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
-                color: Colors.white,
+        child: InkResponse(
+          enableFeedback: true,
+          child: Column(
+            children: [
+              Expanded(
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(materiaData.colorValue),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0xFFF1E5DD).withAlpha(100),
+                          offset: Offset(-20, 10),
+                        ),
+                        BoxShadow(
+                          color: Color(0xFFF1E5DD).withAlpha(100),
+                          offset: Offset(-20, 0),
+                        ),
+                        BoxShadow(
+                          color: Color(0xFFF1E5DD).withAlpha(100),
+                          offset: Offset(0, 10),
+                        )
+                      ],
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(20),
+                      child: Hero(
+                        tag: materiaData.materiaTitle,
+                        child: _iconWidget,
+                      ),
+                    ),
+                  ),
+                ),
               ),
-            ),
-            decoration: BoxDecoration(
-              color: Colors.deepOrange.withAlpha(200),
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(20),
+              Padding(
+                padding: EdgeInsets.only(top: 7),
+                child: Container(
+                  alignment: Alignment.center,
+                  child: AutoSizeText(
+                    materiaData.materiaTitle.toUpperCase(),
+                    maxFontSize: 100,
+                    minFontSize: 20,
+                    maxLines: 1,
+                    style: TextStyle(
+                      fontFamily: 'Brandon-Grotesque-black',
+                      letterSpacing: 2,
+                      shadows: [
+                        Shadow(
+                          color: Colors.grey[600],
+                          offset: Offset(-3, 0),
+                        ),
+                      ],
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
               ),
-              border: Border.all(
-                  color: Colors.black, width: 3, style: BorderStyle.solid),
-            ),
-          ),
-          child: InkResponse(
-            enableFeedback: true,
-            child: Container(
-              child: _iconWidget,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                border: Border.all(
-                    color: Colors.black, width: 3, style: BorderStyle.solid),
-              ),
-            ),
+            ],
           ),
         ));
+  }
+
+  void addToFavourites(BuildContext context) {
+    setState(() {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text((materiaData.isFavourite
+            ? 'Materia rimossa dai preferiti'
+            : 'Materia aggiunta ai preferiti')),
+        duration: Duration(milliseconds: 1000),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+                top: Radius.circular(100), bottom: Radius.circular(100))),
+      ));
+      materiaData.isFavourite = !materiaData.isFavourite;
+    });
   }
 }

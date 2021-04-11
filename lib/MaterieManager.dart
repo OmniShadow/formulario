@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'MateriaData.dart';
-import 'MateriaWidget.dart';
+import 'materiaData.dart';
+import 'materiaWidget.dart';
 
 class MaterieManagerWidget extends StatefulWidget {
   List<MateriaData> materieData;
-  MaterieManagerWidget(this.materieData);
+  MaterieManagerWidget({this.materieData});
   @override
   State<StatefulWidget> createState() {
     return _MaterieManagerState(materieData);
@@ -19,14 +19,14 @@ class _MaterieManagerState extends State<MaterieManagerWidget> {
   @override
   Widget build(BuildContext context) {
     return GridView(
+      shrinkWrap: false,
       controller: ScrollController(),
       physics: ScrollPhysics(),
-      padding: EdgeInsets.all(0.0),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: 1.0,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 1,
+        crossAxisSpacing: 60,
+        mainAxisSpacing: 30,
       ),
       children: creaMaterie(),
     );

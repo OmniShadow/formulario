@@ -1,8 +1,7 @@
-import 'dart:collection';
 import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:formulario/MateriaData.dart';
+import 'package:formulario/materiaData.dart';
 
 class Assets {
   Map<String, MateriaData> _materieDataMap;

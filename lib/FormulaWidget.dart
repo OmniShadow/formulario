@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:flutter/services.dart';
-
-import 'FormulaData.dart';
+import 'formulaData.dart';
 
 class FormulaWidget extends StatefulWidget {
   FormulaData formulaData;
@@ -35,21 +34,7 @@ class _FormulaState extends State<FormulaWidget> {
           ),
           enabled: true,
           hoverColor: Colors.red.withAlpha(150),
-          onLongPress: () {
-            setState(() {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text((formulaData.isFavourite
-                    ? 'Formula rimossa dai preferiti'
-                    : 'Formula aggiunta ai preferiti')),
-                duration: Duration(milliseconds: 1000),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(100),
-                        bottom: Radius.circular(100))),
-              ));
-              formulaData.isFavourite = !formulaData.isFavourite;
-            });
-          },
+          onLongPress: () => addToFavourites(context),
           onTap: () {
             Navigator.push(
                 context,
@@ -64,7 +49,7 @@ class _FormulaState extends State<FormulaWidget> {
                             child: Card(
                               child: Math.tex(
                                 formulaData.testo,
-                                textScaleFactor: 5.0,
+                                textScaleFactor: 7.0,
                               ),
                             ),
                           ),
@@ -72,14 +57,32 @@ class _FormulaState extends State<FormulaWidget> {
                       )),
                 ));
           },
-          leading: Icon(
-            (formulaData.isFavourite ? Icons.star : Icons.star_border),
-            color: Colors.yellow,
+          leading: GestureDetector(
+            onTap: () => addToFavourites(context),
+            child: Icon(
+              (formulaData.isFavourite ? Icons.star : Icons.star_border),
+              color: Colors.yellow,
+            ),
           ),
           title: Math.tex(formulaData.testo),
           subtitle: Text(formulaData.titolo),
         ),
       ),
     );
+  }
+
+  void addToFavourites(BuildContext context) {
+    setState(() {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text((formulaData.isFavourite
+            ? 'Formula rimossa dai preferiti'
+            : 'Formula aggiunta ai preferiti')),
+        duration: Duration(milliseconds: 1000),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+                top: Radius.circular(100), bottom: Radius.circular(100))),
+      ));
+      formulaData.isFavourite = !formulaData.isFavourite;
+    });
   }
 }

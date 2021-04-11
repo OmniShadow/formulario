@@ -1,13 +1,20 @@
 {
-    "icona" : "assets/icons/matematica/materia.png",
+    "color": "0xFF7D746E",
+    "isFavouritable": false,
+    "categoria": "",
+    "icona" : "assets/icons/matematica/matematica-icon.png",
     "materia":"Matematica",
     "materie": [
         {
+            "color": "0xFF7D746E",
+            "isFavouritable": true,
+            "categoria": "Matematica",
             "icona": "assets/icons/matematica/logaritmi.png",
             "materia": "Logaritmi",
             "materie": [],
             "formule": [
                 {
+                    "categoria": "",
                     "titolo": "Definizione di logaritmo",
                     "testo": "a^{\\log_{a}\\left(b\\right)}=b"
                 },
@@ -34,6 +41,8 @@
             ]
         },
         {
+            "color": "0xFF7D746E",
+            "isFavouritable": true,
             "icona": "assets/icons/matematica/esponenziali.png",
             "materia": "Esponenziali",
             "materie": [],

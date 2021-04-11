@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'FormulaData.dart';
-import 'FormulaWidget.dart';
+import 'formulaData.dart';
+import 'formulaWidget.dart';
 
 // ignore: must_be_immutable
 class FormuleManager extends StatelessWidget {
@@ -14,6 +14,7 @@ class FormuleManager extends StatelessWidget {
       formuleWidgets.add(FormulaWidget(formula));
     }
     return ListView(
+      padding: EdgeInsets.all(0),
       children: formuleWidgets,
     );
   }

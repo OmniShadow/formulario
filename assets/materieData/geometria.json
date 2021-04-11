@@ -1,8 +1,12 @@
-{
-    "icona" : "assets/icons/geometria/materia.png",
+{  
+    "color": "0xFF332F2D",
+    "isFavouritable": false,
+    "icona" : "assets/icons/geometria/geometria-icon.png",
     "materia":"Geometria",
     "materie": [
         {
+            "color": "0xFF332F2D",
+            "isFavouritable": true,
             "icona": "assets/icons/geometria/geometria_piana.png",
             "materia": "Geometria piana",
             "materie": [],
