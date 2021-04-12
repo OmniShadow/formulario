@@ -1,12 +1,14 @@
 {
     "color": "0xFF635C58",
     "isFavouritable": false,
+    "categoria": "",
     "icona" : "assets/icons/probabilita/probabilita-icon.png",
     "materia":"Probabilita",
     "materie": [
         {
             "color": "0xFF635C58",
             "isFavouritable": true,
+            "categoria": "Probabilita",
             "icona": "assets/icons/probabilita/cdf.png",
             "materia": "Funzioni cumulative",
             "materie": [],
@@ -15,6 +17,7 @@
         {
             "color": "0xFF635C58",
             "isFavouritable": true,
+            "categoria": "Probabilita",
             "icona": "assets/icons/probabilita/pdf.png",
             "materia": "Funzioni di distribuzione di probabilità",
             "materie": [],

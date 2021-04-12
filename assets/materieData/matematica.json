@@ -43,6 +43,7 @@
         {
             "color": "0xFF7D746E",
             "isFavouritable": true,
+            "categoria": "Matematica",
             "icona": "assets/icons/matematica/esponenziali.png",
             "materia": "Esponenziali",
             "materie": [],

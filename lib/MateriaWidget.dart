@@ -22,54 +22,10 @@ class MateriaWidgetState extends State<MateriaWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: () {
-          if (materiaData.formule.isEmpty && materiaData.subMaterie.isEmpty) {
-          } else
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Scaffold(
-                  backgroundColor: Color(0xFFFDEBDF),
-                  extendBodyBehindAppBar: true,
-                  appBar: AppBar(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                  ),
-                  body: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 100,
-                            height: 100,
-                            child: Hero(
-                              tag: materiaData.materiaTitle,
-                              child: _iconWidget,
-                            ),
-                          ),
-                          Text(materiaData.materiaTitle),
-                        ],
-                      ),
-                      (materiaData.formule.isEmpty
-                          ? Expanded(
-                              child: MaterieManagerWidget(
-                                  materieData: materiaData.subMaterie),
-                            )
-                          : Expanded(
-                              child: FormuleManager(
-                                formule: materiaData.formule,
-                              ),
-                            )),
-                    ],
-                  ),
-                ),
-              ),
-            );
-        },
-        child: InkResponse(
-          enableFeedback: true,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        child: Ink(
           child: Column(
             children: [
               Expanded(
@@ -131,7 +87,67 @@ class MateriaWidgetState extends State<MateriaWidget> {
               ),
             ],
           ),
-        ));
+        ),
+        onTap: () {
+          if (materiaData.formule.isEmpty && materiaData.subMaterie.isEmpty) {
+          } else
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Scaffold(
+                  backgroundColor: Color(0xFFFDEBDF),
+                  extendBodyBehindAppBar: true,
+                  appBar: AppBar(
+                    iconTheme: IconThemeData(
+                      color: Color(0xFF332F2D),
+                    ),
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                  ),
+                  body: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 100,
+                            height: 100,
+                            child: Hero(
+                              tag: materiaData.materiaTitle,
+                              child: _iconWidget,
+                            ),
+                          ),
+                          Text(materiaData.materiaTitle),
+                        ],
+                      ),
+                      (materiaData.formule.isEmpty
+                          ? Expanded(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(70),
+                                      topRight: Radius.circular(70)),
+                                  color: Color(0xFFC9BBB1),
+                                ),
+                                child: Expanded(
+                                  child: MaterieManagerWidget(
+                                      materieData: materiaData.subMaterie),
+                                ),
+                              ),
+                            )
+                          : Expanded(
+                              child: FormuleManager(
+                                formule: materiaData.formule,
+                              ),
+                            )),
+                    ],
+                  ),
+                ),
+              ),
+            );
+        },
+      ),
+    );
   }
 
   void addToFavourites(BuildContext context) {

@@ -1,12 +1,14 @@
 {  
     "color": "0xFF332F2D",
     "isFavouritable": false,
+    "categoria": "",
     "icona" : "assets/icons/geometria/geometria-icon.png",
     "materia":"Geometria",
     "materie": [
         {
             "color": "0xFF332F2D",
             "isFavouritable": true,
+            "categoria": "Geometria",
             "icona": "assets/icons/geometria/geometria_piana.png",
             "materia": "Geometria piana",
             "materie": [],

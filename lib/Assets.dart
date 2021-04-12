@@ -30,7 +30,7 @@ class Assets {
         final String jsonString = await rootBundle
             .loadString('/materieData/' + materiaNome.toLowerCase() + '.json');
         var jsonResponse = await json.decode(jsonString);
-        MateriaData materiaData = MateriaData.fromJson(jsonResponse);
+        MateriaData materiaData = MateriaData.fromJson(jsonResponse, '');
         print('assets: ' + materiaData.materiaTitle);
         _materieDataMap[materiaNome] = materiaData;
         print('Materie caricate con successo');

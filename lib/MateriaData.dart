@@ -5,6 +5,7 @@ class MateriaData {
   List<FormulaData> formule;
   String iconPath;
   String materiaTitle;
+  String categoria;
   bool isFavouritable = false;
   bool isFavourite = false;
   int colorValue;
@@ -16,9 +17,13 @@ class MateriaData {
     this.formule,
     this.isFavouritable,
     this.colorValue,
-  });
+    this.categoria,
+  }) {
+    print(materiaTitle + ' con categoria ' + categoria);
+  }
 
-  factory MateriaData.fromJson(Map<String, dynamic> parsedJson) {
+  factory MateriaData.fromJson(
+      Map<String, dynamic> parsedJson, String categoria) {
     List<dynamic> _subMaterie = [];
     List<dynamic> _formule = [];
     List<FormulaData> formuleData = [];
@@ -26,9 +31,13 @@ class MateriaData {
     var materieJson;
     var formuleJson;
 
+    categoria =
+        categoria + (categoria.isEmpty ? '' : ':') + parsedJson['materia'];
+
     materieJson = parsedJson['materie'];
     if (!materieJson.isEmpty) {
-      _subMaterie = materieJson.map((i) => MateriaData.fromJson(i)).toList();
+      _subMaterie =
+          materieJson.map((i) => MateriaData.fromJson(i, categoria)).toList();
       for (dynamic _subMateria in _subMaterie) {
         subMaterieData.add(_subMateria as MateriaData);
       }
@@ -38,7 +47,8 @@ class MateriaData {
     formuleJson = parsedJson['formule'];
 
     if (!formuleJson.isEmpty) {
-      _formule = formuleJson.map((i) => FormulaData.fromJson(i)).toList();
+      _formule =
+          formuleJson.map((i) => FormulaData.fromJson(i, categoria)).toList();
       for (dynamic _formula in _formule) {
         formuleData.add(_formula as FormulaData);
       }
@@ -52,6 +62,7 @@ class MateriaData {
       subMaterie: subMaterieData,
       formule: formuleData,
       isFavouritable: parsedJson['isFavouritable'],
+      categoria: categoria,
     );
   }
 }

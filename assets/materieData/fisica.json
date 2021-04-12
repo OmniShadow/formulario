@@ -1,12 +1,14 @@
 {
     "color": "0xFF635C58",
     "isFavouritable": false,
+    "categoria": "",
     "icona" : "assets/icons/fisica/fisica-icon.png",
     "materia":"Fisica",
     "materie": [
         {
             "color": "0xFF635C58",
             "isFavouritable": true,
+            "categoria": "Fisica",
             "icona": "assets/icons/fisica/meccanica_classica.png",
             "materia": "Meccanica Classica",
             "materie": [],
@@ -15,6 +17,7 @@
         {
             "color": "0xFF635C58",
             "isFavouritable": true,
+            "categoria": "Fisica",
             "icona": "assets/icons/fisica/elettromagnetismo.png",
             "materia": "Elettromagnetismo",
             "materie": [],
