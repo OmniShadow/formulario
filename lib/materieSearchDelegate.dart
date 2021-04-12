@@ -7,6 +7,7 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
   List<MateriaData> materieRecenti = [];
 
   MaterieSearch({this.materieData});
+
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -61,6 +62,7 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
             materieRecenti.add(suggerimenti[index]);
           },
           leading: Icon(Icons.menu_book_rounded),
+          trailing: query.isEmpty ? Icon(Icons.history) : Text(''),
           title: RichText(
             text: TextSpan(
               children:
