@@ -87,8 +87,8 @@ class Assets {
   Future<void> loadMaterie() async {
     try {
       for (String materiaNome in materieNomi) {
-        final String jsonString = await rootBundle
-            .loadString('/materieData/' + materiaNome.toLowerCase() + '.json');
+        final String jsonString = await rootBundle.loadString(
+            'assets/materieData/' + materiaNome.toLowerCase() + '.json');
         var jsonResponse = await json.decode(jsonString);
         MateriaData materiaData = MateriaData.fromJson(jsonResponse, '');
         _materieDataMap[materiaNome] = materiaData;
