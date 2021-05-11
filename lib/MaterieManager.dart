@@ -19,7 +19,7 @@ class _MaterieManagerState extends State<MaterieManagerWidget> {
   @override
   Widget build(BuildContext context) {
     return GridView(
-      shrinkWrap: false,
+      shrinkWrap: true,
       controller: ScrollController(),
       physics: ScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -34,9 +34,8 @@ class _MaterieManagerState extends State<MaterieManagerWidget> {
 
   List<MateriaWidget> creaMaterie() {
     materieWidget = <MateriaWidget>[];
-    print('numero materie ' + materieData.length.toString());
+
     for (MateriaData materiaData in materieData) {
-      print('test ' + materiaData.iconPath);
       materieWidget.add(MateriaWidget(materiaData));
     }
     return materieWidget;

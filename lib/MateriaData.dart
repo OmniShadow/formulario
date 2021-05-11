@@ -18,8 +18,24 @@ class MateriaData {
     this.isFavouritable,
     this.colorValue,
     this.categoria,
-  }) {
-    print(materiaTitle + ' con categoria ' + categoria);
+  });
+
+  List<MateriaData> getMaterie() {
+    List<MateriaData> materie = [];
+    materie.addAll(subMaterie);
+    for (MateriaData subMateria in subMaterie)
+      materie.addAll(subMateria.getMaterie());
+    return materie;
+  }
+
+  List<FormulaData> getFormule() {
+    List<FormulaData> formuleAll = [];
+    formuleAll.addAll(formule);
+    List<MateriaData> materie = getMaterie();
+    for (MateriaData materia in materie) {
+      formuleAll.addAll(materia.getFormule());
+    }
+    return formuleAll;
   }
 
   factory MateriaData.fromJson(

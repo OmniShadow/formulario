@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:formulario/constantsUtil.dart';
 import 'package:formulario/formuleManager.dart';
 import 'materiaData.dart';
 import 'materieManager.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:responsive_flutter/responsive_flutter.dart';
 
 class MateriaWidget extends StatefulWidget {
   MateriaData materiaData;
@@ -29,6 +31,7 @@ class MateriaWidgetState extends State<MateriaWidget> {
           child: Column(
             children: [
               Expanded(
+                flex: 1,
                 child: AspectRatio(
                   aspectRatio: 1,
                   child: Container(
@@ -68,10 +71,11 @@ class MateriaWidgetState extends State<MateriaWidget> {
                   alignment: Alignment.center,
                   child: AutoSizeText(
                     materiaData.materiaTitle.toUpperCase(),
-                    maxFontSize: 100,
-                    minFontSize: 20,
-                    maxLines: 1,
+                    wrapWords: false,
+                    maxLines: 2,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
+                      fontSize: 20,
                       fontFamily: 'Brandon-Grotesque-black',
                       letterSpacing: 2,
                       shadows: [
@@ -91,77 +95,84 @@ class MateriaWidgetState extends State<MateriaWidget> {
         onTap: () {
           if (materiaData.formule.isEmpty && materiaData.subMaterie.isEmpty) {
           } else
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Scaffold(
-                  backgroundColor: Color(0xFFFDEBDF),
-                  extendBodyBehindAppBar: true,
-                  appBar: AppBar(
-                    iconTheme: IconThemeData(
-                      color: Color(0xFF332F2D),
-                    ),
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                  ),
-                  body: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 100,
-                            height: 100,
-                            child: Hero(
-                              tag: materiaData.materiaTitle,
-                              child: _iconWidget,
-                            ),
-                          ),
-                          Text(materiaData.materiaTitle),
-                        ],
-                      ),
-                      (materiaData.formule.isEmpty
-                          ? Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(70),
-                                      topRight: Radius.circular(70)),
-                                  color: Color(0xFFC9BBB1),
-                                ),
-                                child: Expanded(
-                                  child: MaterieManagerWidget(
-                                      materieData: materiaData.subMaterie),
-                                ),
-                              ),
-                            )
-                          : Expanded(
-                              child: FormuleManager(
-                                formule: materiaData.formule,
-                              ),
-                            )),
-                    ],
-                  ),
-                ),
-              ),
-            );
+            Navigator.push(context, getMateriaPage());
         },
       ),
     );
   }
 
-  void addToFavourites(BuildContext context) {
-    setState(() {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text((materiaData.isFavourite
-            ? 'Materia rimossa dai preferiti'
-            : 'Materia aggiunta ai preferiti')),
-        duration: Duration(milliseconds: 1000),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-                top: Radius.circular(100), bottom: Radius.circular(100))),
-      ));
-      materiaData.isFavourite = !materiaData.isFavourite;
-    });
+  MaterialPageRoute getMateriaPage() {
+    return MaterialPageRoute(
+      builder: (context) => Scaffold(
+        backgroundColor: MyAppColors.appBackground,
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          iconTheme: IconThemeData(
+            color: MyAppColors.iconColor,
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AspectRatio(
+              aspectRatio: 6.95,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+                child: AspectRatio(
+                  aspectRatio: 6.95,
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: Color(0xFF332F2D),
+                        borderRadius: BorderRadius.all(Radius.circular(8))),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Hero(
+                          tag: materiaData.materiaTitle,
+                          child: Image.asset(materiaData.iconPath),
+                        ),
+                        AutoSizeText(
+                          materiaData.materiaTitle,
+                          maxLines: 5,
+                          minFontSize: 30,
+                          style: TextStyle(
+                              fontFamily: 'Brandon-Grotesque-black',
+                              color: Colors.white,
+                              letterSpacing: 2.5,
+                              fontStyle: FontStyle.normal),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            (materiaData.formule.isEmpty
+                ? Expanded(
+                    flex: 8,
+                    child: Container(
+                      child: MaterieManagerWidget(
+                          materieData: materiaData.subMaterie),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(70),
+                            topRight: Radius.circular(70)),
+                        color: MyAppColors.materieBackground,
+                      ),
+                    ),
+                  )
+                : Expanded(
+                    flex: 8,
+                    child: FormuleManager(
+                      formule: materiaData.formule,
+                    ),
+                  )),
+          ],
+        ),
+      ),
+    );
   }
 }

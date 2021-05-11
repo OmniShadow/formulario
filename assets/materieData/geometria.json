@@ -12,8 +12,123 @@
             "icona": "assets/icons/geometria/geometria_piana.png",
             "materia": "Geometria piana",
             "materie": [],
-            "formule": []
+            "formule": [
+                {
+                    "categoria": "",
+                    "titolo": "Area Poligono",
+                    "testo": "A=b*h"
+                },
+                {
+                    "titolo": "Diagonale rettangolo",
+                    "testo": "d = (b^2 + h^2)^(1/2) "
+                },
+                {
+                    "titolo": "Area Quadrato",
+                    "testo": "A=l^2"
+                },
+                {
+                    "titolo": "Diagonale Quadrato",
+                    "testo": "l*(2)^1/2"
+                },
+                {
+                    "titolo": "Area Parallelogramma",
+                    "testo": "A=b*h"
+                },
+                {
+                    "titolo": "Area Triangolo",
+                    "testo": "A=(b*h)/2"
+                },
+                {
+                    "titolo": "Mediana relativa al lato(Triangolo)",
+                    "testo": "1/2*(2*b^2+2*c^2-a^2)^1/2"
+                },
+                {
+                    "titolo": "Bisettrice relativa al lato(Triangolo)",
+                    "testo": "2/(b+c)*(b*c*p(p-a))^(1/2)"
+                },
+                {
+                    "titolo": "Area Triangolo Rettangolo",
+                    "testo": "A=(a*h)/2"
+                },
+                {
+                    "titolo": "Area Rombo",
+                    "testo": "A=(d1*d2)/2"
+                },
+                {
+                    "titolo": "Area Trapezio",
+                    "testo": "A=((b1+b2)*h)/2"
+                }
+            ]
+        },
+        {
+            "color": "0xFF332F2D",
+            "isFavouritable": true,
+            "categoria": "Geometria",
+            "icona": "assets/icons/geometria/geometria_solida.png",
+            "materia": "Geometria Solida",
+            "materie": [],
+            "formule": [
+                {
+                    "categoria": "",
+                    "titolo": "Area Parallelepipedo rettangolo",
+                    "testo": "A=pb*h"
+                },
+                {
+                    "titolo": "Volume Parallelepipedo rettangolo",
+                    "testo": "V=a*b*c"
+                },
+                {
+                    "titolo": "Diagonale Parallelepipedo rettangolo",
+                    "testo": "(a^2+b^2+c^2)^1/2"
+                },
+                {
+                    "titolo": "Area Cubo",
+                    "testo": "4*s^2"
+                },
+                {
+                    "titolo": "Volume Cubo",
+                    "testo": "s^3"
+                },
+                {
+                    "titolo": "Diagonale Cubo",
+                    "testo": "s*(3)^1/2"
+                },
+                {
+                    "titolo": "Area Prisma retto",
+                    "testo": "pb*h"
+                },
+                {
+                    "titolo": "Volume Prisma retto",
+                    "testo": "A*h"
+                },
+                {
+                    "titolo": "Area Piramide retta",
+                    "testo": "(p*a)/2"
+                },
+                {
+                    "titolo": "Volume Piramide retta",
+                    "testo": "(A*h)/3"
+                },
+                {
+                    "titolo": "Area Cilindro",
+                    "testo": "2π*r*h"
+                },
+                {
+                    "titolo": "Volume Cilindro",
+                    "testo": "π*r^2*h"
+                },
+                {
+                    "titolo": "Area Cono",
+                    "testo": "π*r*a"
+                },
+                {
+                    "titolo": "Volume Cono",
+                    "testo": "(π*r^2*h)/3"
+                }
+            ]
         }
+
+
     ],
     "formule": []
 }

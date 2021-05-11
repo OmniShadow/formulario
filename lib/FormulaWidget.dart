@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:flutter/services.dart';
+import 'package:formulario/constantsUtil.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import 'assets.dart';
 import 'formulaData.dart';
+import 'package:animations/animations.dart';
 
 class FormulaWidget extends StatefulWidget {
   FormulaData formulaData;
@@ -18,9 +22,10 @@ class _FormulaState extends State<FormulaWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Card(
+    return OpenContainer(closedBuilder: (context, action) {
+      return Card(
         child: ListTile(
+          onTap: action,
           enableFeedback: true,
           trailing: GestureDetector(
             onTap: () {
@@ -30,45 +35,47 @@ class _FormulaState extends State<FormulaWidget> {
                 duration: Duration(milliseconds: 500),
               ));
             },
-            child: Icon(Icons.copy),
+            child: Icon(
+              Icons.copy,
+            ),
           ),
           enabled: true,
           hoverColor: Colors.red.withAlpha(150),
           onLongPress: () => addToFavourites(context),
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Scaffold(
-                      appBar: AppBar(
-                        title: Text(formulaData.titolo),
-                      ),
-                      body: Column(
-                        children: [
-                          FittedBox(
-                            child: Card(
-                              child: Math.tex(
-                                formulaData.testo,
-                                textScaleFactor: 7.0,
-                              ),
-                            ),
-                          ),
-                        ],
-                      )),
-                ));
-          },
           leading: GestureDetector(
             onTap: () => addToFavourites(context),
             child: Icon(
-              (formulaData.isFavourite ? Icons.star : Icons.star_border),
-              color: Colors.yellow,
+              (formulaData.isFavourite
+                  ? Icons.favorite
+                  : Icons.favorite_border),
+              color: MyAppColors.shirtColor,
             ),
           ),
           title: Math.tex(formulaData.testo),
           subtitle: Text(formulaData.titolo),
         ),
-      ),
-    );
+      );
+    }, openBuilder: (context, action) {
+      return Scaffold(
+          appBar: AppBar(
+            title: Text(formulaData.titolo),
+          ),
+          body: Column(
+            children: [
+              FittedBox(
+                child: Card(
+                  child: Math.tex(
+                    formulaData.testo,
+                    textScaleFactor: 7.0,
+                  ),
+                ),
+              ),
+              WebView(
+                initialUrl: 'google.it',
+              ),
+            ],
+          ));
+    });
   }
 
   void addToFavourites(BuildContext context) {
@@ -84,5 +91,6 @@ class _FormulaState extends State<FormulaWidget> {
       ));
       formulaData.isFavourite = !formulaData.isFavourite;
     });
+    Assets.instance().aggiungiFormulaPreferiti(formulaData);
   }
 }

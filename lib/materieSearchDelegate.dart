@@ -2,11 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:formulario/formulaData.dart';
 import 'package:formulario/materiaData.dart';
 
+import 'assets.dart';
+
 class MaterieSearch extends SearchDelegate<MateriaData> {
   List<MateriaData> materieData;
   List<MateriaData> materieRecenti = [];
+  Assets assets;
 
-  MaterieSearch({this.materieData});
+  MaterieSearch(this.assets) {
+    materieData = [
+      assets.getMateriaData('Matematica'),
+      assets.getMateriaData('Fisica'),
+      assets.getMateriaData('Geometria'),
+      assets.getMateriaData('Probabilita'),
+    ];
+  }
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -68,49 +78,39 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
         query.isEmpty ? materieRecenti : creaListaSuggerimenti(materieData);
     List<FormulaData> suggerimentiFormule =
         query.isEmpty ? [] : creaListSuggerimentiFormule(materieData);
-    return Column(
-      children: [
-        Expanded(
-          child: ListView.builder(
-            itemCount: suggerimenti.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                onTap: () {
-                  materieRecenti.add(suggerimenti[index]);
-                },
-                leading: Icon(Icons.menu_book_rounded),
-                trailing: query.isEmpty ? Icon(Icons.history) : Text(''),
-                title: RichText(
-                  text: TextSpan(
-                    children: highlightOccurrences(
-                        suggerimenti[index].categoria, query),
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ),
-              );
+    return ListView.builder(
+      itemCount: suggerimenti.length + suggerimentiFormule.length,
+      itemBuilder: (context, index) {
+        if (index < suggerimenti.length)
+          return ListTile(
+            onTap: () {
+              materieRecenti.add(suggerimenti[index]);
             },
-          ),
-        ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: suggerimentiFormule.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                onTap: () {},
-                leading: Icon(Icons.functions),
-                trailing: query.isEmpty ? Icon(Icons.history) : Text(''),
-                title: RichText(
-                  text: TextSpan(
-                    children: highlightOccurrences(
-                        suggerimentiFormule[index].titolo, query),
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ),
-              );
-            },
-          ),
-        ),
-      ],
+            leading: Icon(Icons.menu_book_rounded),
+            trailing: query.isEmpty ? Icon(Icons.history) : Text(''),
+            title: RichText(
+              text: TextSpan(
+                children:
+                    highlightOccurrences(suggerimenti[index].categoria, query),
+                style: TextStyle(color: Colors.grey),
+              ),
+            ),
+          );
+        else
+          return ListTile(
+            onTap: () {},
+            leading: Icon(Icons.functions),
+            trailing: query.isEmpty ? Icon(Icons.history) : Text(''),
+            title: RichText(
+              text: TextSpan(
+                children: highlightOccurrences(
+                    suggerimentiFormule[index - suggerimenti.length].titolo,
+                    query),
+                style: TextStyle(color: Colors.grey),
+              ),
+            ),
+          );
+      },
     );
   }
 
