@@ -71,9 +71,9 @@ class MateriaWidgetState extends State<MateriaWidget> {
                   child: AutoSizeText(
                     materiaData.materiaTitle.toUpperCase(),
                     wrapWords: false,
-                    minFontSize: 1,
+                    minFontSize: 5,
                     maxFontSize: 100,
-                    maxLines: 1,
+                    maxLines: 2,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 20,
@@ -136,8 +136,8 @@ class MateriaWidgetState extends State<MateriaWidget> {
                         ),
                         AutoSizeText(
                           materiaData.materiaTitle,
-                          maxLines: 5,
-                          minFontSize: 30,
+                          maxLines: 1,
+                          minFontSize: 20,
                           style: TextStyle(
                               fontFamily: 'Brandon-Grotesque-black',
                               color: Colors.white,
