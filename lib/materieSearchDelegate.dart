@@ -7,14 +7,13 @@ import 'assets.dart';
 class MaterieSearch extends SearchDelegate<MateriaData> {
   List<MateriaData> materieData;
   List<MateriaData> materieRecenti = [];
-  Assets assets;
 
-  MaterieSearch(this.assets) {
+  MaterieSearch() {
     materieData = [
-      assets.getMateriaData('Matematica'),
-      assets.getMateriaData('Fisica'),
-      assets.getMateriaData('Geometria'),
-      assets.getMateriaData('Probabilita'),
+      Assets.instance.getMateriaData('Matematica'),
+      Assets.instance.getMateriaData('Fisica'),
+      Assets.instance.getMateriaData('Geometria'),
+      Assets.instance.getMateriaData('Probabilita'),
     ];
   }
 

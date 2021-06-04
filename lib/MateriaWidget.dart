@@ -4,10 +4,9 @@ import 'package:formulario/formuleManager.dart';
 import 'materiaData.dart';
 import 'materieManager.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:responsive_flutter/responsive_flutter.dart';
 
 class MateriaWidget extends StatefulWidget {
-  MateriaData materiaData;
+  final MateriaData materiaData;
   MateriaWidget(this.materiaData);
   @override
   State<StatefulWidget> createState() {
@@ -72,12 +71,14 @@ class MateriaWidgetState extends State<MateriaWidget> {
                   child: AutoSizeText(
                     materiaData.materiaTitle.toUpperCase(),
                     wrapWords: false,
-                    maxLines: 2,
+                    minFontSize: 1,
+                    maxFontSize: 100,
+                    maxLines: 1,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 20,
                       fontFamily: 'Brandon-Grotesque-black',
-                      letterSpacing: 2,
+                      letterSpacing: 0.2,
                       shadows: [
                         Shadow(
                           color: Colors.grey[600],
@@ -93,8 +94,7 @@ class MateriaWidgetState extends State<MateriaWidget> {
           ),
         ),
         onTap: () {
-          if (materiaData.formule.isEmpty && materiaData.subMaterie.isEmpty) {
-          } else
+          if (!(materiaData.formule.isEmpty && materiaData.subMaterie.isEmpty))
             Navigator.push(context, getMateriaPage());
         },
       ),

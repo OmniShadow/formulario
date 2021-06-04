@@ -19,7 +19,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   static const String _title = 'Formulario';
-  Assets assets = Assets.instance();
+  Assets assets = Assets.instance;
   Future assetsFuture;
   bool assetsLoaded = false;
   Brightness brightness = Brightness.light;
@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
                 return LoadingScreen();
               case ConnectionState.done:
                 assets.loadFormule();
-                return _MyHomePage(assets);
+                return _MyHomePage();
               default:
                 return LoadingScreen();
             }
@@ -54,43 +54,38 @@ class _MyAppState extends State<MyApp> {
 }
 
 class _MyHomePage extends StatelessWidget {
-  Assets assets;
-  _MyHomePage(this.assets);
   @override
   Widget build(BuildContext context) {
-    return Builder(
-      builder: (context) => Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          iconTheme: IconThemeData(
-            color: Color(0xFF332F2D),
-          ),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () {
-                showSearch(context: context, delegate: MaterieSearch(assets));
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.more_vert),
-              onPressed: () {},
-            )
-          ],
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(
+          color: Color(0xFF332F2D),
         ),
-        backgroundColor: Color(0xFFFDEBDF),
-        body: _MyHomePageBody(assets),
-        drawer: Drawer(),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              showSearch(context: context, delegate: MaterieSearch());
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.more_vert),
+            onPressed: () {},
+          )
+        ],
       ),
+      backgroundColor: Color(0xFFFDEBDF),
+      body: _MyHomePageBody(),
+      drawer: Drawer(),
     );
   }
 }
 
 class _MyHomePageBody extends StatelessWidget {
-  Assets assets;
-  _MyHomePageBody(this.assets);
+  _MyHomePageBody();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -142,10 +137,10 @@ class _MyHomePageBody extends StatelessWidget {
                         padding: EdgeInsets.all(40),
                         child: MaterieManagerWidget(
                           materieData: [
-                            assets.getMateriaData('Matematica'),
-                            assets.getMateriaData('Fisica'),
-                            assets.getMateriaData('Geometria'),
-                            assets.getMateriaData('Probabilita')
+                            Assets.instance.getMateriaData('Matematica'),
+                            Assets.instance.getMateriaData('Fisica'),
+                            Assets.instance.getMateriaData('Geometria'),
+                            Assets.instance.getMateriaData('Probabilita')
                           ],
                         ),
                       ),

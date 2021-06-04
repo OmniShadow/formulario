@@ -28,7 +28,7 @@ class Assets {
     });
   }
 
-  static Assets instance() =>
+  static Assets get instance =>
       (_assets == null ? _assets = Assets._() : _assets);
 
   MateriaData getMateriaData(String key) {
