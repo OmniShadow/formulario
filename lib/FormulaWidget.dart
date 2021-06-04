@@ -8,10 +8,13 @@ import 'formulaData.dart';
 
 class FormulaWidget extends StatefulWidget {
   final FormulaData formulaData;
-  FormulaWidget(this.formulaData);
+  _FormulaState _formulaState;
+  FormulaWidget(this.formulaData) {
+    _formulaState = _FormulaState(formulaData);
+  }
   @override
   State<StatefulWidget> createState() {
-    return _FormulaState(formulaData);
+    return _formulaState;
   }
 }
 
@@ -23,7 +26,8 @@ class _FormulaState extends State<FormulaWidget> {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        onTap: () => Navigator.push(context, getFormulaMaterialPage()),
+        onTap: () =>
+            Navigator.push(context, formulaData.getFormulaMaterialPage()),
         enableFeedback: true,
         trailing: GestureDetector(
           onTap: () {
@@ -74,28 +78,4 @@ class _FormulaState extends State<FormulaWidget> {
     });
     Assets.instance.aggiungiFormulaPreferiti(formulaData);
   }
-
-  MaterialPageRoute getFormulaMaterialPage() => MaterialPageRoute(
-      builder: (context) => Scaffold(
-          appBar: AppBar(
-            title: Text(formulaData.titolo),
-          ),
-          body: Column(
-            children: [
-              FittedBox(
-                child: Card(
-                  child: Math.tex(
-                    formulaData.testo,
-                    textScaleFactor: 7.0,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: WebView(
-                  initialUrl:
-                      'https://www.google.it/search?q=' + formulaData.titolo,
-                ),
-              ),
-            ],
-          )));
 }

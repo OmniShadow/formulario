@@ -5,10 +5,12 @@ import 'package:formulario/materiaData.dart';
 import 'assets.dart';
 
 class MaterieSearch extends SearchDelegate<MateriaData> {
+  static MaterieSearch _materieSearch;
   List<MateriaData> materieData;
   List<MateriaData> materieRecenti = [];
+  List<FormulaData> formuleRecenti = [];
 
-  MaterieSearch() {
+  MaterieSearch._() {
     materieData = [
       Assets.instance.getMateriaData('Matematica'),
       Assets.instance.getMateriaData('Fisica'),
@@ -16,6 +18,10 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
       Assets.instance.getMateriaData('Probabilita'),
     ];
   }
+
+  static MaterieSearch get instance => ((_materieSearch == null)
+      ? _materieSearch = MaterieSearch._()
+      : _materieSearch);
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -75,15 +81,17 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
   Widget buildSuggestions(BuildContext context) {
     List<MateriaData> suggerimenti =
         query.isEmpty ? materieRecenti : creaListaSuggerimenti(materieData);
-    List<FormulaData> suggerimentiFormule =
-        query.isEmpty ? [] : creaListSuggerimentiFormule(materieData);
+    List<FormulaData> suggerimentiFormule = query.isEmpty
+        ? formuleRecenti
+        : creaListSuggerimentiFormule(materieData);
     return ListView.builder(
       itemCount: suggerimenti.length + suggerimentiFormule.length,
       itemBuilder: (context, index) {
         if (index < suggerimenti.length)
           return ListTile(
             onTap: () {
-              materieRecenti.add(suggerimenti[index]);
+              _aggiungiMateriaRecente(suggerimenti[index]);
+              Navigator.push(context, suggerimenti[index].getMateriaPage());
             },
             leading: Icon(Icons.menu_book_rounded),
             trailing: query.isEmpty ? Icon(Icons.history) : Text(''),
@@ -97,7 +105,14 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
           );
         else
           return ListTile(
-            onTap: () {},
+            onTap: () {
+              _aggiungiFormulaRecente(
+                  suggerimentiFormule[index - suggerimenti.length]);
+              Navigator.push(
+                  context,
+                  suggerimentiFormule[index - suggerimenti.length]
+                      .getFormulaMaterialPage());
+            },
             leading: Icon(Icons.functions),
             trailing: query.isEmpty ? Icon(Icons.history) : Text(''),
             title: RichText(
@@ -111,6 +126,18 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
           );
       },
     );
+  }
+
+  void _aggiungiFormulaRecente(FormulaData formula) {
+    if (formuleRecenti.length >= 5) formuleRecenti.removeAt(0);
+
+    if (!formuleRecenti.contains(formula)) formuleRecenti.add(formula);
+  }
+
+  void _aggiungiMateriaRecente(MateriaData materia) {
+    if (materieRecenti.length >= 5) materieRecenti.removeAt(0);
+
+    if (!materieRecenti.contains(materia)) materieRecenti.add(materia);
   }
 
   //taken from stackOverflow

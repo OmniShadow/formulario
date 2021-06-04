@@ -137,7 +137,7 @@ class MateriaWidgetState extends State<MateriaWidget> {
                         AutoSizeText(
                           materiaData.materiaTitle,
                           maxLines: 1,
-                          minFontSize: 20,
+                          minFontSize: 1,
                           style: TextStyle(
                               fontFamily: 'Brandon-Grotesque-black',
                               color: Colors.white,

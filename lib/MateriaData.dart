@@ -1,4 +1,9 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+import 'package:formulario/constantsUtil.dart';
 import 'package:formulario/formulaData.dart';
+import 'package:formulario/formuleManager.dart';
+import 'package:formulario/materieManager.dart';
 
 class MateriaData {
   List<MateriaData> subMaterie;
@@ -79,6 +84,80 @@ class MateriaData {
       formule: formuleData,
       isFavouritable: parsedJson['isFavouritable'],
       categoria: categoria,
+    );
+  }
+
+  MaterialPageRoute getMateriaPage() {
+    return MaterialPageRoute(
+      builder: (context) => Scaffold(
+        backgroundColor: MyAppColors.appBackground,
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          iconTheme: IconThemeData(
+            color: MyAppColors.iconColor,
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AspectRatio(
+              aspectRatio: 6.95,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+                child: AspectRatio(
+                  aspectRatio: 6.95,
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: Color(0xFF332F2D),
+                        borderRadius: BorderRadius.all(Radius.circular(8))),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Hero(
+                          tag: materiaTitle,
+                          child: Image.asset(iconPath),
+                        ),
+                        AutoSizeText(
+                          materiaTitle,
+                          maxLines: 1,
+                          minFontSize: 1,
+                          style: TextStyle(
+                              fontFamily: 'Brandon-Grotesque-black',
+                              color: Colors.white,
+                              letterSpacing: 2.5,
+                              fontStyle: FontStyle.normal),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            (formule.isEmpty
+                ? Expanded(
+                    flex: 8,
+                    child: Container(
+                      child: MaterieManagerWidget(materieData: subMaterie),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(70),
+                            topRight: Radius.circular(70)),
+                        color: MyAppColors.materieBackground,
+                      ),
+                    ),
+                  )
+                : Expanded(
+                    flex: 8,
+                    child: FormuleManager(
+                      formule: formule,
+                    ),
+                  )),
+          ],
+        ),
+      ),
     );
   }
 }
