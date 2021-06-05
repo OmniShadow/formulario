@@ -166,8 +166,11 @@ class MateriaWidgetState extends State<MateriaWidget> {
                   )
                 : Expanded(
                     flex: 8,
-                    child: FormuleManager(
-                      formule: materiaData.formule,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 55),
+                      child: FormuleManager(
+                        formule: materiaData.formule,
+                      ),
                     ),
                   )),
           ],

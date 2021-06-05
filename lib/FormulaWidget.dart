@@ -55,7 +55,11 @@ class _FormulaState extends State<FormulaWidget> {
         title: Column(
           children: [
             Wrap(
-              children: [Math.tex(formulaData.testo)],
+              children: [
+                Math.tex(
+                  formulaData.testo,
+                )
+              ],
             ),
           ],
         ),

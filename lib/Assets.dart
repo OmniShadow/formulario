@@ -45,7 +45,7 @@ class Assets {
     _salvaPreferiti();
   }
 
-  List<FormulaData> getFormulePreferite() => _formulePreferite;
+  List<FormulaData> get formulePreferite => _formulePreferite;
 
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();

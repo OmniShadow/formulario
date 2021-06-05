@@ -56,33 +56,47 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
     return ListView(
       shrinkWrap: true,
       children: [
-        ExpansionTile(
-          leading: Icon(Icons.favorite),
-          title: Text('Formule preferite'),
-          children: widgetPreferiti,
+        Theme(
+          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+          child: ExpansionTile(
+            leading: Icon(Icons.favorite),
+            title: Text('Formule preferite'),
+            children: widgetPreferiti,
+          ),
         )
       ],
     );
   }
 
-  List<ListTile> get widgetPreferiti => Assets.instance
-      .getFormulePreferite()
-      .map((e) => ListTile(
-            onLongPress: () {
-              Scaffold.of(context).showSnackBar(SnackBar(
-                content: Text('Formula rimossa dai preferiti'),
-                duration: Duration(milliseconds: 1000),
-              ));
-              setState(() {
-                e.isFavourite = !e.isFavourite;
-              });
+  List<ListTile> get widgetPreferiti {
+    return Assets.instance.formulePreferite.isEmpty
+        ? [
+            ListTile(
+              title: Text(
+                'Non hai formule tra i preferiti',
+                style: TextStyle(color: Colors.grey),
+              ),
+            )
+          ]
+        : Assets.instance.formulePreferite
+            .map((e) => ListTile(
+                  onLongPress: () {
+                    Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text('Formula rimossa dai preferiti'),
+                      duration: Duration(milliseconds: 1000),
+                    ));
+                    setState(() {
+                      e.isFavourite = !e.isFavourite;
+                    });
 
-              Assets.instance.updatePreferiti(e);
-            },
-            onTap: () => Navigator.push(context, e.getFormulaMaterialPage()),
-            leading: Icon(Icons.functions_rounded),
-            title: Math.tex(e.testo),
-            subtitle: Text(e.titolo),
-          ))
-      .toList();
+                    Assets.instance.updatePreferiti(e);
+                  },
+                  onTap: () =>
+                      Navigator.push(context, e.getFormulaMaterialPage()),
+                  leading: Icon(Icons.functions_rounded),
+                  title: Math.tex(e.testo),
+                  subtitle: Text(e.titolo),
+                ))
+            .toList();
+  }
 }
