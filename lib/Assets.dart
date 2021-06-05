@@ -11,6 +11,7 @@ class Assets {
   Map<String, MateriaData> _materieDataMap;
   Map<int, FormulaData> _formule = {};
   List<FormulaData> _formulePreferite = [];
+  List<FormulaData> _formuleRecenti = [];
   static bool areLoaded = false;
   static Assets _assets;
   static List<String> materieNomi = [
@@ -45,11 +46,6 @@ class Assets {
   }
 
   List<FormulaData> getFormulePreferite() => _formulePreferite;
-
-  void aggiungiFormulaPreferiti(FormulaData formula) {
-    _formulePreferite.add(formula);
-    _salvaPreferiti();
-  }
 
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:formulario/constantsUtil.dart';
+import 'package:formulario/formulaWidget.dart';
+import 'package:formulario/formuleManager.dart';
 import 'package:formulario/materieManager.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:formulario/myDrawerWidget.dart';
 import 'assets.dart';
 import 'materieSearchDelegate.dart';
 
@@ -34,6 +38,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       theme: ThemeData(
         brightness: brightness,
+        primaryColor: MyAppColors.appBackground,
       ),
       title: _title,
       home: FutureBuilder(
@@ -57,30 +62,30 @@ class _MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: IconThemeData(
-          color: Color(0xFF332F2D),
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              showSearch(context: context, delegate: MaterieSearch.instance);
-            },
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          iconTheme: IconThemeData(
+            color: Color(0xFF332F2D),
           ),
-          IconButton(
-            icon: Icon(Icons.more_vert),
-            onPressed: () {},
-          )
-        ],
-      ),
-      backgroundColor: Color(0xFFFDEBDF),
-      body: _MyHomePageBody(),
-      drawer: Drawer(),
-    );
+          actions: [
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                showSearch(context: context, delegate: MaterieSearch.instance);
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.more_vert),
+              onPressed: () {},
+            )
+          ],
+        ),
+        backgroundColor: Color(0xFFFDEBDF),
+        body: _MyHomePageBody(),
+        drawer:  MyDrawerWidget(),
+        );
   }
 }
 

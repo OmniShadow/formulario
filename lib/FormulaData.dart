@@ -11,6 +11,8 @@ class FormulaData {
   bool isFavourite = false;
   int id;
 
+  @override
+  String toString() => ('Formula: ' + titolo);
   FormulaData({this.titolo, this.testo, this.categoria}) {
     id = n++;
   }

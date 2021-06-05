@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:flutter/services.dart';
 import 'package:formulario/constantsUtil.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'assets.dart';
 import 'formulaData.dart';
 
+// ignore: must_be_immutable
 class FormulaWidget extends StatefulWidget {
   final FormulaData formulaData;
   _FormulaState _formulaState;
-  FormulaWidget(this.formulaData) {
+  FormulaWidget(
+    this.formulaData,
+  ) {
     _formulaState = _FormulaState(formulaData);
   }
   @override
@@ -43,7 +45,6 @@ class _FormulaState extends State<FormulaWidget> {
         ),
         enabled: true,
         hoverColor: Colors.red.withAlpha(150),
-        onLongPress: () => addToFavourites(context),
         leading: GestureDetector(
           onTap: () => addToFavourites(context),
           child: Icon(
@@ -76,6 +77,7 @@ class _FormulaState extends State<FormulaWidget> {
       ));
       formulaData.isFavourite = !formulaData.isFavourite;
     });
-    Assets.instance.aggiungiFormulaPreferiti(formulaData);
+
+    Assets.instance.updatePreferiti(formulaData);
   }
 }
