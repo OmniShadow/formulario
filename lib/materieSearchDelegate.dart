@@ -119,7 +119,7 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
         Assets.instance.updateFormuleRecenti(formulaData);
         Navigator.push(context, formulaData.getFormulaMaterialPage());
       },
-      leading: Icon(Icons.functions),
+      leading: Icon(Icons.functions_rounded),
       title: highlight
           ? RichText(
               text: TextSpan(

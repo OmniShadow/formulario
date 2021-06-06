@@ -1,11 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
-
+import 'package:formulario/formulaData.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:formulario/materiaData.dart';
-
-import 'formulaData.dart';
 
 class Assets {
   Map<String, MateriaData> _materieDataMap;
@@ -27,7 +25,8 @@ class Assets {
     _materieDataMap = Map<String, MateriaData>();
     loadMaterie().then((value) {
       loadFormule();
-      leggiPreferiti();
+      _leggiPreferiti();
+      _leggiRecenti();
     });
   }
 
@@ -42,6 +41,7 @@ class Assets {
     if (!_formuleRecenti.contains(formula)) {
       if (_formuleRecenti.length >= maxRecenti) _formuleRecenti.removeAt(0);
       _formuleRecenti.add(formula);
+      _salvaRecenti();
     }
   }
 
@@ -55,6 +55,7 @@ class Assets {
   void clearRecenti() {
     _formuleRecenti.clear();
     _materieRecenti.clear();
+    _salvaRecenti();
   }
 
   void updatePreferiti(FormulaData formula) {
@@ -69,13 +70,12 @@ class Assets {
   List<FormulaData> get formulePreferite => _formulePreferite;
   List<FormulaData> get formuleRecenti => _formuleRecenti;
   List<MateriaData> get materieRecenti => _materieRecenti;
-
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;
   }
 
-  Future<File> get _localFile async {
+  Future<File> _getLocalFile(String nome) async {
     final path = await _localPath;
     File file = File('$path/preferiti');
     bool exists = await file.exists();
@@ -84,7 +84,7 @@ class Assets {
   }
 
   Future<File> _salvaPreferiti() async {
-    final file = await _localFile;
+    final file = await _getLocalFile('preferiti');
     List<int> prefIds = [];
     for (FormulaData formula in _formulePreferite) {
       prefIds.add(formula.id);
@@ -92,13 +92,35 @@ class Assets {
     return file.writeAsBytes(prefIds);
   }
 
-  Future leggiPreferiti() async {
+  Future<File> _salvaRecenti() async {
+    final file = await _getLocalFile('recenti');
+    List<int> recentIds = [];
+    for (FormulaData formula in _formuleRecenti) {
+      recentIds.add(formula.id);
+    }
+    return file.writeAsBytes(recentIds);
+  }
+
+  Future _leggiPreferiti() async {
     try {
-      final File file = await _localFile;
+      final File file = await _getLocalFile('preferiti');
       List<int> prefIds = [];
       prefIds.addAll(await file.readAsBytes());
       for (int id in prefIds) {
-        _formulePreferite.add(_formule[id]);
+        updatePreferiti(_formule[id]);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future _leggiRecenti() async {
+    try {
+      final File file = await _getLocalFile('recenti');
+      List<int> recentIds = [];
+      recentIds.addAll(await file.readAsBytes());
+      for (int id in recentIds) {
+        updateFormuleRecenti(_formule[id]);
       }
     } catch (e) {
       print(e);
@@ -117,6 +139,7 @@ class Assets {
     } catch (e) {
       print(e);
     }
+
     return Future<void>.delayed(Duration(seconds: 1));
   }
 
