@@ -12,6 +12,8 @@ class Assets {
   Map<int, FormulaData> _formule = {};
   List<FormulaData> _formulePreferite = [];
   List<FormulaData> _formuleRecenti = [];
+  List<MateriaData> _materieRecenti = [];
+  static const int maxRecenti = 5;
   static bool areLoaded = false;
   static Assets _assets;
   static List<String> materieNomi = [
@@ -36,16 +38,37 @@ class Assets {
     return _materieDataMap[key];
   }
 
+  void updateFormuleRecenti(FormulaData formula) {
+    if (!_formuleRecenti.contains(formula)) {
+      if (_formuleRecenti.length >= maxRecenti) _formuleRecenti.removeAt(0);
+      _formuleRecenti.add(formula);
+    }
+  }
+
+  void updateMaterieRecenti(MateriaData materia) {
+    if (!_materieRecenti.contains(materia)) {
+      if (_materieRecenti.length >= maxRecenti) _materieRecenti.removeAt(0);
+      _materieRecenti.add(materia);
+    }
+  }
+
+  void clearRecenti() {
+    _formuleRecenti.clear();
+    _materieRecenti.clear();
+  }
+
   void updatePreferiti(FormulaData formula) {
     if (_formulePreferite.contains(formula))
       _formulePreferite.remove(formula);
     else
       _formulePreferite.add(formula);
-    print(_formulePreferite);
     _salvaPreferiti();
   }
 
+  //getters
   List<FormulaData> get formulePreferite => _formulePreferite;
+  List<FormulaData> get formuleRecenti => _formuleRecenti;
+  List<MateriaData> get materieRecenti => _materieRecenti;
 
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();

@@ -95,86 +95,8 @@ class MateriaWidgetState extends State<MateriaWidget> {
         ),
         onTap: () {
           if (!(materiaData.formule.isEmpty && materiaData.subMaterie.isEmpty))
-            Navigator.push(context, getMateriaPage());
+            Navigator.push(context, materiaData.getMateriaPage());
         },
-      ),
-    );
-  }
-
-  MaterialPageRoute getMateriaPage() {
-    return MaterialPageRoute(
-      builder: (context) => Scaffold(
-        backgroundColor: MyAppColors.appBackground,
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          iconTheme: IconThemeData(
-            color: MyAppColors.iconColor,
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AspectRatio(
-              aspectRatio: 6.95,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
-                child: AspectRatio(
-                  aspectRatio: 6.95,
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: Color(0xFF332F2D),
-                        borderRadius: BorderRadius.all(Radius.circular(8))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Hero(
-                          tag: materiaData.materiaTitle,
-                          child: Image.asset(materiaData.iconPath),
-                        ),
-                        AutoSizeText(
-                          materiaData.materiaTitle,
-                          maxLines: 1,
-                          minFontSize: 1,
-                          style: TextStyle(
-                              fontFamily: 'Brandon-Grotesque-black',
-                              color: Colors.white,
-                              letterSpacing: 2.5,
-                              fontStyle: FontStyle.normal),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            (materiaData.formule.isEmpty
-                ? Expanded(
-                    flex: 8,
-                    child: Container(
-                      child: MaterieManagerWidget(
-                          materieData: materiaData.subMaterie),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(70),
-                            topRight: Radius.circular(70)),
-                        color: MyAppColors.materieBackground,
-                      ),
-                    ),
-                  )
-                : Expanded(
-                    flex: 8,
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 55),
-                      child: FormuleManager(
-                        formule: materiaData.formule,
-                      ),
-                    ),
-                  )),
-          ],
-        ),
       ),
     );
   }

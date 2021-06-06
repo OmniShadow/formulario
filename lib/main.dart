@@ -62,30 +62,30 @@ class _MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          iconTheme: IconThemeData(
-            color: Color(0xFF332F2D),
-          ),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () {
-                showSearch(context: context, delegate: MaterieSearch.instance);
-              },
-            ),
-            IconButton(
-              icon: Icon(Icons.more_vert),
-              onPressed: () {},
-            )
-          ],
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(
+          color: Color(0xFF332F2D),
         ),
-        backgroundColor: Color(0xFFFDEBDF),
-        body: _MyHomePageBody(),
-        drawer:  MyDrawerWidget(),
-        );
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              showSearch(context: context, delegate: MaterieSearch.instance);
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.more_vert),
+            onPressed: () {},
+          )
+        ],
+      ),
+      backgroundColor: Color(0xFFFDEBDF),
+      body: _MyHomePageBody(),
+      drawer: MyDrawerWidget(),
+    );
   }
 }
 
@@ -135,22 +135,9 @@ class _MyHomePageBody extends StatelessWidget {
                       topRight: Radius.circular(70)),
                   color: Color(0xFFC9BBB1),
                 ),
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.all(40),
-                        child: MaterieManagerWidget(
-                          materieData: [
-                            Assets.instance.getMateriaData('Matematica'),
-                            Assets.instance.getMateriaData('Fisica'),
-                            Assets.instance.getMateriaData('Geometria'),
-                            Assets.instance.getMateriaData('Probabilita')
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+                child: Padding(
+                  padding: EdgeInsets.all(0),
+                  child: materieHomePage,
                 ),
               ),
             ),
@@ -159,6 +146,15 @@ class _MyHomePageBody extends StatelessWidget {
       ),
     );
   }
+
+  Widget get materieHomePage => MaterieManagerWidget(
+        materieData: [
+          Assets.instance.getMateriaData('Matematica'),
+          Assets.instance.getMateriaData('Fisica'),
+          Assets.instance.getMateriaData('Geometria'),
+          Assets.instance.getMateriaData('Probabilita')
+        ],
+      );
 }
 
 class LoadingScreen extends StatelessWidget {

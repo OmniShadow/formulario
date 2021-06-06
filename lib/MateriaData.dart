@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:formulario/assets.dart';
 import 'package:formulario/constantsUtil.dart';
 import 'package:formulario/formulaData.dart';
 import 'package:formulario/formuleManager.dart';
@@ -88,6 +89,7 @@ class MateriaData {
   }
 
   MaterialPageRoute getMateriaPage() {
+    Assets.instance.updateMaterieRecenti(this);
     return MaterialPageRoute(
       builder: (context) => Scaffold(
         backgroundColor: MyAppColors.appBackground,

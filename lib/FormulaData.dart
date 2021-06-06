@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
+import 'package:formulario/assets.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class FormulaData {
@@ -39,26 +40,29 @@ class FormulaData {
       categoria: categoria,
     );
   }
-  MaterialPageRoute getFormulaMaterialPage() => MaterialPageRoute(
-      builder: (context) => Scaffold(
-          appBar: AppBar(
-            title: Text(titolo),
-          ),
-          body: Column(
-            children: [
-              FittedBox(
-                child: Card(
-                  child: Math.tex(
-                    testo,
-                    textScaleFactor: 7.0,
+  MaterialPageRoute getFormulaMaterialPage() {
+    Assets.instance.updateFormuleRecenti(this);
+    return MaterialPageRoute(
+        builder: (context) => Scaffold(
+            appBar: AppBar(
+              title: Text(titolo),
+            ),
+            body: Column(
+              children: [
+                FittedBox(
+                  child: Card(
+                    child: Math.tex(
+                      testo,
+                      textScaleFactor: 7.0,
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: WebView(
-                  initialUrl: 'https://www.google.it/search?q=' + titolo,
+                Expanded(
+                  child: WebView(
+                    initialUrl: 'https://www.google.it/search?q=' + titolo,
+                  ),
                 ),
-              ),
-            ],
-          )));
+              ],
+            )));
+  }
 }
