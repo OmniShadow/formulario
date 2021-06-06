@@ -120,17 +120,22 @@ class MateriaData {
                       children: [
                         Hero(
                           tag: materiaTitle,
-                          child: Image.asset(iconPath),
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Image.asset(iconPath),
+                          ),
                         ),
-                        AutoSizeText(
-                          materiaTitle,
-                          maxLines: 1,
-                          minFontSize: 1,
-                          style: TextStyle(
-                              fontFamily: 'Brandon-Grotesque-black',
-                              color: Colors.white,
-                              letterSpacing: 2.5,
-                              fontStyle: FontStyle.normal),
+                        Flexible(
+                          fit: FlexFit.loose,
+                          child: Text(
+                            materiaTitle,
+                            maxLines: 1,
+                            style: TextStyle(
+                                fontFamily: 'Brandon-Grotesque-black',
+                                color: Colors.white,
+                                letterSpacing: 2.5,
+                                fontStyle: FontStyle.normal),
+                          ),
                         ),
                       ],
                     ),

@@ -27,43 +27,25 @@ class _FormulaState extends State<FormulaWidget> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: ListTile(
-        onTap: () =>
-            Navigator.push(context, formulaData.getFormulaMaterialPage()),
-        enableFeedback: true,
-        trailing: GestureDetector(
-          onTap: () {
-            Clipboard.setData(ClipboardData(text: formulaData.testo));
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text('Formula copiata'),
-              duration: Duration(milliseconds: 500),
-            ));
-          },
-          child: Icon(
-            Icons.copy,
-          ),
-        ),
-        enabled: true,
-        hoverColor: Colors.red.withAlpha(150),
-        leading: GestureDetector(
+      child: ExpansionTile(
+        leading: InkWell(
           onTap: () => addToFavourites(context),
           child: Icon(
             (formulaData.isFavourite ? Icons.favorite : Icons.favorite_border),
             color: MyAppColors.shirtColor,
           ),
         ),
-        title: Column(
-          children: [
-            Wrap(
-              children: [
-                Math.tex(
-                  formulaData.testo,
-                )
-              ],
-            ),
-          ],
+        title: InkWell(
+          onTap: () =>
+              Navigator.push(context, formulaData.getFormulaMaterialPage()),
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Math.tex(formulaData.testo),
+          ),
         ),
         subtitle: Text(formulaData.titolo),
+        children: [Text('Da inserire la descrizione della formula')],
       ),
     );
   }

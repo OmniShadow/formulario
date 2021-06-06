@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:formulario/constantsUtil.dart';
-import 'package:formulario/formuleManager.dart';
 import 'materiaData.dart';
-import 'materieManager.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 class MateriaWidget extends StatefulWidget {
