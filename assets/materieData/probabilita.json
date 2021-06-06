@@ -1,0 +1,95 @@
+{
+    "color": "0xFF635C58",
+    "isFavouritable": false,
+    "categoria": "",
+    "icona" : "assets/icons/probabilita/probabilita-icon.png",
+    "materia":"Probabilita",
+    "materie": [
+        {
+            "color": "0xFF635C58",
+            "isFavouritable": true,
+            "categoria": "Probabilita",
+            "icona": "assets/icons/probabilita/cdf.png",
+            "materia": "Funzioni cumulative",
+            "materie": [],
+            "formule": [ {
+                "categoria": "",
+                "titolo": "Funzione Cumulata",
+                "testo": "F(x) = P(X <= x) "
+            },
+                {
+                    "titolo": "Limite per t che tende a x+ ",
+                    "testo": "F(x+)"
+                },
+                {
+                    "titolo": "Limite per t che tende a x- ",
+                    "testo": "F(x-)"
+                },
+                {
+                    "titolo": "Limite per t che tende a  infinito ",
+                    "testo": "F(∞)"
+                },
+                {
+                    "titolo": "Prima Proprietà fondamentale",
+                    "testo": "se x <= y => F(x) <= F(y)"
+                },
+                {
+                    "titolo": "Seconda Proprietà fondamentale",
+                    "testo": "F(x-) = P(X < x) per x appartenente a R"
+                },
+                {
+                    "titolo": "Terza Proprietà fondamentale",
+                    "testo": "F(∞) = 1"
+                },
+                {
+                    "titolo": "Quarta Proprietà fondamentale",
+                    "testo": "F(-∞) = 0"
+                },
+                {
+                    "titolo": "Quinta Proprietà fondamentale",
+                    "testo": "P(X = a) = F(a) - F(a-)"
+                },
+                {
+                    "titolo": "Relazione con la funzione di densita'",
+                    "testo": "f(x) = F(x) - F(x-)"
+                }
+                ]
+        },
+        {
+            "color": "0xFF635C58",
+            "isFavouritable": true,
+            "categoria": "Probabilita",
+            "icona": "assets/icons/probabilita/pdf.png",
+            "materia": "Funzioni di distribuzione di probabilità",
+            "materie": [],
+            "formule": [
+                {
+                    "categoria": "",
+                    "titolo": "Momento iniziale di variabili continue",
+                    "testo": "m=(α+β)/2"
+                },
+                {
+                    "titolo": "Momento centrale id ordine 2 ",
+                    "testo": "(β-α)^2/12"
+                },
+                {
+                    "titolo": "Distribuzione di Gauss ",
+                    "testo": "1/(σ*(2*π)^(1/2)*(e^-(x-m)^2/2*σ^2)"
+                },
+                {
+                    "titolo": "Distribuzione di Cauchy ",
+                    "testo": "1/π*(1/(1+x^2))"
+                },
+                {
+                    "titolo": "Distribuzione χ^2",
+                    "testo": "1/(2*π)^(1/2)*e^-((x^2)/2)"
+                },
+                {
+                    "titolo": "Distribuzione di Student",
+                    "testo": "t=(n)^1/2*(y/(x)^1/2)"
+                }
+            ]
+        }
+    ],
+    "formule": []
+}

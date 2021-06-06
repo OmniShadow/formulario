@@ -1,93 +1,87 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_math_fork/ast.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
-import 'package:flutter_math_fork/tex.dart';
 import 'package:flutter/services.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:formulario/constantsUtil.dart';
+import 'assets.dart';
+import 'formulaData.dart';
 
+// ignore: must_be_immutable
 class FormulaWidget extends StatefulWidget {
-  String formulaTitle;
-  String formulaText;
-  FormulaWidget(this.formulaTitle, this.formulaText);
+  final FormulaData formulaData;
+  _FormulaState _formulaState;
+  FormulaWidget(
+    this.formulaData,
+  ) {
+    _formulaState = _FormulaState(formulaData);
+  }
   @override
   State<StatefulWidget> createState() {
-    return _FormulaState(formulaTitle, formulaText);
+    return _formulaState;
   }
 }
 
 class _FormulaState extends State<FormulaWidget> {
-  final String formulaTitle;
-  final String formulaText;
-  bool isFavourite = false;
-  _FormulaState(this.formulaTitle, this.formulaText);
+  FormulaData formulaData;
+  _FormulaState(this.formulaData);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Card(
-        child: ListTile(
-          enableFeedback: true,
-          trailing: GestureDetector(
-            onTap: () {
-              Clipboard.setData(ClipboardData(text: formulaText));
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text('Formula copiata'),
-                duration: Duration(milliseconds: 500),
-              ));
-            },
-            child: Icon(Icons.copy),
-          ),
-          enabled: true,
-          hoverColor: Colors.red.withAlpha(150),
-          onLongPress: () {
-            setState(() {
-              Clipboard.setData(ClipboardData(text: formulaText));
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text((isFavourite
-                    ? 'Formula rimossa dai preferiti'
-                    : 'Formula aggiunta ai preferiti')),
-                duration: Duration(milliseconds: 1000),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(100),
-                        bottom: Radius.circular(100))),
-              ));
-              isFavourite = !isFavourite;
-            });
-          },
+    return Card(
+      child: ListTile(
+        onTap: () =>
+            Navigator.push(context, formulaData.getFormulaMaterialPage()),
+        enableFeedback: true,
+        trailing: GestureDetector(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Scaffold(
-                      appBar: AppBar(
-                        title: Text(formulaTitle),
-                      ),
-                      body: Column(
-                        children: [
-                          FittedBox(
-                            child: Card(
-                              child: Math.tex(
-                                formulaText,
-                                textScaleFactor: 5.0,
-                              ),
-                            ),
-                          ),
-                        ],
-                      )),
-                ));
+            Clipboard.setData(ClipboardData(text: formulaData.testo));
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text('Formula copiata'),
+              duration: Duration(milliseconds: 500),
+            ));
           },
-          leading: Icon(
-            (isFavourite ? Icons.star : Icons.star_border),
-            color: Colors.yellow,
+          child: Icon(
+            Icons.copy,
           ),
-          title: Math.tex(formulaText),
-          subtitle: Text(formulaTitle),
         ),
+        enabled: true,
+        hoverColor: Colors.red.withAlpha(150),
+        leading: GestureDetector(
+          onTap: () => addToFavourites(context),
+          child: Icon(
+            (formulaData.isFavourite ? Icons.favorite : Icons.favorite_border),
+            color: MyAppColors.shirtColor,
+          ),
+        ),
+        title: Column(
+          children: [
+            Wrap(
+              children: [
+                Math.tex(
+                  formulaData.testo,
+                )
+              ],
+            ),
+          ],
+        ),
+        subtitle: Text(formulaData.titolo),
       ),
     );
+  }
+
+  void addToFavourites(BuildContext context) {
+    setState(() {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text((formulaData.isFavourite
+            ? 'Formula rimossa dai preferiti'
+            : 'Formula aggiunta ai preferiti')),
+        duration: Duration(milliseconds: 1000),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+                top: Radius.circular(100), bottom: Radius.circular(100))),
+      ));
+      formulaData.isFavourite = !formulaData.isFavourite;
+    });
+
+    Assets.instance.updatePreferiti(formulaData);
   }
 }

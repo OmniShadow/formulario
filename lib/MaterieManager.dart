@@ -1,35 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:formulario/FormuleManager.dart';
-
-import 'MateriaWidget.dart';
+import 'materiaData.dart';
+import 'materiaWidget.dart';
 
 class MaterieManagerWidget extends StatefulWidget {
+  List<MateriaData> materieData;
+  MaterieManagerWidget({this.materieData});
   @override
   State<StatefulWidget> createState() {
-    return _MaterieManagerState();
+    return _MaterieManagerState(materieData);
   }
 }
 
 class _MaterieManagerState extends State<MaterieManagerWidget> {
+  List<MateriaData> materieData;
   List<MateriaWidget> materieWidget;
+  _MaterieManagerState(this.materieData);
 
-  List<List<String>> materieNomi = [
-    ['Matematica', 'assets/icons/matematica/materia.png'],
-    ['Fisica', 'assets/icons/fisica/materia.png'],
-    ['Geometria', 'assets/icons/geometria/materia.png'],
-    ['Probabilità', 'assets/icons/probabilita/materia.png']
-  ];
   @override
   Widget build(BuildContext context) {
     return GridView(
+      shrinkWrap: true,
       controller: ScrollController(),
       physics: ScrollPhysics(),
-      padding: EdgeInsets.all(0.0),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: 1.0,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 1,
+        crossAxisSpacing: 60,
+        mainAxisSpacing: 30,
       ),
       children: creaMaterie(),
     );
@@ -37,8 +34,9 @@ class _MaterieManagerState extends State<MaterieManagerWidget> {
 
   List<MateriaWidget> creaMaterie() {
     materieWidget = <MateriaWidget>[];
-    for (int i = 0; i < 4; i++) {
-      materieWidget.add(MateriaWidget(materieNomi[i][0], materieNomi[i][1]));
+
+    for (MateriaData materiaData in materieData) {
+      materieWidget.add(MateriaWidget(materiaData));
     }
     return materieWidget;
   }

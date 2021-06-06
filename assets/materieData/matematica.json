@@ -1,0 +1,79 @@
+{
+    "color": "0xFF7D746E",
+    "isFavouritable": false,
+    "categoria": "",
+    "icona" : "assets/icons/matematica/matematica-icon.png",
+    "materia":"Matematica",
+    "materie": [
+        {
+            "color": "0xFF7D746E",
+            "isFavouritable": true,
+            "categoria": "Matematica",
+            "icona": "assets/icons/matematica/logaritmi.png",
+            "materia": "Logaritmi",
+            "materie": [],
+            "formule": [
+                {
+                    "categoria": "",
+                    "titolo": "Definizione di logaritmo",
+                    "testo": "a^{\\log_{a}\\left(b\\right)}=b"
+                },
+                {
+                    "titolo": "Logaritmo del prodotto",
+                    "testo": "\\log_{a}\\left(b\\cdot c\\right)\\ =\\ \\log_{a}\\left(b\\right)\\ +\\ \\log_{a}\\left(c\\right)"
+                },
+                {
+                    "titolo": "Regola dell'esponente",
+                    "testo": "\\log_{a}\\left(b^{c}\\right)\\ =\\ c\\log_{a}\\left(b\\right)"
+                },
+                {
+                    "titolo": "Logaritmo del rapporto",
+                    "testo": "\\log_{a}\\left(\\frac{b}{c}\\right)\\ =\\ \\log_{a}\\left(b\\right)\\ -\\ \\log_{a}\\left(c\\right)"
+                },
+                {
+                    "titolo": "Formula del cambiamento di base",
+                    "testo": "\\log_{a}\\left(b\\right)\\ =\\ \\frac{\\log_{c}\\left(b\\right)}{\\log_{c}\\left(a\\right)}"
+                },
+                {
+                    "titolo": "Formula di inversione",
+                    "testo": "\\log_{a}\\left(b\\right)\\ =\\ \\frac{1}{\\log_{b}\\left(a\\right)}"
+                }
+            ]
+        },
+        {
+            "color": "0xFF7D746E",
+            "isFavouritable": true,
+            "categoria": "Matematica",
+            "icona": "assets/icons/matematica/esponenziali.png",
+            "materia": "Esponenziali",
+            "materie": [],
+            "formule": [
+                {
+                    "titolo": "Prodotto tra esponenziali con la stessa base - esponenziale con somma all'esponente",
+                    "testo": "a^{x}\\cdot a^{y}\\ =\\ a^{x+y}"
+                },
+                {
+                    "titolo": "Rapporto tra esponenziali con la stessa base",
+                    "testo": "\\frac{a^{x}}{a^{y}}\\ =\\ a^{x-y}"
+                },
+                {
+                    "titolo": "Prodotto tra esponenziali con la stessa base - esponenziali con prodotto alla base",
+                    "testo": "a^{x}\\cdot b^{x}\\ =\\ \\left(ab\\right)^{x}"
+                },
+                {
+                    "titolo": "Rapporto tra esponenziali con la stessa base - esponenziali con rapporto alla base",
+                    "testo": "\\frac{a^{x}}{b^{x}}=\\left(\\frac{a}{b}\\right)^{x}"
+                },
+                {
+                    "titolo": "Esponenziale elevato a potenza - esponenziali con prodotto all'esponente",
+                    "testo": "\\left(a^{x}\\right)^{y}=\\ a^{xy}"
+                },
+                {
+                    "titolo": "Esponenziali con segno meno all'esponente",
+                    "testo": "a^{-x}=\\left(\\frac{1}{a}\\right)^{x}"
+                }
+            ]
+        }
+    ],
+    "formule": []
+}

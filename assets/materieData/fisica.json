@@ -1,0 +1,271 @@
+{
+    "color": "0xFF635C58",
+    "isFavouritable": false,
+    "categoria": "",
+    "icona" : "assets/icons/fisica/fisica-icon.png",
+    "materia":"Fisica",
+    "materie": [
+        {
+            "color": "0xFF635C58",
+            "isFavouritable": true,
+            "categoria": "Fisica",
+            "icona": "assets/icons/fisica/meccanica_classica.png",
+            "materia": "Meccanica Classica",
+            "materie": [
+                {
+                    "color": "0xFF635C58",
+                    "isFavouritable": true,
+                    "categoria": "Meccanica Classica",
+                    "icona": "assets/icons/fisica/physics.png",
+                    "materia": "Cinematica",
+                    "materie": [],
+                    "formule": [
+                        {
+                            "categoria": "",
+                            "titolo": "Velocità media",
+                            "testo": "Δs/Δt"
+                        },
+                        {
+                            "titolo": "Accelerazione media",
+                            "testo": "Δv/Δt"
+                        },
+                        {
+                            "titolo": "Legge oraria del Moto Rettilineo Uniforme",
+                            "testo": "s=so+v*t"
+                        },
+                        {
+                            "titolo": "Legge oraria del Moto Rettilineo Uniforme ",
+                            "testo": "v(t)=cost"
+                        },
+                        {
+                            "titolo": "Legge oraria del Moto Uniformemente Accelerato",
+                            "testo": "v=v0+a*t"
+                        },
+                        {
+                            "titolo": "Legge oraria del Moto Uniformemente Accelerato",
+                            "testo": "s=s0+v0*t+1/2*a*t^2"
+                        },
+                        {
+                            "titolo": "Moto verticale",
+                            "testo": "v=v0-g*t"
+                        },
+                        {
+                            "titolo": "Moto verticale",
+                            "testo": "y=y0+v0*t-1/2g*t^2"
+                        },
+                        {
+                            "titolo": "Moto circolare",
+                            "testo": "f=1/T"
+                        },
+                        {
+                            "titolo": "Moto circolare",
+                            "testo": "v=2πr/T"
+                        },
+                        {
+                            "titolo": "Moto armonico semplice",
+                            "testo": "s = r cos(ω*t)"
+                        }
+                    ]
+                },
+        {
+            "color": "0xFF635C58",
+            "isFavouritable": true,
+            "categoria": "Meccanica Classica",
+            "icona": "assets/icons/fisica/dinamica.png",
+            "materia": "Dinamica",
+            "materie": [],
+            "formule": [
+                {
+                    "categoria": "",
+                    "titolo": "Primo principio della dinamica",
+                    "testo": "F=0 "
+                },
+                {
+                    "titolo": "Secondo principio della dinamica",
+                    "testo": "F=m*a"
+                },
+                {
+                    "titolo": "Terzo principio della dinamica",
+                    "testo": "F1=-F"
+                },
+                {
+                    "titolo": "Momento di una forza Equilibrio di un corpo rigido ",
+                    "testo": "M=rxF"
+                },
+                {
+                    "titolo": "Legge di attrazione gravitazionale",
+                    "testo": "f=G(m1*m2)/r^2"
+                },
+                {
+                    "titolo": "Lavoro",
+                    "testo": "L=F*s*cosα"
+                },
+                {
+                    "titolo": "Potenza",
+                    "testo": "P=L/t"
+                },
+                {
+                    "titolo": "Energia cinetica",
+                    "testo": "1/2*m*v^2"
+                },
+                {
+                    "titolo": "Energia Potenziale Forza Peso",
+                    "testo": "m*g*h"
+                },
+                {
+                    "titolo": "Energia Potenziale Forza Gravitazionale",
+                    "testo": "-G*(M*m)/r"
+                },
+                {
+                    "titolo": "Energia Potenziale Forza Elettrostatica",
+                    "testo": "1/(4*π*ε)*(Q*q)/r"
+                },
+                {
+                    "titolo": "Energia Potenziale Forza Elastica",
+                    "testo": "1/2*k*x^2"
+                },
+                {
+                    "titolo": "Impulso e Quantità di Moto",
+                    "testo": "I=F*Δt"
+                }
+            ]
+},
+        {
+            "color": "0xFF635C58",
+            "isFavouritable": true,
+            "categoria": "Meccanica Classica",
+            "icona": "assets/icons/fisica/meccanica_dei_fluidi.png",
+            "materia": "Meccanica dei Fluidi",
+            "materie": [],
+            "formule": [
+                {
+                    "categoria": "",
+                    "titolo": "Densità Peso Specifico Pressione",
+                    "testo": "d=m/V"
+                },
+                {
+                    "titolo": "Principio di Pascal e torchio idraulico",
+                    "testo": "Fa/Sa=Fb/Sb"
+                },
+                {
+                    "titolo": "Legge di Stevino",
+                    "testo": "d*g*h"
+                },
+                {
+                    "titolo": "Principio di Archimede ",
+                    "testo": "sa=d*g*v"
+                },
+                {
+                    "titolo": "Portata ed equazione di continuità ",
+                    "testo": "s*v*(m^3/s)"
+                },
+                {
+                    "titolo": "Teorema di Bernoulli",
+                    "testo": "P+1/2*d*v^2+d*g*h=cost"
+                },
+                {
+                    "titolo": "Potenza",
+                    "testo": "P=L/t"
+                },
+                {
+                    "titolo": "Energia cinetica",
+                    "testo": "1/2*m*v^2"
+                },
+                {
+                    "titolo": "Energia Potenziale Forza Peso",
+                    "testo": "m*g*h"
+                },
+                {
+                    "titolo": "Energia Potenziale Forza Gravitazionale",
+                    "testo": "-G*(M*m)/r"
+                },
+                {
+                    "titolo": "Energia Potenziale Forza Elettrostatica",
+                    "testo": "1/(4*π*ε)*(Q*q)/r"
+                },
+                {
+                    "titolo": "Energia Potenziale Forza Elastica",
+                    "testo": "1/2*k*x^2"
+                },
+                {
+                    "titolo": "Impulso e Quantità di Moto",
+                    "testo": "I=F*Δt"
+                }
+                ]
+
+        }
+                ],
+            "formule": []
+        },
+        {
+            "color": "0xFF635C58",
+            "isFavouritable": true,
+            "categoria": "Fisica",
+            "icona": "assets/icons/fisica/elettromagnetismo.png",
+            "materia": "Elettromagnetismo",
+            "materie": [],
+            "formule": [  {
+                "titolo": "Legge di Coulomb",
+                "testo": "→F =1/4πε*((q1*q2)/r^2)"
+            },
+                {
+                    "titolo": "Campo elettrostatico",
+                    "testo": "F/q"
+                },
+                {
+                    "titolo": "Potenziale",
+                    "testo": "−−→∇ V"
+                },
+                {
+                    "titolo": "Conservativita del campo elettrostatico ",
+                    "testo": "∇ × −→E = 0"
+                },
+                {
+                    "titolo": "Campo elettrostatico e potenziale generati da carica isolata puntiforme",
+                    "testo":" 1/(4πε)*(q/r^2)"
+                },
+                {
+                    "titolo": "Campo elettrostatico e potenziale generati da distribuzione discreta di carica ",
+                    "testo": "1/(4πε)*Ʃ (q/r^2)"
+                },
+                {
+                    "titolo": "Dipolo elettrico",
+                    "testo": "− 1/(4πε)*−→p*−→∇ (1/r)"
+                },
+                {
+                    "titolo": "Legge di Gauss",
+                    "testo": "p/ε"
+                },
+                {
+                    "titolo": "Conduttori",
+                    "testo": "E(int) = 0"
+                },
+                {
+                    "titolo": "Equazione del potenziale elettrostatico (Laplace)",
+                    "testo": "∇^2*V"
+                },
+                {
+                    "titolo": "Definizione di capacita'",
+                    "testo": "Q/∆V"
+                },
+                {
+                    "titolo": "Capacita' cond. piano",
+                    "testo": "ε*(S/d)"
+                },
+                {
+                    "titolo": "Densita' di corrente",
+                    "testo": "p*v"
+                },
+                {
+                    "titolo": "Equazione di continuita'",
+                    "testo": "-∂ρ/∂t"
+                },
+                {
+                    "titolo": "Potenziale vettore",
+                    "testo": "∇ × −→A"
+                }
+            ]
+        }
+    ],
+    "formule": []
+}
