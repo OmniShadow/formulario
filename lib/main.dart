@@ -76,10 +76,6 @@ class _MyHomePage extends StatelessWidget {
               showSearch(context: context, delegate: MaterieSearch.instance);
             },
           ),
-          IconButton(
-            icon: Icon(Icons.more_vert),
-            onPressed: () {},
-          )
         ],
       ),
       backgroundColor: Color(0xFFFDEBDF),

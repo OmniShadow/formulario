@@ -77,7 +77,10 @@ class Assets {
 
   Future<File> get _localFile async {
     final path = await _localPath;
-    return File('$path/assets/preferiti');
+    File file = File('$path/preferiti');
+    bool exists = await file.exists();
+    if (!exists) await file.create();
+    return file;
   }
 
   Future<File> _salvaPreferiti() async {
@@ -91,13 +94,12 @@ class Assets {
 
   Future leggiPreferiti() async {
     try {
-      final file = await _localFile;
+      final File file = await _localFile;
       List<int> prefIds = [];
       prefIds.addAll(await file.readAsBytes());
       for (int id in prefIds) {
         _formulePreferite.add(_formule[id]);
       }
-      print('preferiti letti');
     } catch (e) {
       print(e);
     }

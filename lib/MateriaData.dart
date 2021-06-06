@@ -153,8 +153,11 @@ class MateriaData {
                   )
                 : Expanded(
                     flex: 8,
-                    child: FormuleManager(
-                      formule: formule,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 50),
+                      child: FormuleManager(
+                        formule: formule,
+                      ),
                     ),
                   )),
           ],
