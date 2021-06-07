@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:formulario/assets.dart';
 import 'package:formulario/constantsUtil.dart';
 import 'package:formulario/materieManager.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:formulario/materieSearchDelegate.dart';
 import 'package:formulario/myDrawerWidget.dart';
-import 'assets.dart';
-import 'materieSearchDelegate.dart';
 
 void main() {
   runApp(MyApp());

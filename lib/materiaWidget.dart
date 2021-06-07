@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'materiaData.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:formulario/materiaData.dart';
 
 class MateriaWidget extends StatefulWidget {
   final MateriaData materiaData;

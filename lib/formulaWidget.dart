@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:flutter/services.dart';
+import 'package:formulario/assets.dart';
 import 'package:formulario/constantsUtil.dart';
-import 'assets.dart';
-import 'formulaData.dart';
+import 'package:formulario/formulaData.dart';
 
 // ignore: must_be_immutable
 class FormulaWidget extends StatefulWidget {

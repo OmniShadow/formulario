@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'materiaData.dart';
-import 'materiaWidget.dart';
+import 'package:formulario/materiaData.dart';
+import 'package:formulario/materiaWidget.dart';
 
 class MaterieManagerWidget extends StatefulWidget {
   final List<MateriaData> materieData;

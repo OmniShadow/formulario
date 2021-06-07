@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:formulario/assets.dart';
 import 'package:formulario/formulaData.dart';
 import 'package:formulario/materiaData.dart';
-
-import 'assets.dart';
 
 class MaterieSearch extends SearchDelegate<MateriaData> {
   static MaterieSearch _materieSearch;
