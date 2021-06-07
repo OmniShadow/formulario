@@ -87,7 +87,7 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
                 'Non hai formule tra i preferiti',
                 style: TextStyle(color: Colors.grey),
               ),
-            )
+            ),
           ]
         : Assets.instance.formulePreferite
             .map(
@@ -184,7 +184,6 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
 class RecentiWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _RecentiWidgetState();
   }
 }
@@ -192,34 +191,39 @@ class RecentiWidget extends StatefulWidget {
 class _RecentiWidgetState extends State<RecentiWidget> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ExpansionTile(
-          childrenPadding: EdgeInsets.only(left: 20),
-          initiallyExpanded: false,
-          leading: Icon(
-            Icons.history,
-            color: Colors.grey,
-          ),
-          title: Text(
-            'Recenti',
-            style: TextStyle(
-              color: Colors.grey,
-            ),
-          ),
-          children: recentiWidget(context),
+    List<Widget> recenti = recentiWidget(context);
+    return ExpansionTile(
+      childrenPadding: EdgeInsets.only(left: 20),
+      initiallyExpanded: false,
+      leading: Icon(
+        Icons.history,
+        color: Colors.grey,
+      ),
+      title: Text(
+        'Recenti',
+        style: TextStyle(
+          color: Colors.grey,
         ),
-        ListTile(
-          onTap: () => setState(() {
-            Assets.instance.clearRecenti();
-          }),
-          title: Text(
-            'Rimuovi recenti',
-            style: TextStyle(color: Colors.grey),
-          ),
-          trailing: Icon(Icons.delete),
-        )
-      ],
+      ),
+      trailing: InkWell(
+        onTap: () => setState(() {
+          Assets.instance.clearRecenti();
+        }),
+        child: Icon(
+          Icons.delete_rounded,
+          color: Colors.grey,
+        ),
+      ),
+      children: recenti.isEmpty
+          ? [
+              ListTile(
+                title: Text(
+                  'Non ci sono dati recenti',
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
+            ]
+          : recenti,
     );
   }
 

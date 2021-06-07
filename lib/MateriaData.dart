@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:formulario/assets.dart';
 import 'package:formulario/constantsUtil.dart';
@@ -129,12 +128,12 @@ class MateriaData {
                           fit: FlexFit.loose,
                           child: Text(
                             materiaTitle,
-                            maxLines: 1,
                             style: TextStyle(
-                                fontFamily: 'Brandon-Grotesque-black',
-                                color: Colors.white,
-                                letterSpacing: 2.5,
-                                fontStyle: FontStyle.normal),
+                              fontFamily: 'Brandon-Grotesque-black',
+                              color: Colors.white,
+                              letterSpacing: 2.5,
+                              fontStyle: FontStyle.normal,
+                            ),
                           ),
                         ),
                       ],
