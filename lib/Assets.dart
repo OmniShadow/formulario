@@ -59,9 +59,10 @@ class Assets {
   }
 
   void updatePreferiti(FormulaData formula) {
-    if (_formulePreferite.contains(formula))
+    if (_formulePreferite.contains(formula)) {
       _formulePreferite.remove(formula);
-    else
+      formula.isFavourite = false;
+    } else
       _formulePreferite.add(formula);
     _salvaPreferiti();
   }

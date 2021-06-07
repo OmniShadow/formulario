@@ -76,7 +76,7 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
     );
   }
 
-  ListTile materiaSuggeritaTile(
+  Widget materiaSuggeritaTile(
       MateriaData materiaData, context, bool recente, bool highlight) {
     return ListTile(
       onTap: () {
