@@ -20,7 +20,10 @@ class _MyDrawerWidgetState extends State<MyDrawerWidget> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: Text('Formulario'),
+          title: Text(
+            'Formulario',
+            style: TextStyle(fontFamily: 'Brandon-Grotesque-black'),
+          ),
         ),
         body: ListView(
           shrinkWrap: false,
@@ -59,31 +62,24 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
   bool expanded = false;
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      shrinkWrap: true,
-      children: [
-        Theme(
-          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-          child: ExpansionTile(
-            initiallyExpanded: expanded,
-            onExpansionChanged: (e) {
-              setState(() {
-                expanded = !expanded;
-              });
-            },
-            leading: Icon(Icons.favorite),
-            title: InkWell(
-              onTap: () => Navigator.push(context, formulePreferitePAge()),
-              child: Text('Formule preferite'),
-            ),
-            children: widgetPreferiti,
-          ),
-        )
-      ],
+    return ExpansionTile(
+      childrenPadding: EdgeInsets.only(left: 20),
+      initiallyExpanded: expanded,
+      onExpansionChanged: (e) {
+        setState(() {
+          expanded = !expanded;
+        });
+      },
+      leading: Icon(Icons.favorite),
+      title: InkWell(
+        onTap: () => Navigator.push(context, formulePreferitePAge()),
+        child: Text('Formule preferite'),
+      ),
+      children: widgetPreferiti,
     );
   }
 
-  List<ListTile> get widgetPreferiti {
+  List<Widget> get widgetPreferiti {
     return Assets.instance.formulePreferite.isEmpty
         ? [
             ListTile(
@@ -91,27 +87,32 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
                 'Non hai formule tra i preferiti',
                 style: TextStyle(color: Colors.grey),
               ),
-            )
+            ),
           ]
         : Assets.instance.formulePreferite
-            .map((e) => ListTile(
-                  onLongPress: () {
-                    Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Text('Formula rimossa dai preferiti'),
-                      duration: Duration(milliseconds: 1000),
-                    ));
-                    setState(() {
-                      e.isFavourite = !e.isFavourite;
-                    });
+            .map(
+              (e) => ListTile(
+                onLongPress: () {
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                    content: Text('Formula rimossa dai preferiti'),
+                    duration: Duration(milliseconds: 1000),
+                  ));
+                  setState(() {
+                    e.isFavourite = !e.isFavourite;
+                  });
 
-                    Assets.instance.updatePreferiti(e);
-                  },
-                  onTap: () =>
-                      Navigator.push(context, e.getFormulaMaterialPage()),
-                  leading: Icon(Icons.functions_rounded),
-                  title: Math.tex(e.testo),
-                  subtitle: Text(e.titolo),
-                ))
+                  Assets.instance.updatePreferiti(e);
+                },
+                onTap: () =>
+                    Navigator.push(context, e.getFormulaMaterialPage()),
+                leading: Icon(Icons.functions_rounded),
+                title: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Math.tex(e.testo),
+                ),
+                subtitle: Text(e.titolo),
+              ),
+            )
             .toList();
   }
 
@@ -183,7 +184,6 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
 class RecentiWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _RecentiWidgetState();
   }
 }
@@ -191,56 +191,60 @@ class RecentiWidget extends StatefulWidget {
 class _RecentiWidgetState extends State<RecentiWidget> {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      shrinkWrap: true,
-      children: [
-        Theme(
-          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-          child: Column(
-            children: [
-              ExpansionTile(
-                initiallyExpanded: false,
-                leading: Icon(
-                  Icons.history,
-                  color: Colors.grey,
-                ),
-                title: Text(
-                  'Recenti',
-                  style: TextStyle(
-                    color: Colors.grey,
-                  ),
-                ),
-                children: recentiWidget(context),
-              ),
+    List<Widget> recenti = recentiWidget(context);
+    return ExpansionTile(
+      childrenPadding: EdgeInsets.only(left: 20),
+      initiallyExpanded: false,
+      leading: Icon(
+        Icons.history,
+        color: Colors.grey,
+      ),
+      title: Text(
+        'Recenti',
+        style: TextStyle(
+          color: Colors.grey,
+        ),
+      ),
+      trailing: InkWell(
+        onTap: () => setState(() {
+          Assets.instance.clearRecenti();
+        }),
+        child: Icon(
+          Icons.delete_rounded,
+          color: Colors.grey,
+        ),
+      ),
+      children: recenti.isEmpty
+          ? [
               ListTile(
-                  onTap: () => setState(() {
-                        Assets.instance.clearRecenti();
-                      }),
-                  title: Text(
-                    'Rimuovi recenti',
-                    style: TextStyle(color: Colors.grey),
-                  ))
-            ],
-          ),
-        )
-      ],
+                title: Text(
+                  'Non ci sono dati recenti',
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
+            ]
+          : recenti,
     );
   }
 
-  List<ListTile> recentiWidget(context) {
-    List<ListTile> recenti = _getMaterieRecentiWidget(context);
+  List<Widget> recentiWidget(context) {
+    List<Widget> recenti = _getMaterieRecentiWidget(context);
     recenti.addAll(_getFormuleRecentiWidget(context));
     return recenti;
   }
 
-  List<ListTile> _getMaterieRecentiWidget(context) => Assets
-      .instance.materieRecenti
-      .map((materia) => MaterieSearch.instance
-          .materiaSuggeritaTile(materia, context, true, false))
-      .toList();
-  List<ListTile> _getFormuleRecentiWidget(context) => Assets
-      .instance.formuleRecenti
-      .map((formula) => MaterieSearch.instance
-          .formulaSuggeriteTile(formula, context, true, false))
-      .toList();
+  List<Widget> _getMaterieRecentiWidget(context) =>
+      Assets.instance.materieRecenti
+          .map(
+            (materia) => MaterieSearch.instance
+                .materiaSuggeritaTile(materia, context, true, false),
+          )
+          .toList();
+  List<Widget> _getFormuleRecentiWidget(context) =>
+      Assets.instance.formuleRecenti
+          .map(
+            (formula) => MaterieSearch.instance
+                .formulaSuggeriteTile(formula, context, true, false),
+          )
+          .toList();
 }

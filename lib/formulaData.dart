@@ -7,7 +7,6 @@ class FormulaData {
   static int n = 0;
   String titolo;
   String testo;
-  List<String> tags;
   String categoria;
   bool isFavourite = false;
   int id;

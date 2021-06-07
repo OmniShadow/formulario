@@ -49,8 +49,7 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
 
   @override
   Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
-    throw UnimplementedError();
+    return buildSuggestions(context);
   }
 
   @override
@@ -77,7 +76,7 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
     );
   }
 
-  ListTile materiaSuggeritaTile(
+  Widget materiaSuggeritaTile(
       MateriaData materiaData, context, bool recente, bool highlight) {
     return ListTile(
       onTap: () {

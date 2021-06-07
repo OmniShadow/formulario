@@ -3,7 +3,7 @@ import 'materiaData.dart';
 import 'materiaWidget.dart';
 
 class MaterieManagerWidget extends StatefulWidget {
-  List<MateriaData> materieData;
+  final List<MateriaData> materieData;
   MaterieManagerWidget({this.materieData});
   @override
   State<StatefulWidget> createState() {

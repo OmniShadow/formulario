@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:formulario/constantsUtil.dart';
-import 'package:formulario/formulaWidget.dart';
-import 'package:formulario/formuleManager.dart';
 import 'package:formulario/materieManager.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:formulario/myDrawerWidget.dart';
@@ -37,6 +35,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        accentColor: MyAppColors.iconColor,
         brightness: brightness,
         primaryColor: MyAppColors.appBackground,
       ),

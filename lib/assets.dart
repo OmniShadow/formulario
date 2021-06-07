@@ -14,7 +14,7 @@ class Assets {
   static const int maxRecenti = 5;
   static bool areLoaded = false;
   static Assets _assets;
-  static List<String> materieNomi = [
+  List<String> materieNomi = [
     'Matematica',
     'Fisica',
     'Geometria',
@@ -59,9 +59,10 @@ class Assets {
   }
 
   void updatePreferiti(FormulaData formula) {
-    if (_formulePreferite.contains(formula))
+    if (_formulePreferite.contains(formula)) {
       _formulePreferite.remove(formula);
-    else
+      formula.isFavourite = false;
+    } else
       _formulePreferite.add(formula);
     _salvaPreferiti();
   }
@@ -75,9 +76,20 @@ class Assets {
     return directory.path;
   }
 
+  //preso da stackoverflow da utilizzare più avanti per aggiungere facilmente altri .json
+  Future _leggiNomi() async {
+    final manifestContent = await rootBundle.loadString('AssetManifest.json');
+    final Map<String, dynamic> manifestMap = json.decode(manifestContent);
+    final paths = manifestMap.keys
+        .where((String key) => key.contains('materieData/'))
+        .where((String key) => key.contains('.json'))
+        .toList();
+    print(paths);
+  }
+
   Future<File> _getLocalFile(String nome) async {
     final path = await _localPath;
-    File file = File('$path/preferiti');
+    File file = File('$path/$nome');
     bool exists = await file.exists();
     if (!exists) await file.create();
     return file;
