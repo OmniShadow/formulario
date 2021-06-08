@@ -71,7 +71,7 @@ class _MyHomePage extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.search),
+            icon: Icon(Icons.search_rounded),
             onPressed: () {
               showSearch(context: context, delegate: MaterieSearch.instance);
             },

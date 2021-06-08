@@ -31,7 +31,9 @@ class _FormulaState extends State<FormulaWidget> {
         leading: InkWell(
           onTap: () => addToFavourites(context),
           child: Icon(
-            (formulaData.isFavourite ? Icons.favorite : Icons.favorite_border),
+            (formulaData.isFavourite
+                ? Icons.favorite_rounded
+                : Icons.favorite_border_rounded),
             color: MyAppColors.shirtColor,
           ),
         ),

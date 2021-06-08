@@ -70,7 +70,7 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
           expanded = !expanded;
         });
       },
-      leading: Icon(Icons.favorite),
+      leading: Icon(Icons.favorite_rounded),
       title: InkWell(
         onTap: () => Navigator.push(context, formulePreferitePage()),
         child: Text('Formule preferite'),
@@ -148,7 +148,7 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            Icons.favorite,
+                            Icons.favorite_rounded,
                             color: Colors.red,
                           ),
                           AutoSizeText(

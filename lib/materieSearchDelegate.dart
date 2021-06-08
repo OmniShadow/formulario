@@ -26,7 +26,7 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-          icon: Icon(Icons.clear),
+          icon: Icon(Icons.clear_rounded),
           onPressed: () {
             query = "";
           }),
@@ -130,7 +130,7 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
               materiaData.categoria.replaceAll(materiaData.materiaTitle, ''),
               style: TextStyle(color: Colors.blueGrey),
             ),
-      trailing: recente ? Icon(Icons.history) : null,
+      trailing: recente ? Icon(Icons.history_rounded) : null,
     );
   }
 
@@ -164,7 +164,7 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
               formulaData.categoria,
               style: TextStyle(color: Colors.blueGrey),
             ),
-      trailing: query.isEmpty ? Icon(Icons.history) : null,
+      trailing: query.isEmpty ? Icon(Icons.history_rounded) : null,
     );
   }
 
