@@ -143,23 +143,6 @@ class Assets {
     }
   }
 
-  void updateUsername(String username, String email) {
-    this.userData = UserData(username: username, email: email);
-    _salvaUsername();
-  }
-
-  Future _leggiUsername() async {
-    final File file = await _getLocalFile('username');
-    String userDataString = await file.readAsString();
-    if (userDataString.isNotEmpty)
-      userData = UserData.fromString(userDataString);
-  }
-
-  Future _salvaUsername() async {
-    final File file = await _getLocalFile('username');
-    file.writeAsString(userData.toString());
-  }
-
   Future<void> loadMaterie() async {
     try {
       for (String materiaNome in materieNomi) {
@@ -186,6 +169,23 @@ class Assets {
       List<FormulaData> formule = materia.getFormule();
       for (FormulaData formula in formule) _formule[formula.id] = formula;
     }
+  }
+
+  void updateUsername(String username, String email) {
+    this.userData = UserData(username: username, email: email);
+    _salvaUsername();
+  }
+
+  Future _leggiUsername() async {
+    final File file = await _getLocalFile('username');
+    String userDataString = await file.readAsString();
+    if (userDataString.isNotEmpty)
+      userData = UserData.fromString(userDataString);
+  }
+
+  Future _salvaUsername() async {
+    final File file = await _getLocalFile('username');
+    file.writeAsString(userData.toString());
   }
 }
 
