@@ -14,6 +14,8 @@ class MyDrawerWidget extends StatefulWidget {
 }
 
 class _MyDrawerWidgetState extends State<MyDrawerWidget> {
+  String username;
+  String email;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -31,6 +33,25 @@ class _MyDrawerWidgetState extends State<MyDrawerWidget> {
             ProfileDrawerWidget(),
             PreferitiWidget(),
             RecentiWidget(),
+            TextField(
+              onChanged: (nome) {
+                username = nome;
+              },
+            ),
+            TextField(
+              onChanged: (nome) {
+                email = nome;
+              },
+            ),
+            MaterialButton(
+              onPressed: () {
+                Assets.instance.updateUsername(username, email);
+                setState(() {});
+              },
+              child: Text('Invia'),
+            ),
+            Text(Assets.instance.userData.username),
+            Text(Assets.instance.userData.email)
           ],
         ),
       ),

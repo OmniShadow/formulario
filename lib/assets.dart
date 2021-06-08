@@ -11,6 +11,8 @@ class Assets {
   List<FormulaData> _formulePreferite = [];
   List<FormulaData> _formuleRecenti = [];
   List<MateriaData> _materieRecenti = [];
+  UserData userData;
+
   static const int maxRecenti = 5;
   static bool areLoaded = false;
   static Assets _assets;
@@ -27,6 +29,7 @@ class Assets {
       loadFormule();
       _leggiPreferiti();
       _leggiRecenti();
+      _leggiUsername();
     });
   }
 
@@ -72,9 +75,17 @@ class Assets {
   List<FormulaData> get formuleRecenti => _formuleRecenti;
   List<MateriaData> get materieRecenti => _materieRecenti;
 
-  Future<String> get _localPath async {
+  static Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;
+  }
+
+  static Future<File> _getLocalFile(String nome) async {
+    final path = await _localPath;
+    File file = File('$path/$nome');
+    bool exists = await file.exists();
+    if (!exists) await file.create();
+    return file;
   }
 
   //preso da stackoverflow da utilizzare più avanti per aggiungere facilmente altri .json
@@ -86,14 +97,6 @@ class Assets {
         .where((String key) => key.contains('.json'))
         .toList();
     print(paths);
-  }
-
-  Future<File> _getLocalFile(String nome) async {
-    final path = await _localPath;
-    File file = File('$path/$nome');
-    bool exists = await file.exists();
-    if (!exists) await file.create();
-    return file;
   }
 
   Future<File> _salvaPreferiti() async {
@@ -140,6 +143,23 @@ class Assets {
     }
   }
 
+  void updateUsername(String username, String email) {
+    this.userData = UserData(username: username, email: email);
+    _salvaUsername();
+  }
+
+  Future _leggiUsername() async {
+    final File file = await _getLocalFile('username');
+    String userDataString = await file.readAsString();
+    if (userDataString.isNotEmpty)
+      userData = UserData.fromString(userDataString);
+  }
+
+  Future _salvaUsername() async {
+    final File file = await _getLocalFile('username');
+    file.writeAsString(userData.toString());
+  }
+
   Future<void> loadMaterie() async {
     try {
       for (String materiaNome in materieNomi) {
@@ -166,5 +186,23 @@ class Assets {
       List<FormulaData> formule = materia.getFormule();
       for (FormulaData formula in formule) _formule[formula.id] = formula;
     }
+  }
+}
+
+class UserData {
+  String email;
+  String username;
+  UserData({this.username, this.email});
+  @override
+  String toString() {
+    return ('$username\\$email');
+  }
+
+  factory UserData.fromString(String userDataString) {
+    List<String> userDataStringList = userDataString.split('\\');
+    if (userDataStringList.length == 2)
+      return UserData(
+          username: userDataStringList[0], email: userDataStringList[1]);
+    return UserData(username: '', email: '');
   }
 }
