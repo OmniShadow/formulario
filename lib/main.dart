@@ -38,6 +38,7 @@ class _MyAppState extends State<MyApp> {
         accentColor: MyAppColors.iconColor,
         brightness: brightness,
         primaryColor: MyAppColors.appBackground,
+        fontFamily: 'Brandon-Grotesque-light',
       ),
       title: _title,
       home: FutureBuilder(

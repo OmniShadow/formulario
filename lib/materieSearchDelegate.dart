@@ -59,21 +59,45 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
     List<FormulaData> suggerimentiFormule = query.isEmpty
         ? Assets.instance.formuleRecenti
         : _creaListSuggerimentiFormule(materieData);
-    return ListView.builder(
-      itemCount: suggerimenti.length + suggerimentiFormule.length,
-      itemBuilder: (context, index) {
-        if (index < suggerimenti.length)
-          return materiaSuggeritaTile(
-              suggerimenti[index], context, query.isEmpty, true);
-        else
-          return formulaSuggeriteTile(
-              suggerimentiFormule[index - suggerimenti.length],
-              context,
-              query.isEmpty,
-              true);
-      },
-    );
+    return (suggerimenti.isEmpty & suggerimentiFormule.isEmpty)
+        ? trovatoNullaWidget
+        : ListView.builder(
+            itemCount: suggerimenti.length + suggerimentiFormule.length,
+            itemBuilder: (context, index) {
+              if (index < suggerimenti.length)
+                return materiaSuggeritaTile(
+                    suggerimenti[index], context, query.isEmpty, true);
+              else
+                return formulaSuggeriteTile(
+                    suggerimentiFormule[index - suggerimenti.length],
+                    context,
+                    query.isEmpty,
+                    true);
+            },
+          );
   }
+
+  Widget get trovatoNullaWidget => Center(
+        child: Container(
+          child: Column(
+            children: [
+              Icon(
+                Icons.search_off_rounded,
+                size: 100,
+                color: Colors.grey.withAlpha(100),
+              ),
+              Text(
+                'Nessun risultato trovato',
+                style: TextStyle(
+                  fontFamily: 'Brandon-Grotesque-black',
+                  color: Colors.grey.withAlpha(100),
+                  fontSize: 20,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
 
   Widget materiaSuggeritaTile(
       MateriaData materiaData, context, bool recente, bool highlight) {
@@ -200,7 +224,6 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
           text: source.substring(match.end, source.length),
         ));
       }
-
       lastMatchEnd = match.end;
     }
     return children;

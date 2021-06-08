@@ -98,7 +98,7 @@ flutter:
       fonts:
         - asset: assets/fonts/brandon-grotesque-medium-italic.otf
           style: italic
-    - family: Brandon-Grotesque-reular
+    - family: Brandon-Grotesque-regular
       fonts:
         - asset: assets/fonts/brandon-grotesque-regular-italic.otf
           style: italic
