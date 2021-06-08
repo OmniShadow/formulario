@@ -71,6 +71,7 @@ class Assets {
   List<FormulaData> get formulePreferite => _formulePreferite;
   List<FormulaData> get formuleRecenti => _formuleRecenti;
   List<MateriaData> get materieRecenti => _materieRecenti;
+
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;

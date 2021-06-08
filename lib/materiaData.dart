@@ -164,6 +164,12 @@ class MateriaData {
                       ),
                     ),
                   )),
+            MaterialButton(
+              onPressed: () => Navigator.pushNamed(context, '/'),
+              child: Icon(
+                Icons.home_rounded,
+              ),
+            ),
           ],
         ),
       ),

@@ -72,7 +72,7 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
       },
       leading: Icon(Icons.favorite),
       title: InkWell(
-        onTap: () => Navigator.push(context, formulePreferitePAge()),
+        onTap: () => Navigator.push(context, formulePreferitePage()),
         child: Text('Formule preferite'),
       ),
       children: widgetPreferiti,
@@ -116,7 +116,7 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
             .toList();
   }
 
-  MaterialPageRoute formulePreferitePAge() {
+  MaterialPageRoute formulePreferitePage() {
     return MaterialPageRoute(
       builder: (context) => Scaffold(
         backgroundColor: MyAppColors.appBackground,
@@ -129,7 +129,7 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
           elevation: 0,
         ),
         body: Padding(
-          padding: const EdgeInsets.only(top: 100),
+          padding: const EdgeInsets.only(top: 65),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -169,12 +169,59 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
               ),
               Expanded(
                 flex: 8,
-                child: FormuleManager(
-                  formule: Assets.instance.formulePreferite,
-                ),
+                child: Assets.instance.formulePreferite.isEmpty
+                    ? paginaVuotaPreferiti()
+                    : FormuleManager(
+                        formule: Assets.instance.formulePreferite,
+                      ),
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget paginaVuotaPreferiti() {
+    return SizedBox(
+      height: 200,
+      child: Container(
+        child: Column(
+          children: [
+            Icon(
+              Icons.favorite_outline_rounded,
+              size: 200,
+              color: Colors.grey.withAlpha(100),
+            ),
+            RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'Non hai formule tra i preferiti \n usa l\'icona',
+                    style: TextStyle(
+                      fontFamily: 'Brandon-Grotesque-black',
+                      color: Colors.grey.withAlpha(100),
+                      fontSize: 20,
+                    ),
+                  ),
+                  WidgetSpan(
+                    child: Icon(
+                      Icons.favorite_outline_rounded,
+                      color: MyAppColors.shirtColor.withAlpha(100),
+                    ),
+                  ),
+                  TextSpan(
+                    text: 'per aggiungerne',
+                    style: TextStyle(
+                      fontFamily: 'Brandon-Grotesque-black',
+                      color: Colors.grey.withAlpha(100),
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
