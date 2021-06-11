@@ -6,12 +6,13 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:formulario/materiaData.dart';
 
 class Assets {
+  static int numeroSalva = 0;
   Map<String, MateriaData> _materieDataMap;
   Map<int, FormulaData> _formule = {};
   List<FormulaData> _formulePreferite = [];
   List<FormulaData> _formuleRecenti = [];
   List<MateriaData> _materieRecenti = [];
-  UserData userData;
+  UserData userData = UserData(username: '', email: '');
 
   static const int maxRecenti = 5;
   static bool areLoaded = false;
@@ -61,15 +62,6 @@ class Assets {
     _salvaRecenti();
   }
 
-  void updatePreferiti(FormulaData formula) {
-    if (_formulePreferite.contains(formula)) {
-      _formulePreferite.remove(formula);
-      formula.isFavourite = false;
-    } else
-      _formulePreferite.add(formula);
-    _salvaPreferiti();
-  }
-
   //getters
   List<FormulaData> get formulePreferite => _formulePreferite;
   List<FormulaData> get formuleRecenti => _formuleRecenti;
@@ -84,6 +76,7 @@ class Assets {
     final path = await _localPath;
     File file = File('$path/$nome');
     bool exists = await file.exists();
+
     if (!exists) await file.create();
     return file;
   }
@@ -100,12 +93,36 @@ class Assets {
   }
 
   Future<File> _salvaPreferiti() async {
+    print(++numeroSalva);
     final file = await _getLocalFile('preferiti');
     List<int> prefIds = [];
     for (FormulaData formula in _formulePreferite) {
       prefIds.add(formula.id);
     }
     return file.writeAsBytes(prefIds);
+  }
+
+  void updatePreferiti(FormulaData formula) {
+    if (_formulePreferite.contains(formula)) {
+      _formulePreferite.remove(formula);
+      formula.isFavourite = false;
+    } else
+      _formulePreferite.add(formula);
+    _salvaPreferiti();
+  }
+
+  Future _leggiPreferiti() async {
+    try {
+      final File file = await _getLocalFile('preferiti');
+      List<int> prefIds = [];
+      prefIds.addAll(await file.readAsBytes());
+      for (int id in prefIds) {
+        print(id);
+        updatePreferiti(_formule[id]);
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<File> _salvaRecenti() async {
@@ -115,19 +132,6 @@ class Assets {
       recentIds.add(formula.id);
     }
     return file.writeAsBytes(recentIds);
-  }
-
-  Future _leggiPreferiti() async {
-    try {
-      final File file = await _getLocalFile('preferiti');
-      List<int> prefIds = [];
-      prefIds.addAll(await file.readAsBytes());
-      for (int id in prefIds) {
-        updatePreferiti(_formule[id]);
-      }
-    } catch (e) {
-      print(e);
-    }
   }
 
   Future _leggiRecenti() async {
@@ -177,32 +181,44 @@ class Assets {
   }
 
   Future _leggiUsername() async {
-    final File file = await _getLocalFile('username');
+    final File file = await _getLocalFile('userdata.json');
     String userDataString = await file.readAsString();
+    print(userDataString);
     if (userDataString.isNotEmpty)
-      userData = UserData.fromString(userDataString);
+      userData = UserData.fromJson(json.decode(userDataString));
   }
 
   Future _salvaUsername() async {
-    final File file = await _getLocalFile('username');
-    file.writeAsString(userData.toString());
+    final File file = await _getLocalFile('userdata.json');
+    String jsonString = json.encode(userData.toJson());
+    print(jsonString);
+    file.writeAsString(jsonString);
   }
 }
 
 class UserData {
   String email;
   String username;
-  UserData({this.username, this.email});
-  @override
-  String toString() {
-    return ('$username\\$email');
+  String cosaFare;
+  UserData({
+    this.username,
+    this.email,
+    this.cosaFare,
+  });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'username': username,
+      'email': email,
+      'cosaFare': cosaFare,
+    };
   }
 
-  factory UserData.fromString(String userDataString) {
-    List<String> userDataStringList = userDataString.split('\\');
-    if (userDataStringList.length == 2)
-      return UserData(
-          username: userDataStringList[0], email: userDataStringList[1]);
-    return UserData(username: '', email: '');
+  factory UserData.fromJson(Map<String, dynamic> jsonMap) {
+    return UserData(
+      username: jsonMap['username'],
+      email: jsonMap['email'],
+      cosaFare: jsonMap['cosaFare'],
+    );
   }
 }

@@ -8,34 +8,25 @@ class FormulaData {
   String titolo;
   String testo;
   String categoria;
+  String descrizione;
   bool isFavourite = false;
   int id;
 
   @override
-  String toString() => ('Formula: ' + titolo);
-  FormulaData({this.titolo, this.testo, this.categoria}) {
+  String toString() => ('Formula: $titolo ,ID: $id');
+  FormulaData({this.titolo, this.testo, this.categoria, this.descrizione}) {
     id = n++;
+    print('$id $titolo');
   }
-  FormulaData.withId({this.id, this.titolo, this.testo, this.categoria});
-
-  Map<String, dynamic> toMap() => {
-        'id': id,
-        'titolo': titolo,
-        'testo': testo,
-        'categoria': categoria,
-      };
-  FormulaData fromMap(Map<String, dynamic> map) => FormulaData.withId(
-        id: map['id'],
-        titolo: map['titolo'],
-        categoria: map['categoria'],
-        testo: map['testo'],
-      );
+  FormulaData.withId(
+      {this.id, this.titolo, this.testo, this.categoria, this.descrizione});
 
   factory FormulaData.fromJson(
       Map<String, dynamic> parsedJson, String categoria) {
     return FormulaData(
       titolo: parsedJson['titolo'],
       testo: parsedJson['testo'],
+      descrizione: parsedJson['descrizione'],
       categoria: categoria,
     );
   }
@@ -58,7 +49,7 @@ class FormulaData {
                 ),
                 Expanded(
                   child: WebView(
-                    initialUrl: 'https://www.google.it/search?q=' + titolo,
+                    initialUrl: 'https://www.google.it/search?q=$titolo',
                   ),
                 ),
               ],

@@ -15,43 +15,63 @@
             "formule": [ {
                 "categoria": "",
                 "titolo": "Funzione Cumulata",
-                "testo": "F(x) = P(X <= x) "
+                "testo": "F(x) = P(X <= x) ",
+                "descrizione": "Formula"
+
             },
                 {
                     "titolo": "Limite per t che tende a x+ ",
-                    "testo": "F(x+)"
+                    "testo": "F(x+)",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Limite per t che tende a x- ",
-                    "testo": "F(x-)"
+                    "testo": "F(x-)",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Limite per t che tende a  infinito ",
-                    "testo": "F(∞)"
+                    "testo": "F(∞)",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Prima Proprietà fondamentale",
-                    "testo": "se x <= y => F(x) <= F(y)"
+                    "testo": "se x <= y => F(x) <= F(y)",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Seconda Proprietà fondamentale",
-                    "testo": "F(x-) = P(X < x) per x appartenente a R"
+                    "testo": "F(x-) = P(X < x) per x appartenente a R",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Terza Proprietà fondamentale",
-                    "testo": "F(∞) = 1"
+                    "testo": "F(∞) = 1",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Quarta Proprietà fondamentale",
-                    "testo": "F(-∞) = 0"
+                    "testo": "F(-∞) = 0",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Quinta Proprietà fondamentale",
-                    "testo": "P(X = a) = F(a) - F(a-)"
+                    "testo": "P(X = a) = F(a) - F(a-)",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Relazione con la funzione di densita'",
-                    "testo": "f(x) = F(x) - F(x-)"
+                    "testo": "f(x) = F(x) - F(x-)",
+                    "descrizione": "Formula"
+
                 }
                 ]
         },
@@ -66,27 +86,39 @@
                 {
                     "categoria": "",
                     "titolo": "Momento iniziale di variabili continue",
-                    "testo": "m=(α+β)/2"
+                    "testo": "m=(α+β)/2",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Momento centrale id ordine 2 ",
-                    "testo": "(β-α)^2/12"
+                    "testo": "(β-α)^2/12",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Distribuzione di Gauss ",
-                    "testo": "1/(σ*(2*π)^(1/2)*(e^-(x-m)^2/2*σ^2)"
+                    "testo": "1/(σ*(2*π)^(1/2)*(e^-(x-m)^2/2*σ^2)",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Distribuzione di Cauchy ",
-                    "testo": "1/π*(1/(1+x^2))"
+                    "testo": "1/π*(1/(1+x^2))",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Distribuzione χ^2",
-                    "testo": "1/(2*π)^(1/2)*e^-((x^2)/2)"
+                    "testo": "1/(2*π)^(1/2)*e^-((x^2)/2)",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Distribuzione di Student",
-                    "testo": "t=(n)^1/2*(y/(x)^1/2)"
+                    "testo": "t=(n)^1/2*(y/(x)^1/2)",
+                    "descrizione": "Formula"
+
                 }
             ]
         }

@@ -16,27 +16,39 @@
                 {
                     "categoria": "",
                     "titolo": "Definizione di logaritmo",
-                    "testo": "a^{\\log_{a}\\left(b\\right)}=b"
+                    "testo": "a^{\\log_{a}\\left(b\\right)}=b",
+                    "descrizione": "In matematica, il logaritmo di un numero in una data base è l'esponente al quale la base deve essere elevata per ottenere il numero stesso.[1] In generale, se {\\displaystyle b=a^{c}}{\\displaystyle b=a^{c}}, allora {\\displaystyle c}c è il logaritmo in base {\\displaystyle a}a di {\\displaystyle b}b, cioè, scritto in notazione matematica,\n\n{\\displaystyle c=\\log _{a}b.}{\\displaystyle c=\\log _{a}b.}"
+
                 },
                 {
                     "titolo": "Logaritmo del prodotto",
-                    "testo": "\\log_{a}\\left(b\\cdot c\\right)\\ =\\ \\log_{a}\\left(b\\right)\\ +\\ \\log_{a}\\left(c\\right)"
+                    "testo": "\\log_{a}\\left(b\\cdot c\\right)\\ =\\ \\log_{a}\\left(b\\right)\\ +\\ \\log_{a}\\left(c\\right)",
+                    "descrizione": "Prima proprietà"
+
                 },
                 {
                     "titolo": "Regola dell'esponente",
-                    "testo": "\\log_{a}\\left(b^{c}\\right)\\ =\\ c\\log_{a}\\left(b\\right)"
+                    "testo": "\\log_{a}\\left(b^{c}\\right)\\ =\\ c\\log_{a}\\left(b\\right)",
+                    "descrizione": "Seconda proprietà"
+
                 },
                 {
                     "titolo": "Logaritmo del rapporto",
-                    "testo": "\\log_{a}\\left(\\frac{b}{c}\\right)\\ =\\ \\log_{a}\\left(b\\right)\\ -\\ \\log_{a}\\left(c\\right)"
+                    "testo": "\\log_{a}\\left(\\frac{b}{c}\\right)\\ =\\ \\log_{a}\\left(b\\right)\\ -\\ \\log_{a}\\left(c\\right)",
+                    "descrizione": "Terza proprietà"
+
                 },
                 {
                     "titolo": "Formula del cambiamento di base",
-                    "testo": "\\log_{a}\\left(b\\right)\\ =\\ \\frac{\\log_{c}\\left(b\\right)}{\\log_{c}\\left(a\\right)}"
+                    "testo": "\\log_{a}\\left(b\\right)\\ =\\ \\frac{\\log_{c}\\left(b\\right)}{\\log_{c}\\left(a\\right)}",
+                    "descrizione": "Quarta proprietà"
+
                 },
                 {
                     "titolo": "Formula di inversione",
-                    "testo": "\\log_{a}\\left(b\\right)\\ =\\ \\frac{1}{\\log_{b}\\left(a\\right)}"
+                    "testo": "\\log_{a}\\left(b\\right)\\ =\\ \\frac{1}{\\log_{b}\\left(a\\right)}",
+                    "descrizione": "Quinta prorietà"
+
                 }
             ]
         },
@@ -50,27 +62,39 @@
             "formule": [
                 {
                     "titolo": "Prodotto tra esponenziali con la stessa base - esponenziale con somma all'esponente",
-                    "testo": "a^{x}\\cdot a^{y}\\ =\\ a^{x+y}"
+                    "testo": "a^{x}\\cdot a^{y}\\ =\\ a^{x+y}",
+                    "descrizione": "Quando ci troviamo in questa situazione dobbiamo fare la somma degli esponenti"
+
                 },
                 {
                     "titolo": "Rapporto tra esponenziali con la stessa base",
-                    "testo": "\\frac{a^{x}}{a^{y}}\\ =\\ a^{x-y}"
+                    "testo": "\\frac{a^{x}}{a^{y}}\\ =\\ a^{x-y}",
+                    "descrizione": "Quando ci troviamo in questa situazione dobbiamo fare la differenza tra gli esponenti"
+
                 },
                 {
                     "titolo": "Prodotto tra esponenziali con la stessa base - esponenziali con prodotto alla base",
-                    "testo": "a^{x}\\cdot b^{x}\\ =\\ \\left(ab\\right)^{x}"
+                    "testo": "a^{x}\\cdot b^{x}\\ =\\ \\left(ab\\right)^{x}",
+                    "descrizione": "Quando ci troviamo in questa situazione dobbiamo fare il prodotto delle basi elevate allo stesso esponente"
+
                 },
                 {
                     "titolo": "Rapporto tra esponenziali con la stessa base - esponenziali con rapporto alla base",
-                    "testo": "\\frac{a^{x}}{b^{x}}=\\left(\\frac{a}{b}\\right)^{x}"
+                    "testo": "\\frac{a^{x}}{b^{x}}=\\left(\\frac{a}{b}\\right)^{x}",
+                    "descrizione": "Quando ci troviamo in questa situazione facciamo il rapporto delle due basi mentre l'esponente rimane lo stesso"
+
                 },
                 {
                     "titolo": "Esponenziale elevato a potenza - esponenziali con prodotto all'esponente",
-                    "testo": "\\left(a^{x}\\right)^{y}=\\ a^{xy}"
+                    "testo": "\\left(a^{x}\\right)^{y}=\\ a^{xy}",
+                    "descrizione": "Quando ci troviamo in questa situazione dobbiamo fare il prodotto degli esponenti mentre la base rimane la stessa"
+
                 },
                 {
                     "titolo": "Esponenziali con segno meno all'esponente",
-                    "testo": "a^{-x}=\\left(\\frac{1}{a}\\right)^{x}"
+                    "testo": "a^{-x}=\\left(\\frac{1}{a}\\right)^{x}",
+                    "descrizione": "Quando ci troviamo in questa situazione vale la negatività dell'esponente che come per le potenze inverte numeratore e denominatore della base"
+
                 }
             ]
         }

@@ -23,47 +23,59 @@
                         {
                             "categoria": "",
                             "titolo": "Velocità media",
-                            "testo": "Δs/Δt"
+                            "testo": "Δs/Δt",
+                            "descrizione": "Velocità calcolata tra due punti nello spazio"
                         },
                         {
                             "titolo": "Accelerazione media",
-                            "testo": "Δv/Δt"
+                            "testo": "Δv/Δt",
+                            "descrizione": "Accellerazione calcolata tra due punti nello spazio"
                         },
                         {
                             "titolo": "Legge oraria del Moto Rettilineo Uniforme",
-                            "testo": "s=so+v*t"
+                            "testo": "s=so+v*t",
+                            "descrizione": "Calcolare lo spazio conoscendo spazio iniziale, velocità e tempo"
                         },
                         {
                             "titolo": "Legge oraria del Moto Rettilineo Uniforme ",
-                            "testo": "v(t)=cost"
+                            "testo": "v(t)=cost",
+                            "descrizione": "La velocità in un moto rettilineo uniforme è costante per definizione"
                         },
                         {
                             "titolo": "Legge oraria del Moto Uniformemente Accelerato",
-                            "testo": "v=v0+a*t"
+                            "testo": "v=v0+a*t",
+                            "descrizione": "Velocità che si calcola conoscendo l'accellearazione e il tempo"
+
                         },
                         {
                             "titolo": "Legge oraria del Moto Uniformemente Accelerato",
-                            "testo": "s=s0+v0*t+1/2*a*t^2"
+                            "testo": "s=s0+v0*t+1/2*a*t^2",
+                            "descrizione": "Formula derivata da una parabola. La s0 rappresenta il punto iniziale, la v0 la velocità iniziale tangente all'asse delle ordinate e l'accellerazione la concavità"
                         },
                         {
                             "titolo": "Moto verticale",
-                            "testo": "v=v0-g*t"
+                            "testo": "v=v0-g*t",
+                            "descrizione": "Velocità che si calcola tramite velocità iniziale, accellerazione gravitazionale e tempo"
                         },
                         {
                             "titolo": "Moto verticale",
-                            "testo": "y=y0+v0*t-1/2g*t^2"
+                            "testo": "y=y0+v0*t-1/2g*t^2",
+                            "descrizione": "Formula particolarmente imporante per il moto del grave e delle sue diverse composizioni"
                         },
                         {
-                            "titolo": "Moto circolare",
-                            "testo": "f=1/T"
+                            "titolo": "Frequenza",
+                            "testo": "f=1/T",
+                            "descrizione": "Formula per calcolare la frequenza"
                         },
                         {
-                            "titolo": "Moto circolare",
-                            "testo": "v=2πr/T"
+                            "titolo": "Velocità lungo un moto circolare",
+                            "testo": "v=2πr/T",
+                            "descrizione": "Velocità che si calocla tramite il perimetro e il periodo"
                         },
                         {
                             "titolo": "Moto armonico semplice",
-                            "testo": "s = r cos(ω*t)"
+                            "testo": "s = r cos(ω*t)",
+                            "descrizione": "Formula che si usa per le piccole oscillazioni"
                         }
                     ]
                 },
@@ -76,57 +88,82 @@
             "materie": [],
             "formule": [
                 {
-                    "categoria": "",
                     "titolo": "Primo principio della dinamica",
-                    "testo": "F=0 "
+                    "testo": "F=0 ",
+                    "descrizione": "I principi della dinamica sono le leggi fisiche su cui si fonda la dinamica newtoniana, che descrive le relazioni tra il moto di un corpo e gli enti che lo modificano.Sono validi in sistemi di riferimento inerziali e descrivono accuratamente il comportamento dei corpi che si muovono a velocità molto minori della velocità della luce, condizione in cui sono assimilabili con buona approssimazione ai principi più generali della relatività ristretta."
+
                 },
                 {
                     "titolo": "Secondo principio della dinamica",
-                    "testo": "F=m*a"
+                    "testo": "F=m*a",
+                    "descrizione": "Il cambiamento di moto è proporzionale alla forza motrice applicata, ed avviene lungo la linea retta secondo la quale la forza stessa è esercitata"
+
                 },
                 {
                     "titolo": "Terzo principio della dinamica",
-                    "testo": "F1=-F"
+                    "testo": "F1=-F",
+                    "descrizione": "Per ogni forza, o momento, che un corpo {\\displaystyle A}A esercita su un altro corpo {\\displaystyle B}B, ne esiste istantaneamente un'altra uguale in modulo e direzione, ma opposta in verso, causata dal corpo {\\displaystyle B}B che agisce sul corpo {\\displaystyle A}A"
+
                 },
                 {
                     "titolo": "Momento di una forza Equilibrio di un corpo rigido ",
-                    "testo": "M=rxF"
+                    "testo": "M=rxF",
+                    "descrizione": "Il momento meccanico, indicato con {\\displaystyle \\mathbf {M} }{\\mathbf  {M}} o, in ambito anglosassone, con {\\displaystyle {\\boldsymbol {\\tau }}}\\boldsymbol{\\tau} (dall'inglese torque), esprime l'attitudine di una forza a imprimere una rotazione a un corpo rigido attorno a un asse quando questa non è applicata al suo centro di massa, altrimenti si avrebbe moto traslatorio. Costituisce quindi il momento della forza.\n\nIl momento meccanico è uno pseudovettore, non uno scalare come l'energia o il lavoro. Per questo motivo l'unità di misura del momento meccanico nel SI è N·m (newton per metro), non il joule, anche se le due unità hanno le stesse dimensioni fisiche."
+
                 },
                 {
                     "titolo": "Legge di attrazione gravitazionale",
-                    "testo": "f=G(m1*m2)/r^2"
+                    "testo": "f=G(m1*m2)/r^2",
+                    "descrizione": "L'interazione gravitazionale (o gravitazione o gravità nel linguaggio comune) è una delle quattro interazioni fondamentali note in fisica.\n\nNella fisica classica newtoniana la gravità è interpretata come una forza conservativa di attrazione a distanza agente fra corpi dotati di massa, secondo la legge di gravitazione universale; la sua manifestazione più evidente nell'esperienza quotidiana è la forza peso.\n\nNella fisica moderna l'attuale teoria più completa, la relatività generale, interpreta l'interazione gravitazionale come una conseguenza della curvatura dello spaziotempo creata dalla presenza di corpi dotati di massa o energia (una piccola massa a grande velocità o una grande massa in quiete hanno lo stesso effetto di deformazione sulla curvatura dello spaziotempo circostante). Il campo gravitazionale che ne deriva è rappresentato matematicamente da un tensore metrico legato alla curvatura dello spaziotempo attraverso il tensore di Riemann. In tale contesto la forza peso diventa una forza apparente, conseguenza della geometria dello spaziotempo indotta dalla massa terrestre."
+
                 },
                 {
                     "titolo": "Lavoro",
-                    "testo": "L=F*s*cosα"
+                    "testo": "L=F*s*cosα",
+                    "descrizione": "In fisica, il lavoro è l'energia scambiata tra due sistemi quando avviene uno spostamento attraverso l'azione di una forza, o una risultante di forze, che ha una componente non nulla nella direzione dello spostamento. Pertanto, ha le dimensioni di una forza applicata lungo una determinata distanza.\n\nDunque, il lavoro complessivo esercitato su un corpo è pari alla variazione della sua energia cinetica. In presenza, invece, di un campo di forza conservativo, cioè in assenza di effetti dissipativi, il lavoro svolto si può esprimere anche come la variazione di energia potenziale tra gli estremi del percorso. Il lavoro compiuto da una forza è nullo se lo spostamento è nullo o se questa non ha componenti lungo la direzione dello spostamento.\n\nIl termine \"lavoro\" è stato introdotto nel 1826 dal matematico francese Gaspard Gustave de Coriolis."
+
                 },
                 {
                     "titolo": "Potenza",
-                    "testo": "P=L/t"
+                    "testo": "P=L/t",
+                    "descrizione": "La potenza, nella fisica, è definita operativamente come l'energia trasferita[1] nell'unità di tempo. Dire che un macchinario ha un'alta potenza (W) vuol dire che riesce a trasferire una grande quantità di energia (J) in un brevissimo intervallo di tempo (s). Viene anche utilizzata per quantificare l'energia prodotta o utilizzata da un sistema fisico."
+
                 },
                 {
                     "titolo": "Energia cinetica",
-                    "testo": "1/2*m*v^2"
+                    "testo": "1/2*m*v^2",
+                    "descrizione": "L'energia cinetica è l'energia che un corpo possiede a causa del proprio movimento. Per il teorema dell'energia cinetica, l'energia cinetica di un corpo equivale al lavoro necessario ad accelerare il corpo da una velocità nulla alla sua velocità ed è pari al lavoro necessario a rallentare il corpo dalla stessa velocità ad una velocità nulla. L'unità di misura dell'energia cinetica nel sistema internazionale è il joule"
+
                 },
                 {
                     "titolo": "Energia Potenziale Forza Peso",
-                    "testo": "m*g*h"
+                    "testo": "m*g*h",
+                    "descrizione": "La forza-peso (o più semplicemente peso) è, in fisica classica, la forza che un campo gravitazionale (ad esempio quello terrestre) esercita su un corpo avente massa. La forza-peso descrive quindi l'interazione gravitazionale che agisce tra due oggetti qualsiasi dotati di massa.\n\nLa forza peso è stata definita da Isaac Newton nel libro Philosophiae Naturalis Principia Mathematica del 1687, definendo la legge di gravitazione universale. Si misura in newton (N) nel Sistema Internazionale."
+
                 },
                 {
                     "titolo": "Energia Potenziale Forza Gravitazionale",
-                    "testo": "-G*(M*m)/r"
+                    "testo": "-G*(M*m)/r",
+                    "descrizione": "In meccanica classica, e specificamente nella teoria newtoniana della gravitazione, l'energia potenziale gravitazionale è l'energia potenziale relativa alla forza di attrazione gravitazionale fra masse. Costituisce un esempio di potenziale scalare."
+
                 },
                 {
                     "titolo": "Energia Potenziale Forza Elettrostatica",
-                    "testo": "1/(4*π*ε)*(Q*q)/r"
+                    "testo": "1/(4*π*ε)*(Q*q)/r",
+                    "descrizione": "In fisica, l'energia del campo elettromagnetico è l'energia immagazzinata in una data regione di spazio dal campo elettromagnetico, ed è costituita dalla somma delle energie associate al campo elettrico ed al campo magnetico. Nelle onde elettromagnetiche queste due quantità sono sempre uguali ed è conveniente parlare di flusso di energia trasportata dall'onda nell'unità di tempo attraverso una superficie, attraverso l'uso del vettore di Poynting."
+
                 },
                 {
                     "titolo": "Energia Potenziale Forza Elastica",
-                    "testo": "1/2*k*x^2"
+                    "testo": "1/2*k*x^2",
+                    "descrizione": "In fisica, l'energia elastica è l'energia potenziale associata alla deformazione elastica di un solido o un fluido."
+
                 },
                 {
                     "titolo": "Impulso e Quantità di Moto",
-                    "testo": "I=F*Δt"
+                    "testo": "I=F*Δt",
+                    "descrizione": "Con impulso, nella meccanica classica, si indica una grandezza vettoriale, misurata in newton per secondo, definita come l'integrale di una forza rispetto al tempo"
+
                 }
             ]
 },
@@ -140,56 +177,70 @@
             "formule": [
                 {
                     "categoria": "",
-                    "titolo": "Densità Peso Specifico Pressione",
-                    "testo": "d=m/V"
+                    "titolo": "Densità Peso Specifico",
+                    "testo": "d=m/V",
+                    "descrizione": "La densità di una sostanza è il rapporto tra la massa e il volume di tale sostanza. Indica quanta massa è presente all'interno di 1m³ di una sostanza."
                 },
                 {
                     "titolo": "Principio di Pascal e torchio idraulico",
-                    "testo": "Fa/Sa=Fb/Sb"
+                    "testo": "Fa/Sa=Fb/Sb",
+                    "descrizione": "Il torchio idraulico è una macchina idraulica. Esso è composto da due pistoni aventi due sezioni diverse (una più grande e una più piccola, rispettivamente S2 e S1) e da un tubo a forma di U nel quale è presente un fluido."
+
                 },
                 {
                     "titolo": "Legge di Stevino",
-                    "testo": "d*g*h"
+                    "testo": "d*g*h",
+                    "descrizione": "In idrostatica la legge di Stevino è un'equazione lineare, formulata da Simone Stevino, che permette di calcolare la pressione esistente ad ogni profondità entro una colonna di fluido conoscendo la densità del liquido stesso."
                 },
                 {
                     "titolo": "Principio di Archimede ",
-                    "testo": "sa=d*g*v"
+                    "testo": "sa=d*g*v",
+                    "descrizione": "Il principio di Archimede, che prende il nome dall'omonimo scienziato greco che lo emanò, spiega perché alcuni corpi affondino mentre altri no, affermando che «ogni corpo immerso in un fluido (liquido o gas) subisce una forza diretta dal basso verso l'alto di intensità equiparabile alla forza-peso del fluido spostato.»"
                 },
                 {
                     "titolo": "Portata ed equazione di continuità ",
-                    "testo": "s*v*(m^3/s)"
+                    "testo": "s*v*(m^3/s)",
+                    "descrizione": "La legge di Leonardo (una volta era considerata un principio dell'idrodinamica) è una legge fisica, studiata in idrodinamica, secondo la quale la portata massica di un fluido in un condotto rimane sempre costante.\n\nCostituisce un semplice corollario dell'equazione di continuità."
                 },
                 {
                     "titolo": "Teorema di Bernoulli",
-                    "testo": "P+1/2*d*v^2+d*g*h=cost"
+                    "testo": "P+1/2*d*v^2+d*g*h=cost",
+                    "descrizione": "In fluidodinamica, l'equazione di Bernoulli rappresenta un modello semplificato di flusso inviscido di un fluido incomprimibile in regime di moto stazionario.[1] L'equazione di Bernoulli si deriva mediante l'omonimo teorema dall'integrazione dell'equazione di Eulero della quantità di moto lungo una linea di flusso, e descrive il moto di un fluido lungo tale linea."
                 },
                 {
                     "titolo": "Potenza",
-                    "testo": "P=L/t"
+                    "testo": "P=L/t",
+                    "descrizione": "La potenza, nella fisica, è definita operativamente come l'energia trasferita nell'unità di tempo. Dire che un macchinario ha un'alta potenza (W) vuol dire che riesce a trasferire una grande quantità di energia (J) in un brevissimo intervallo di tempo (s). Viene anche utilizzata per quantificare l'energia prodotta o utilizzata da un sistema fisico."
                 },
                 {
                     "titolo": "Energia cinetica",
-                    "testo": "1/2*m*v^2"
+                    "testo": "1/2*m*v^2",
+                    "descrizione": "L'energia cinetica è l'energia che un corpo possiede a causa del proprio movimento. Per il teorema dell'energia cinetica, l'energia cinetica di un corpo equivale al lavoro necessario ad accelerare il corpo da una velocità nulla alla sua velocità ed è pari al lavoro necessario a rallentare il corpo dalla stessa velocità ad una velocità nulla. L'unità di misura dell'energia cinetica nel sistema internazionale è il joule."
                 },
                 {
                     "titolo": "Energia Potenziale Forza Peso",
-                    "testo": "m*g*h"
+                    "testo": "m*g*h",
+                    "descrizione": "La forza-peso (o più semplicemente peso) è, in fisica classica, la forza che un campo gravitazionale (ad esempio quello terrestre) esercita su un corpo avente massa. La forza-peso descrive quindi l'interazione gravitazionale che agisce tra due oggetti qualsiasi dotati di massa."
                 },
                 {
                     "titolo": "Energia Potenziale Forza Gravitazionale",
-                    "testo": "-G*(M*m)/r"
+                    "testo": "-G*(M*m)/r",
+                    "descrizione": "In meccanica classica, e specificamente nella teoria newtoniana della gravitazione, l'energia potenziale gravitazionale è l'energia potenziale relativa alla forza di attrazione gravitazionale fra masse. Costituisce un esempio di potenziale scalare."
                 },
                 {
                     "titolo": "Energia Potenziale Forza Elettrostatica",
-                    "testo": "1/(4*π*ε)*(Q*q)/r"
+                    "testo": "1/(4*π*ε)*(Q*q)/r",
+                    "descrizione": "L'energia elettrica, in fisica ed in elettrotecnica, è l'energia potenziale del campo elettrostatico. Si tratta dell'energia posseduta da una distribuzione di carica elettrica, ed è legata alla forza esercitata dal campo generato dalla distribuzione stessa. Insieme all'energia magnetica, l'energia potenziale elettrica costituisce l'energia del campo elettromagnetico."
                 },
                 {
                     "titolo": "Energia Potenziale Forza Elastica",
-                    "testo": "1/2*k*x^2"
+                    "testo": "1/2*k*x^2",
+                    "descrizione": "In fisica, l'energia elastica è l'energia potenziale associata alla deformazione elastica di un solido o un fluido."
                 },
                 {
                     "titolo": "Impulso e Quantità di Moto",
-                    "testo": "I=F*Δt"
+                    "testo": "I=F*Δt",
+                    "descrizione": "Con impulso, nella meccanica classica, si indica una grandezza vettoriale, misurata in newton per secondo, definita come l'integrale di una forza rispetto al tempo:"
                 }
                 ]
 
@@ -205,64 +256,82 @@
             "materia": "Elettromagnetismo",
             "materie": [],
             "formule": [  {
+
+                "categoria": "",
                 "titolo": "Legge di Coulomb",
-                "testo": "→F =1/4πε*((q1*q2)/r^2)"
+                "testo": "→F =1/4πε*((q1*q2)/r^2)",
+                "descrizione": "In fisica, la forza di Coulomb, descritta dalla legge di Coulomb, è la forza esercitata da un campo elettrico su una carica elettrica. Si tratta della forza che agisce tra oggetti elettricamente carichi, ed è operativamente definita dal valore dell'interazione tra due cariche elettriche puntiformi e ferme nel vuoto.\n\nDalla legge di Coulomb si rende visibile come all'interazione elettromagnetica sia associata una forza particolarmente intensa se confrontata con l'interazione gravitazionale: la forza elettrica tra un elettrone e un protone in un atomo d'idrogeno è 1039 volte superiore rispetto alla forza gravitazionale tra le due."
             },
                 {
                     "titolo": "Campo elettrostatico",
-                    "testo": "F/q"
+                    "testo": "F/q",
+                    "descrizione": "In fisica, il campo elettrico è un campo di forze generato nello spazio dalla presenza di una o più cariche elettriche o di un campo magnetico variabile nel tempo. Insieme al campo magnetico esso costituisce il campo elettromagnetico, responsabile dell'interazione elettromagnetica.\n\nIntrodotto da Michael Faraday, il campo elettrico si propaga alla velocità della luce ed esercita una forza su ogni oggetto elettricamente carico. Nel sistema internazionale di unità di misura si misura in newton su coulomb (N/C), o in volt su metro (V/m). Se è generato dalla sola distribuzione stazionaria di carica spaziale, il campo elettrico è detto elettrostatico ed è conservativo.\n\nSe presente all'interno di un materiale conduttore, il campo elettrico genera una corrente elettrica."
+
                 },
                 {
                     "titolo": "Potenziale",
-                    "testo": "−−→∇ V"
+                    "testo": "−−→∇ V",
+                    "descrizione": "Formula"
                 },
                 {
                     "titolo": "Conservativita del campo elettrostatico ",
-                    "testo": "∇ × −→E = 0"
+                    "testo": "∇ × −→E = 0",
+                    "descrizione": "Il potenziale elettrico, in fisica e in particolare in elettromagnetismo, è il potenziale scalare associato al campo elettrostatico (o potenziale coulombiano)"
                 },
                 {
                     "titolo": "Campo elettrostatico e potenziale generati da carica isolata puntiforme",
-                    "testo":" 1/(4πε)*(q/r^2)"
+                    "testo":" 1/(4πε)*(q/r^2)",
+                    "descrizione": "Nel caso più generale il campo elettrico può variare sia in intensità che direzione e verso.\nLa definizione di flusso data in precedenza vale solo se l’elemento di superficie A è\nsufficientemente piccolo da poter considerare che il campo in essa possa essere considerato\ncostante.\nConsideriamo una generica superficie suddivisa in un gran numero\ndi piccoli elementi ciascuno di area ΔA nel quale il campo E possa\nessere considerato costante.\nPer ogni elemento di superficie i si avrà un vettore superficie di\nmodulo ΔA e direzione perpendicolare all’elemento di superficie i-simo. "
                 },
-                {
-                    "titolo": "Campo elettrostatico e potenziale generati da distribuzione discreta di carica ",
-                    "testo": "1/(4πε)*Ʃ (q/r^2)"
-                },
+
                 {
                     "titolo": "Dipolo elettrico",
-                    "testo": "− 1/(4πε)*−→p*−→∇ (1/r)"
+                    "testo": "− 1/(4πε)*−→p*−→∇ (1/r)",
+                    "descrizione": "Un dipolo elettrico, in elettrostatica, è un sistema composto da due cariche elettriche uguali e di segno opposto e separate da una distanza costante nel tempo. È uno dei più semplici sistemi di cariche che si possano studiare e rappresenta il primo termine dello sviluppo in multipoli del campo elettrico generato da un insieme di cariche globalmente neutro."
                 },
                 {
                     "titolo": "Legge di Gauss",
-                    "testo": "p/ε"
+                    "testo": "p/ε",
+                    "descrizione": "Il teorema del flusso, noto anche come teorema di Gauss, nella teoria dei campi vettoriali, afferma che i campi vettoriali radiali dipendenti dal reciproco del quadrato della distanza dall'origine hanno un flusso attraverso una qualunque superficie chiusa che dipende solo dalle sorgenti di campo in essa contenute ed è indipendente dalla posizione interna delle sorgenti che lo generano.\n\nL'enunciato ha due espressioni, una integrale e una differenziale, legate tra di loro dal teorema della divergenza."
                 },
                 {
                     "titolo": "Conduttori",
-                    "testo": "E(int) = 0"
+                    "testo": "E(int) = 0",
+                    "descrizione": "Il conduttore elettrico è un materiale in grado di far scorrere corrente elettrica al suo interno. I materiali conduttori sono caratterizzati dalla presenza di elettroni liberi nella banda di valenza degli atomi del reticolo cristallino (conduttori di prima specie) o contengono specie ioniche che si fanno carico di trasportare la corrente (conduttori di seconda specie).\n\nLa conducibilità elettrica di un conduttore di prima specie può essere interpretata mediante il modello delle bande. La carica netta su un conduttore si distribuisce sulla sua superficie, poiché in questo modo le singole cariche (che si respingono) massimizzano la loro distanza reciproca raggiungendo una configurazione che minimizza l'energia."
                 },
                 {
                     "titolo": "Equazione del potenziale elettrostatico (Laplace)",
-                    "testo": "∇^2*V"
+                    "testo": "∇^2*V",
+                    "descrizione": "Formula di Laplace"
                 },
                 {
                     "titolo": "Definizione di capacita'",
-                    "testo": "Q/∆V"
+                    "testo": "Q/∆V",
+                    "descrizione": "La capacità elettrica, in elettrotecnica, è una grandezza fisica scalare che quantifica l'attitudine di un corpo conduttore ad accumulare carica elettrica qualora sia dotato di un potenziale elettrico rispetto all'ambiente o sia soggetto di una differenza di potenziale elettrico rispetto ad altri corpi conduttori. Il corpo conduttore deve essere elettricamente isolato rispetto all'ambiente o agli altri corpi conduttori, affinché sia possibile mantenere costante il potenziale.\n\nLa capacità di un corpo conduttore non dipende dalla sostanza da cui è costituito ma solo dalle sue caratteristiche geometriche, come forma e dimensioni, e dalla sua posizione rispetto ad altri conduttori, soprattutto rispetto a conduttori vicini messi a terra. Ad esempio, la capacità di un conduttore diviene grandissima quanto più se ne avvicini la superficie a quella parallela di un altro corpo conduttore collegato a terra. Questa configurazione definisce il condensatore elettrico. Se invece il corpo conduttore è isolato e, ad esempio, ha forma sferica, la capacità è proporzionale al raggio.\n\nUn dispositivo elettrico dotato di capacità è detto capacitivo. Un dispositivo puramente capacitivo è il condensatore, che riveste grande importanza in elettronica ed elettrotecnica, e rappresenta un elemento circuitale di base."
                 },
                 {
-                    "titolo": "Capacita' cond. piano",
-                    "testo": "ε*(S/d)"
+                    "titolo": "Capacita' condensatore piano",
+                    "testo": "ε*(S/d)",
+                    "descrizione": "Il condensatore è un componente elettrico che ha la capacità di immagazzinare l'energia elettrostatica associata a un campo elettrostatico.\n\n\nIllustrazione di un condensatore a piastre parallele. Si introduce spesso un materiale dielettrico tra le piastre, per aumentare la capacità di immagazzinamento.\nNella teoria dei circuiti il condensatore è un componente ideale che può mantenere la carica e l'energia accumulata all'infinito. Nei circuiti in regime sinusoidale permanente la corrente che attraversa un condensatore ideale risulta in anticipo di un quarto di periodo rispetto alla tensione che è applicata ai suoi morsetti."
+
                 },
                 {
                     "titolo": "Densita' di corrente",
-                    "testo": "p*v"
+                    "testo": "p*v",
+                    "descrizione": "In elettromagnetismo la densità di corrente elettrica è il vettore il cui flusso attraverso una superficie rappresenta la corrente elettrica che attraversa tale superficie"
+
                 },
                 {
                     "titolo": "Equazione di continuita'",
-                    "testo": "-∂ρ/∂t"
+                    "testo": "-∂ρ/∂t",
+                    "descrizione": "In fisica, l'equazione di continuità è un'equazione differenziale che esprime in forma locale la legge di conservazione per una generica grandezza fisica utilizzando il flusso della grandezza attraverso una superficie chiusa. L'equazione di continuità può essere espressa come legge differenziale oppure integrale.\n\n"
+
                 },
                 {
                     "titolo": "Potenziale vettore",
-                    "testo": "∇ × −→A"
+                    "testo": "∇ × −→A",
+                    "descrizione": "In calcolo vettoriale il potenziale vettore è un campo vettoriale il cui rotore è un dato campo vettoriale. È l'analogo del potenziale scalare, che è un campo scalare il cui gradiente è un dato campo vettoriale."
+
                 }
             ]
         }

@@ -16,47 +16,69 @@
                 {
                     "categoria": "",
                     "titolo": "Area Poligono",
-                    "testo": "A=b*h"
+                    "testo": "A=b*h",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Diagonale rettangolo",
-                    "testo": "d = (b^2 + h^2)^(1/2) "
+                    "testo": "d = (b^2 + h^2)^(1/2) ",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Area Quadrato",
-                    "testo": "A=l^2"
+                    "testo": "A=l^2",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Diagonale Quadrato",
-                    "testo": "l*(2)^1/2"
+                    "testo": "l*(2)^1/2",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Area Parallelogramma",
-                    "testo": "A=b*h"
+                    "testo": "A=b*h",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Area Triangolo",
-                    "testo": "A=(b*h)/2"
+                    "testo": "A=(b*h)/2",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Mediana relativa al lato(Triangolo)",
-                    "testo": "1/2*(2*b^2+2*c^2-a^2)^1/2"
+                    "testo": "1/2*(2*b^2+2*c^2-a^2)^1/2",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Bisettrice relativa al lato(Triangolo)",
-                    "testo": "2/(b+c)*(b*c*p(p-a))^(1/2)"
+                    "testo": "2/(b+c)*(b*c*p(p-a))^(1/2)",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Area Triangolo Rettangolo",
-                    "testo": "A=(a*h)/2"
+                    "testo": "A=(a*h)/2",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Area Rombo",
-                    "testo": "A=(d1*d2)/2"
+                    "testo": "A=(d1*d2)/2",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Area Trapezio",
-                    "testo": "A=((b1+b2)*h)/2"
+                    "testo": "A=((b1+b2)*h)/2",
+                    "descrizione": "Formula"
+
                 }
             ]
         },
@@ -71,59 +93,87 @@
                 {
                     "categoria": "",
                     "titolo": "Area Parallelepipedo rettangolo",
-                    "testo": "A=pb*h"
+                    "testo": "A=pb*h",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Volume Parallelepipedo rettangolo",
-                    "testo": "V=a*b*c"
+                    "testo": "V=a*b*c",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Diagonale Parallelepipedo rettangolo",
-                    "testo": "(a^2+b^2+c^2)^1/2"
+                    "testo": "(a^2+b^2+c^2)^1/2",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Area Cubo",
-                    "testo": "4*s^2"
+                    "testo": "4*s^2",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Volume Cubo",
-                    "testo": "s^3"
+                    "testo": "s^3",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Diagonale Cubo",
-                    "testo": "s*(3)^1/2"
+                    "testo": "s*(3)^1/2",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Area Prisma retto",
-                    "testo": "pb*h"
+                    "testo": "pb*h",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Volume Prisma retto",
-                    "testo": "A*h"
+                    "testo": "A*h",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Area Piramide retta",
-                    "testo": "(p*a)/2"
+                    "testo": "(p*a)/2",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Volume Piramide retta",
-                    "testo": "(A*h)/3"
+                    "testo": "(A*h)/3",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Area Cilindro",
-                    "testo": "2π*r*h"
+                    "testo": "2π*r*h",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Volume Cilindro",
-                    "testo": "π*r^2*h"
+                    "testo": "π*r^2*h",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Area Cono",
-                    "testo": "π*r*a"
+                    "testo": "π*r*a",
+                    "descrizione": "Formula"
+
                 },
                 {
                     "titolo": "Volume Cono",
-                    "testo": "(π*r^2*h)/3"
+                    "testo": "(π*r^2*h)/3",
+                    "descrizione": "Formula"
+
                 }
             ]
         }
