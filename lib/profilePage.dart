@@ -1,20 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:formulario/HomePageScreen.dart';
-import 'package:formulario/widget/numbers_widget.dart';
+import 'package:formulario/numbersWidget.dart';
 import 'package:formulario/Assets.dart';
 import 'constantsUtil.dart';
 
 // ignore: camel_case_types
-class Profile_Page extends StatefulWidget {
+class ProfilePage extends StatefulWidget {
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
 
-class _ProfilePageState extends State<Profile_Page> {
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    print('ProfilePage ${Assets.instance.userData.username}');
     return Scaffold(
       backgroundColor: MyAppColors.appBackground,
       appBar: AppBar(
@@ -38,17 +37,19 @@ class _ProfilePageState extends State<Profile_Page> {
       body: ListView(
         physics: BouncingScrollPhysics(),
         children: [
-          const SizedBox(height: 24),
-          Text(
-            Assets.instance.userData.username.isEmpty
-                ? "Nome Utente"
-                : Assets.instance.userData.username,
-            style: TextStyle(
-                backgroundColor: MyAppColors.appBackground,
-                color: Colors.grey[800],
-                fontWeight: FontWeight.bold,
-                fontSize: 22),
-            textAlign: TextAlign.center,
+          Padding(
+            padding: const EdgeInsets.only(top: 24),
+            child: Text(
+              Assets.instance.userData.username.isEmpty
+                  ? "Nome Utente"
+                  : Assets.instance.userData.username,
+              style: TextStyle(
+                  backgroundColor: MyAppColors.appBackground,
+                  color: Colors.grey[800],
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22),
+              textAlign: TextAlign.center,
+            ),
           ),
           Text("\n"),
           Text(
@@ -62,10 +63,10 @@ class _ProfilePageState extends State<Profile_Page> {
                 fontSize: 22),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 24),
-          const SizedBox(height: 24),
-          NumbersWidget(),
-          const SizedBox(height: 48),
+          Padding(
+            padding: const EdgeInsets.only(top: 48, bottom: 48),
+            child: NumbersWidget(),
+          ),
           Text(
             "Formule da vedere:\n",
             style: TextStyle(

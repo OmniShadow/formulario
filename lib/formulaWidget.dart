@@ -23,10 +23,13 @@ class _FormulaState extends State<FormulaWidget> {
   FormulaData formulaData;
   _FormulaState(this.formulaData);
 
+  //A ogni formula è associato un widget di tipo ExpansionTile che
+  //quando espanso mostra una descrizione più approfondita della formula
   @override
   Widget build(BuildContext context) {
     return Card(
       child: ExpansionTile(
+        //Icona che quando premuta chiama un metodo per aggiungere o rimuovere la formula dai preferiti
         leading: InkWell(
           onTap: () => addToFavourites(context),
           child: Icon(
@@ -42,6 +45,7 @@ class _FormulaState extends State<FormulaWidget> {
           child: FittedBox(
             fit: BoxFit.scaleDown,
             alignment: Alignment.centerLeft,
+            //Widget per la visulizzazione in LaTex della formula dal package flutter_math_fork
             child: Math.tex(formulaData.testo),
           ),
         ),

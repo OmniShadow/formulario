@@ -16,11 +16,6 @@ class MateriaWidgetState extends State<MateriaWidget> {
   Image _iconWidget;
   MateriaWidgetState(this.materiaData) {
     _iconWidget = Image.asset(materiaData.iconPath);
-    try {
-      _iconWidget = Image.asset(materiaData.iconPath);
-    } catch (e) {
-      _iconWidget = Image.asset('assets/icon/appIcon.png');
-    }
   }
 
   @override

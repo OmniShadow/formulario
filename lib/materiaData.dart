@@ -25,6 +25,7 @@ class MateriaData {
     this.categoria,
   });
 
+  //Metodo per ottenere tutte le sottomaterie
   List<MateriaData> getMaterie() {
     List<MateriaData> materie = [];
     materie.addAll(subMaterie);
@@ -33,6 +34,7 @@ class MateriaData {
     return materie;
   }
 
+  //Metodo per ottenere tutte le formule comprese quelle delle sottomaterie
   List<FormulaData> getFormule() {
     List<FormulaData> formuleAll = [];
     formuleAll.addAll(formule);
@@ -43,6 +45,7 @@ class MateriaData {
     return formuleAll;
   }
 
+  //Metodo ricorsivo per istanziare un oggetto MateriaData da un file .json
   factory MateriaData.fromJson(
       Map<String, dynamic> parsedJson, String categoria) {
     List<dynamic> _subMaterie = [];
@@ -89,6 +92,7 @@ class MateriaData {
     );
   }
 
+  //Metodo per ottenere la pagina associata alle sottomaterie o alle formule di questa materia
   MaterialPageRoute getMateriaPage() {
     Assets.instance.updateMaterieRecenti(this);
     return MaterialPageRoute(
@@ -114,7 +118,7 @@ class MateriaData {
                   child: Container(
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                        color: Color(0xFF332F2D),
+                        color: MyAppColors.iconColor,
                         borderRadius: BorderRadius.all(Radius.circular(8))),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

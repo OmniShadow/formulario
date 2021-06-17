@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
-import 'package:formulario/NewPage1.dart';
-import 'package:formulario/Profile_page.dart';
+import 'package:formulario/faqPage.dart';
+import 'package:formulario/profilePage.dart';
 import 'package:formulario/assets.dart';
 import 'package:formulario/constantsUtil.dart';
 import 'package:formulario/formuleManager.dart';
@@ -50,7 +50,7 @@ class ProfileDrawerWidget extends StatelessWidget {
       leading: Icon(Icons.account_box_rounded),
       title: Text('Profilo'),
       onTap: () {
-        Route route = MaterialPageRoute(builder: (context) => Profile_Page());
+        Route route = MaterialPageRoute(builder: (context) => ProfilePage());
         Navigator.push(context, route); //vai al profilo
       },
     );

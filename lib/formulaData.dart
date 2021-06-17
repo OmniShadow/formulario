@@ -15,9 +15,10 @@ class FormulaData {
   @override
   String toString() => ('Formula: $titolo ,ID: $id');
   FormulaData({this.titolo, this.testo, this.categoria, this.descrizione}) {
-    id = n++;
+    id = n++; //id a incremento
   }
 
+  //Metodo per istanziare un oggetto di tipo FormulaData da un file .json
   factory FormulaData.fromJson(
       Map<String, dynamic> parsedJson, String categoria) {
     return FormulaData(
@@ -27,7 +28,7 @@ class FormulaData {
       categoria: categoria,
     );
   }
-
+  //Metodo per ottenere la pagina web con la ricerca su google della formula
   MaterialPageRoute getFormulaMaterialPage() {
     Assets.instance.updateFormuleRecenti(this);
     return MaterialPageRoute(

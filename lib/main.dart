@@ -20,12 +20,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  //titolo dell'applicazione
   static const String _title = 'Formulario';
   Brightness brightness = Brightness.light;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //Impostazione del tema generale dell'applicazione come colori e font
       theme: ThemeData(
         accentColor: MyAppColors.iconColor,
         brightness: brightness,
@@ -33,6 +35,9 @@ class _MyAppState extends State<MyApp> {
         fontFamily: 'Brandon-Grotesque-light',
       ),
       title: _title,
+
+      /*Nella home passo un futurebuilder che rappresenta la schermata di caricamento
+      alla fine di tale schermata apparirà la nostra interfaccia iniziale..*/
       home: FutureBuilder(
           future: Assets.instance.setup(),
           builder: (context, snapshot) {
@@ -50,9 +55,12 @@ class _MyAppState extends State<MyApp> {
 }
 
 class _MyHomePage extends StatelessWidget {
+  /*Homepage in cui sono presenti un iconbutton per la ricerca, un drawer
+   e il body della homePage   */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFFDEBDF),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -64,20 +72,20 @@ class _MyHomePage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.search_rounded),
             onPressed: () {
+              //alla pressione di questo pulsante si apre la schermata di ricerca
               showSearch(context: context, delegate: MaterieSearch.instance);
             },
           ),
         ],
       ),
-      backgroundColor: Color(0xFFFDEBDF),
-      body: _MyHomePageBody(),
       drawer: MyDrawerWidget(),
+      body: _MyHomePageBody(),
     );
   }
 }
 
 class _MyHomePageBody extends StatelessWidget {
-  _MyHomePageBody();
+  //Layout grafico del body della homePage
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -88,14 +96,14 @@ class _MyHomePageBody extends StatelessWidget {
             child: Image.asset('assets/icons/home.png'),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 40, right: 40),
+            padding: const EdgeInsets.only(left: 40, right: 40),
             child: AspectRatio(
               aspectRatio: 6.95,
               child: Container(
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                     color: MyAppColors.iconColor,
-                    borderRadius: BorderRadius.all(Radius.circular(8))),
+                    borderRadius: const BorderRadius.all(Radius.circular(8))),
                 child: AutoSizeText(
                   'FORMULARIO',
                   maxLines: 1,
@@ -111,17 +119,22 @@ class _MyHomePageBody extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.only(top: 20),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(70),
-                      topRight: Radius.circular(70)),
+                      topLeft: const Radius.circular(70),
+                      topRight: const Radius.circular(70)),
                   color: MyAppColors.formuleBackground,
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(0),
-                  child: materieHomePage,
+                  //Parte del body della homePage che contiene i widget per navigare tra le materie
+                  child: MaterieManagerWidget(
+                    materieData: Assets.instance.materieNomi
+                        .map((e) => Assets.instance.getMateriaData(e))
+                        .toList(),
+                  ),
                 ),
               ),
             ),
@@ -130,15 +143,10 @@ class _MyHomePageBody extends StatelessWidget {
       ),
     );
   }
-
-  Widget get materieHomePage => MaterieManagerWidget(
-        materieData: Assets.instance.materieNomi
-            .map((e) => Assets.instance.getMateriaData(e))
-            .toList(),
-      );
 }
 
 class LoadingScreen extends StatelessWidget {
+  //Layout grafico della pagina di caricamento iniziale
   @override
   Widget build(BuildContext context) {
     return Scaffold(

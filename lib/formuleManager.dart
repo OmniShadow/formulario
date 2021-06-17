@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'formulaData.dart';
 import 'formulaWidget.dart';
 
-// ignore: must_be_immutable
 class FormuleManager extends StatelessWidget {
-  List<FormulaData> formule;
+  final List<FormulaData> formule;
+
   FormuleManager({this.formule});
 
   @override
