@@ -58,7 +58,7 @@ class _MyHomePage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: IconThemeData(
-          color: Color(0xFF332F2D),
+          color: MyAppColors.iconColor,
         ),
         actions: [
           IconButton(
@@ -94,7 +94,7 @@ class _MyHomePageBody extends StatelessWidget {
               child: Container(
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                    color: Color(0xFF332F2D),
+                    color: MyAppColors.iconColor,
                     borderRadius: BorderRadius.all(Radius.circular(8))),
                 child: AutoSizeText(
                   'FORMULARIO',
@@ -117,7 +117,7 @@ class _MyHomePageBody extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(70),
                       topRight: Radius.circular(70)),
-                  color: Color(0xFFC9BBB1),
+                  color: MyAppColors.formuleBackground,
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(0),
@@ -142,7 +142,7 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFDEBDF),
+      backgroundColor: MyAppColors.appBackground,
       body: Padding(
         padding: const EdgeInsets.only(top: 100),
         child: Column(
