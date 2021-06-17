@@ -59,14 +59,11 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/icons/
-    - assets/materieData/matematica.json
-    - assets/materieData/fisica.json
-    - assets/materieData/geometria.json
-    - assets/materieData/probabilita.json
     - assets/icons/fisica/
-    - assets/icons/geometria/
     - assets/icons/matematica/
+    - assets/icons/geometria/
     - assets/icons/probabilita/
+    - assets/materieData/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

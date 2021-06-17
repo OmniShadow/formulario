@@ -16,61 +16,61 @@
                 "categoria": "",
                 "titolo": "Funzione Cumulata",
                 "testo": "F(x) = P(X <= x) ",
-                "descrizione": "Formula"
+                "descrizione": "La funzione cumulata è una funzione di variabile reale che racchiude le informazioni su un fenomeno (un insieme di dati, un evento casuale) riguardanti la sua presenza o la sua distribuzione prima o dopo un certo punto."
 
             },
                 {
                     "titolo": "Limite per t che tende a x+ ",
                     "testo": "F(x+)",
-                    "descrizione": "Formula"
+                    "descrizione": "Formula della funzione cumulata per il limite che tende  a x+"
 
                 },
                 {
                     "titolo": "Limite per t che tende a x- ",
                     "testo": "F(x-)",
-                    "descrizione": "Formula"
+                    "descrizione": "Formula della funzione cumulata per il limite che tende  a x-"
 
                 },
                 {
                     "titolo": "Limite per t che tende a  infinito ",
                     "testo": "F(∞)",
-                    "descrizione": "Formula"
+                    "descrizione": "Formula della funzione cumulata per il limite che tende  a x per infinito"
 
                 },
                 {
                     "titolo": "Prima Proprietà fondamentale",
                     "testo": "se x <= y => F(x) <= F(y)",
-                    "descrizione": "Formula"
+                    "descrizione": "Formula che implica nel caso in cui x è minore di y allora anche la funzione di di x sarà minore della funzione di y"
 
                 },
                 {
                     "titolo": "Seconda Proprietà fondamentale",
                     "testo": "F(x-) = P(X < x) per x appartenente a R",
-                    "descrizione": "Formula"
+                    "descrizione": "Formula dove abbiamo x reale e X che è una variabile casuale assolutamente continua che può essere espressa come funzione integrale"
 
                 },
                 {
                     "titolo": "Terza Proprietà fondamentale",
                     "testo": "F(∞) = 1",
-                    "descrizione": "Formula"
+                    "descrizione": "Formula che implica che la funzione ad infinito è uguale a 1 "
 
                 },
                 {
                     "titolo": "Quarta Proprietà fondamentale",
                     "testo": "F(-∞) = 0",
-                    "descrizione": "Formula"
+                    "descrizione": "Formula che implica che la funzione a menoinfinito è uguale a 0"
 
                 },
                 {
                     "titolo": "Quinta Proprietà fondamentale",
                     "testo": "P(X = a) = F(a) - F(a-)",
-                    "descrizione": "Formula"
+                    "descrizione": "Formula che rappresenta la quinta proprieta e utilizza la sottrazione della funzione in a e la stessa però da sinistra"
 
                 },
                 {
                     "titolo": "Relazione con la funzione di densita'",
                     "testo": "f(x) = F(x) - F(x-)",
-                    "descrizione": "Formula"
+                    "descrizione": "Formula che descrive la densità di probabilità in ogni punto nello spazio campionario."
 
                 }
                 ]
@@ -86,38 +86,38 @@
                 {
                     "categoria": "",
                     "titolo": "Momento iniziale di variabili continue",
-                    "testo": "m=(α+β)/2",
-                    "descrizione": "Formula"
+                    "testo": "m=\\frac{(α+β)}{2}",
+                    "descrizione": "Formula del momento iniziale che si ottiene attraverso la somma delle due variabili e la divisione per 2"
 
                 },
                 {
                     "titolo": "Momento centrale id ordine 2 ",
-                    "testo": "(β-α)^2/12",
-                    "descrizione": "Formula"
+                    "testo": "\\sqrt[6]{(β-α)}",
+                    "descrizione": "Formula del momento iniziale che si ottiene attraverso la differenze delle due variabili per 2/12"
 
                 },
                 {
                     "titolo": "Distribuzione di Gauss ",
-                    "testo": "1/(σ*(2*π)^(1/2)*(e^-(x-m)^2/2*σ^2)",
-                    "descrizione": "Formula"
+                    "testo": "\\frac{1}{(\\sqrt{\\left(σ\\cdot(2\\cdot\\pi\\right)}^{ }\\cdot\\left(\\frac{e^{-}(x-m)^{2}}{2}\\cdotσ^{2})\\right)}",
+                    "descrizione": "E' una distribuzione di probabilità continua che è spesso usata come prima approssimazione per descrivere variabili casuali a valori reali che tendono a concentrarsi attorno a un singolo valor medio"
 
                 },
                 {
                     "titolo": "Distribuzione di Cauchy ",
-                    "testo": "1/π*(1/(1+x^2))",
-                    "descrizione": "Formula"
+                    "testo": "\\frac{1}{\\pi\\cdot(1/(1+x^{2}))}",
+                    "descrizione": "E' una distribuzione nota anche come distribuzione di Lorentz, è una distribuzione di probabilità che descrive nel piano euclideo l'intersezione tra l'asse delle ascisse ed una retta passante per un punto fissato ed inclinata ad un angolo che segue la distribuzione continua uniforme"
 
                 },
                 {
                     "titolo": "Distribuzione χ^2",
-                    "testo": "1/(2*π)^(1/2)*e^-((x^2)/2)",
-                    "descrizione": "Formula"
+                    "testo": "\\frac{1}{\\sqrt{2\\cdot\\pi}\\cdot\\frac{e^{-}\\cdot\\left(x^{2}\\right)}{2}}",
+                    "descrizione": "E' la distribuzione di probabilità della somma dei quadrati di variabili aleatorie normali indipendenti."
 
                 },
                 {
                     "titolo": "Distribuzione di Student",
-                    "testo": "t=(n)^1/2*(y/(x)^1/2)",
-                    "descrizione": "Formula"
+                    "testo": "t=\\sqrt{n}*\\sqrt{\\frac{y}{x}}",
+                    "descrizione": "E'una distribuzione di probabilità continua che governa il rapporto tra due variabili aleatorie, la prima con distribuzione normale e la seconda, al quadrato, segue una distribuzione chi quadrato"
 
                 }
             ]

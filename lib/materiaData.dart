@@ -57,8 +57,9 @@ class MateriaData {
 
     materieJson = parsedJson['materie'];
     if (!materieJson.isEmpty) {
-      _subMaterie =
-          materieJson.map((i) => MateriaData.fromJson(i, categoria)).toList();
+      _subMaterie = materieJson
+          .map((materiaJson) => MateriaData.fromJson(materiaJson, categoria))
+          .toList();
       for (dynamic _subMateria in _subMaterie) {
         subMaterieData.add(_subMateria as MateriaData);
       }
@@ -68,8 +69,9 @@ class MateriaData {
     formuleJson = parsedJson['formule'];
 
     if (!formuleJson.isEmpty) {
-      _formule =
-          formuleJson.map((i) => FormulaData.fromJson(i, categoria)).toList();
+      _formule = formuleJson
+          .map((formulaJson) => FormulaData.fromJson(formulaJson, categoria))
+          .toList();
       for (dynamic _formula in _formule) {
         formuleData.add(_formula as FormulaData);
       }

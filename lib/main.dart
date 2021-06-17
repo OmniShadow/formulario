@@ -21,15 +21,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   static const String _title = 'Formulario';
-  Assets assets = Assets.instance;
-  Future assetsFuture;
-  bool assetsLoaded = false;
   Brightness brightness = Brightness.light;
-  @override
-  void initState() {
-    super.initState();
-    assetsFuture = assets.loadMaterie();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,16 +34,15 @@ class _MyAppState extends State<MyApp> {
       ),
       title: _title,
       home: FutureBuilder(
-          future: assetsFuture,
+          future: Assets.instance.setup(),
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
-              case ConnectionState.none:
+              case ConnectionState.waiting:
                 return LoadingScreen();
               case ConnectionState.done:
-                assets.loadFormule();
                 return _MyHomePage();
               default:
-                return LoadingScreen();
+                return Image.asset('assets/icons/home.png');
             }
           }),
     );
@@ -94,10 +85,7 @@ class _MyHomePageBody extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-            child: Hero(
-              tag: 'immagineFormulario',
-              child: Image.asset('assets/icons/home.png'),
-            ),
+            child: Image.asset('assets/icons/home.png'),
           ),
           Padding(
             padding: EdgeInsets.only(left: 40, right: 40),
@@ -144,12 +132,9 @@ class _MyHomePageBody extends StatelessWidget {
   }
 
   Widget get materieHomePage => MaterieManagerWidget(
-        materieData: [
-          Assets.instance.getMateriaData('Matematica'),
-          Assets.instance.getMateriaData('Fisica'),
-          Assets.instance.getMateriaData('Geometria'),
-          Assets.instance.getMateriaData('Probabilita')
-        ],
+        materieData: Assets.instance.materieNomi
+            .map((e) => Assets.instance.getMateriaData(e))
+            .toList(),
       );
 }
 

@@ -59,7 +59,9 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
     List<FormulaData> suggerimentiFormule = query.isEmpty
         ? Assets.instance.formuleRecenti
         : _creaListSuggerimentiFormule(materieData);
-    return (suggerimenti.isEmpty & suggerimentiFormule.isEmpty)
+    return (suggerimenti.isEmpty &
+            suggerimentiFormule.isEmpty &
+            query.isNotEmpty)
         ? trovatoNullaWidget
         : ListView.builder(
             itemCount: suggerimenti.length + suggerimentiFormule.length,

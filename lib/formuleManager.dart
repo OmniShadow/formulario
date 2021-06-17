@@ -13,9 +13,12 @@ class FormuleManager extends StatelessWidget {
     for (FormulaData formula in formule) {
       formuleWidgets.add(FormulaWidget(formula));
     }
-    return ListView(
+    return ListView.builder(
       padding: EdgeInsets.all(0),
-      children: formuleWidgets,
+      itemCount: formuleWidgets.length,
+      itemBuilder: (context, index) {
+        return formuleWidgets[index];
+      },
     );
   }
 }

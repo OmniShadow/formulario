@@ -16,68 +16,68 @@
                 {
                     "categoria": "",
                     "titolo": "Area Poligono",
-                    "testo": "A=b*h",
-                    "descrizione": "Formula"
+                    "testo": "A=b\\cdot h",
+                    "descrizione": "Area poligono utilizzando base e altezza"
 
                 },
                 {
                     "titolo": "Diagonale rettangolo",
-                    "testo": "d = (b^2 + h^2)^(1/2) ",
-                    "descrizione": "Formula"
+                    "testo": "d=(b^{2}+h^{2})^{ }\\cdot\\frac{1}{2} ",
+                    "descrizione": "Formula per trovare la diagonale di un rettangolo conoscendo base e altezza"
 
                 },
                 {
                     "titolo": "Area Quadrato",
-                    "testo": "A=l^2",
-                    "descrizione": "Formula"
+                    "testo": "A=l^{2}",
+                    "descrizione": "Formula per area del quadrato conoscendo la dimensione del lato"
 
                 },
                 {
                     "titolo": "Diagonale Quadrato",
-                    "testo": "l*(2)^1/2",
-                    "descrizione": "Formula"
+                    "testo": "l*(2)^{\\left(\\frac{1}{2}\\right)}",
+                    "descrizione": "Formula della diagonale utilizzando sempre la conoscenza della dimensione del lato"
 
                 },
                 {
                     "titolo": "Area Parallelogramma",
-                    "testo": "A=b*h",
-                    "descrizione": "Formula"
+                    "testo": "A=b\\cdot h",
+                    "descrizione": "Formula dell'area conoscendo base e altezza"
 
                 },
                 {
                     "titolo": "Area Triangolo",
-                    "testo": "A=(b*h)/2",
-                    "descrizione": "Formula"
+                    "testo": "A=(b\\cdot h)/2",
+                    "descrizione": "Formula dell'area con la conoscenza che abbiamo della base e dell'altezza"
 
                 },
                 {
                     "titolo": "Mediana relativa al lato(Triangolo)",
-                    "testo": "1/2*(2*b^2+2*c^2-a^2)^1/2",
-                    "descrizione": "Formula"
+                    "testo": "\\left(1/2\\right)\\cdot(2\\cdot b^{2}+2\\cdot c^{2}-a^{2})^{\\left(\\frac{1}{2}\\right)}",
+                    "descrizione": "Formula mediana utilizzando i lati che conosciamo , in questo caso relativa al lato a  "
 
                 },
                 {
                     "titolo": "Bisettrice relativa al lato(Triangolo)",
-                    "testo": "2/(b+c)*(b*c*p(p-a))^(1/2)",
-                    "descrizione": "Formula"
+                    "testo": "2/(b+c)\\cdot(b\\cdot c\\cdot p(p-a))^{\\left(\\frac{1}{2}\\right)}",
+                    "descrizione": "Formula della bisettrice conoscendo lati e semiperimetro"
 
                 },
                 {
                     "titolo": "Area Triangolo Rettangolo",
-                    "testo": "A=(a*h)/2",
-                    "descrizione": "Formula"
+                    "testo": "A=\\frac{\\left(a\\cdot h\\right)}{2}",
+                    "descrizione": "Formula dell'area sfruttando altezza e ipotenusa "
 
                 },
                 {
                     "titolo": "Area Rombo",
-                    "testo": "A=(d1*d2)/2",
-                    "descrizione": "Formula"
+                    "testo": "A=\\frac{(d1\\cdot d2)}{2}",
+                    "descrizione": "Formula dell'area applicata solo in caso di conoscenza delle diagonali"
 
                 },
                 {
                     "titolo": "Area Trapezio",
-                    "testo": "A=((b1+b2)*h)/2",
-                    "descrizione": "Formula"
+                    "testo": "A=\\frac{((b1+b2)\\cdot h)}{2}",
+                    "descrizione": "L'area del trapezio si calcola moltiplicando la somma delle basi per l'altezza e dividendo per 2 il risultato"
 
                 }
             ]
@@ -93,86 +93,86 @@
                 {
                     "categoria": "",
                     "titolo": "Area Parallelepipedo rettangolo",
-                    "testo": "A=pb*h",
+                    "testo": "A=pb\\cdot h",
                     "descrizione": "Formula"
 
                 },
                 {
                     "titolo": "Volume Parallelepipedo rettangolo",
-                    "testo": "V=a*b*c",
-                    "descrizione": "Formula"
+                    "testo": "V=a\\cdot b\\cdot c",
+                    "descrizione": "L'area della superficie laterale del parallelepipedo si ottiene moltiplicando la lunghezza del perimetro di base (pb) per l'altezza (h)"
 
                 },
                 {
                     "titolo": "Diagonale Parallelepipedo rettangolo",
-                    "testo": "(a^2+b^2+c^2)^1/2",
-                    "descrizione": "Formula"
+                    "testo": "\\frac{(a^{2}+b^{2}+c^{2})^{ }}{2}",
+                    "descrizione": "La diagonale si ottiene utilizzando  3 lati del parallelepipedo"
 
                 },
                 {
                     "titolo": "Area Cubo",
-                    "testo": "4*s^2",
-                    "descrizione": "Formula"
+                    "testo": "4\\cdot s^{2}",
+                    "descrizione": "Formula dell'area moltiplicando per 4  la superficie totale elevata al quadrato"
 
                 },
                 {
                     "titolo": "Volume Cubo",
-                    "testo": "s^3",
-                    "descrizione": "Formula"
+                    "testo": "s^{3}",
+                    "descrizione": "Il volume si ottiene sempre grazie alla conoscenza della superficie totale"
 
                 },
                 {
                     "titolo": "Diagonale Cubo",
-                    "testo": "s*(3)^1/2",
-                    "descrizione": "Formula"
+                    "testo": "s*(3)^{\\left(\\frac{1}{2}\\right)}",
+                    "descrizione": "La diagonale si ottiene sempre grazie alla conoscenza della superficie totale"
 
                 },
                 {
                     "titolo": "Area Prisma retto",
-                    "testo": "pb*h",
-                    "descrizione": "Formula"
+                    "testo": "pb\\cdot h",
+                    "descrizione": "Formula ottenuta solo se si ha il perimetro di base e l'altezza"
 
                 },
                 {
                     "titolo": "Volume Prisma retto",
-                    "testo": "A*h",
-                    "descrizione": "Formula"
+                    "testo": "A\\cdot h",
+                    "descrizione": "Il volume del prisma retto utilizza l'area e l'altezza"
 
                 },
                 {
                     "titolo": "Area Piramide retta",
-                    "testo": "(p*a)/2",
-                    "descrizione": "Formula"
+                    "testo": "\\frac{p\\cdot a}{2}",
+                    "descrizione": "L'area della superficie laterale di una piramide retta si ottiene moltiplicando la lunghezza del perimetro di base per quella dell'apotema e dividendo il prodotto per 2."
 
                 },
                 {
                     "titolo": "Volume Piramide retta",
-                    "testo": "(A*h)/3",
-                    "descrizione": "Formula"
+                    "testo": "\\frac{A\\cdot h}{3}",
+                    "descrizione": "Il volume di una piramide si ottiene moltiplicando l'area di base per la lunghezza dell'altezza e dividendo il prodotto per 3.Se la piramide è retta, le altezze di tutte le facce sono congruenti e si chiamano apotema."
 
                 },
                 {
                     "titolo": "Area Cilindro",
-                    "testo": "2π*r*h",
-                    "descrizione": "Formula"
+                    "testo": "2\\cdot\\pi\\cdot r\\cdot h",
+                    "descrizione": "L'area del cilindro è l'area della superficie totale del cilindro e si calcola moltiplicando l'area della superficie laterale al doppio dell'area di base"
 
                 },
                 {
                     "titolo": "Volume Cilindro",
-                    "testo": "π*r^2*h",
-                    "descrizione": "Formula"
+                    "testo": "\\pi\\cdot r^{2}\\cdot h",
+                    "descrizione": "Il volume del cilindro si calcola moltiplicando l'area del cerchio di base per la misura dell'altezza del cilindro."
 
                 },
                 {
                     "titolo": "Area Cono",
-                    "testo": "π*r*a",
-                    "descrizione": "Formula"
+                    "testo": "\\pi\\cdot r\\cdot a",
+                    "descrizione": "L'area del cono si ottiene moltiplicando l’area di base per la misura dell’altezza"
 
                 },
                 {
                     "titolo": "Volume Cono",
-                    "testo": "(π*r^2*h)/3",
-                    "descrizione": "Formula"
+                    "testo": "\\frac{(\\pi\\cdot r^{2}\\cdot h)}{3}",
+                    "descrizione": "Il volume di un cono si ottiene moltiplicando l’area di base per la misura dell’altezza e dividendo tale prodotto per tre"
 
                 }
             ]

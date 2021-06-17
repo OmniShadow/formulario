@@ -16,10 +16,7 @@ class FormulaData {
   String toString() => ('Formula: $titolo ,ID: $id');
   FormulaData({this.titolo, this.testo, this.categoria, this.descrizione}) {
     id = n++;
-    print('$id $titolo');
   }
-  FormulaData.withId(
-      {this.id, this.titolo, this.testo, this.categoria, this.descrizione});
 
   factory FormulaData.fromJson(
       Map<String, dynamic> parsedJson, String categoria) {
@@ -30,6 +27,7 @@ class FormulaData {
       categoria: categoria,
     );
   }
+
   MaterialPageRoute getFormulaMaterialPage() {
     Assets.instance.updateFormuleRecenti(this);
     return MaterialPageRoute(

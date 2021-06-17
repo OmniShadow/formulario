@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
+import 'package:formulario/NewPage1.dart';
+import 'package:formulario/Profile_page.dart';
 import 'package:formulario/assets.dart';
 import 'package:formulario/constantsUtil.dart';
 import 'package:formulario/formuleManager.dart';
@@ -16,6 +18,7 @@ class MyDrawerWidget extends StatefulWidget {
 class _MyDrawerWidgetState extends State<MyDrawerWidget> {
   @override
   Widget build(BuildContext context) {
+    print('Drawer ${Assets.instance.userData.username}');
     return Drawer(
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -29,6 +32,7 @@ class _MyDrawerWidgetState extends State<MyDrawerWidget> {
           shrinkWrap: false,
           children: [
             ProfileDrawerWidget(),
+            FaqWidget(),
             PreferitiWidget(),
             RecentiWidget(),
           ],
@@ -39,14 +43,16 @@ class _MyDrawerWidgetState extends State<MyDrawerWidget> {
 }
 
 class ProfileDrawerWidget extends StatelessWidget {
-  String username;
-  String email;
   @override
   Widget build(BuildContext context) {
+    print('ProfileDrawerWidget ${Assets.instance.userData.username}');
     return ListTile(
       leading: Icon(Icons.account_box_rounded),
       title: Text('Profilo'),
-      onTap: () {},
+      onTap: () {
+        Route route = MaterialPageRoute(builder: (context) => Profile_Page());
+        Navigator.push(context, route); //vai al profilo
+      },
     );
   }
 }
@@ -224,6 +230,21 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class FaqWidget extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(Icons.live_help_outlined),
+      title: Text('Faq'),
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => NewPage1())); //vai al profilo
+      },
     );
   }
 }
