@@ -1,5 +1,4 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:formulario/faqPage.dart';
@@ -17,6 +16,7 @@ class MyDrawerWidget extends StatefulWidget {
   }
 }
 
+//Il nostro drawer si divide in ProfilePage, Recenti, Preferiti e le FAQ
 class _MyDrawerWidgetState extends State<MyDrawerWidget> {
   @override
   Widget build(BuildContext context) {
@@ -24,9 +24,19 @@ class _MyDrawerWidgetState extends State<MyDrawerWidget> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: Image.asset('assets/icons/insegnante.png'),
+            )
+          ],
           title: Text(
             'Formulario',
-            style: TextStyle(fontFamily: 'Brandon-Grotesque-black'),
+            style: TextStyle(
+              fontFamily: 'Brandon-Grotesque-black',
+              fontStyle: FontStyle.normal,
+              fontSize: 26,
+            ),
           ),
         ),
         body: ListView(
@@ -43,12 +53,22 @@ class _MyDrawerWidgetState extends State<MyDrawerWidget> {
   }
 }
 
+//Una volta cliccato sul nostro profilo apparirà il nome utente, email e le cose da fare, ovvero tutto ciò
+//che viene inserito dall'utente nel proprio profilo
 class ProfileDrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(Icons.account_box_rounded),
-      title: Text('Profilo'),
+      leading: Icon(
+        Icons.account_box_rounded,
+        color: MyAppColors.iconColor,
+      ),
+      title: Text(
+        'Profilo',
+        style: TextStyle(
+          fontSize: 20,
+        ),
+      ),
       onTap: () {
         Route route = MaterialPageRoute(builder: (context) => ProfilePage());
         Navigator.push(context, route); //vai al profilo
@@ -76,15 +96,22 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
           expanded = !expanded;
         });
       },
-      leading: Icon(Icons.favorite_rounded),
+      leading: Icon(
+        Icons.favorite_rounded,
+        color: MyAppColors.shirtColor,
+      ),
       title: InkWell(
         onTap: () => Navigator.push(context, formulePreferitePage()),
-        child: Text('Formule preferite'),
+        child: Text(
+          'Formule preferite',
+          style: TextStyle(fontSize: 20),
+        ),
       ),
       children: widgetPreferiti,
     );
   }
 
+  //Nel caso in cui non ci fossero delle formule tra i preferiti comparirà una
   List<Widget> get widgetPreferiti {
     return Assets.instance.formulePreferite.isEmpty
         ? [
@@ -155,7 +182,7 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
                         children: [
                           Icon(
                             Icons.favorite_rounded,
-                            color: Colors.red,
+                            color: MyAppColors.shirtColor,
                           ),
                           AutoSizeText(
                             'Formule preferite',
@@ -213,7 +240,7 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
                   WidgetSpan(
                     child: Icon(
                       Icons.favorite_outline_rounded,
-                      color: MyAppColors.shirtColor.withAlpha(100),
+                      color: MyAppColors.shirtColor,
                     ),
                   ),
                   TextSpan(
@@ -237,8 +264,14 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
 class FaqWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(Icons.live_help_outlined),
-      title: Text('Faq'),
+      leading: Icon(
+        Icons.live_help_outlined,
+        color: MyAppColors.iconColor,
+      ),
+      title: Text(
+        'Faq',
+        style: TextStyle(fontSize: 20),
+      ),
       onTap: () {
         Navigator.push(
             context,
@@ -271,6 +304,7 @@ class _RecentiWidgetState extends State<RecentiWidget> {
         'Recenti',
         style: TextStyle(
           color: Colors.grey,
+          fontSize: 20,
         ),
       ),
       trailing: InkWell(

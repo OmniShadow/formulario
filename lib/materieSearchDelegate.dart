@@ -6,33 +6,21 @@ import 'package:formulario/materiaData.dart';
 class MaterieSearch extends SearchDelegate<MateriaData> {
   static MaterieSearch _materieSearch;
   List<MateriaData> materieData;
-  List<MateriaData> materieRecenti = [];
-  List<FormulaData> formuleRecenti = [];
 
+  //Approccio singleton per la gestione delle istanze della classe MaterieSearch
   MaterieSearch._() {
-    materieData = [
-      Assets.instance.getMateriaData('Matematica'),
-      Assets.instance.getMateriaData('Fisica'),
-      Assets.instance.getMateriaData('Geometria'),
-      Assets.instance.getMateriaData('Probabilita'),
-    ];
+    materieData = Assets.instance.materieNomi
+        .map((e) => Assets.instance.getMateriaData(e))
+        .toList();
   }
 
   static MaterieSearch get instance => ((_materieSearch == null)
       ? _materieSearch = MaterieSearch._()
       : _materieSearch);
 
-  @override
-  List<Widget> buildActions(BuildContext context) {
-    return [
-      IconButton(
-          icon: Icon(Icons.clear_rounded),
-          onPressed: () {
-            query = "";
-          }),
-    ];
-  }
+  /*__________________________________________________________________________*/
 
+  //metodo che builda il widget con l'icona di una freccia per annullare la ricerca
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
@@ -46,32 +34,49 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
     );
   }
 
+  //metodo che builda il widget con l'icona di una X che ha la funzione di pulire la casella di ricerca
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+          icon: Icon(Icons.clear_rounded),
+          onPressed: () {
+            query = "";
+          }),
+    ];
+  }
+
   @override
   Widget buildResults(BuildContext context) {
     return buildSuggestions(context);
   }
 
+  //Questo metodo è responsabile a ritornare il widget con i risultati della ricerca
+  //Quando la query di ricerca è vuota ritorna una lista delle ricerche recenti
+  //Se invece la ricerca fallisce nel trovare risultati mostra una pagina vuota
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<MateriaData> suggerimenti = query.isEmpty
+    List<MateriaData> suggerimentiMaterie = query.isEmpty
         ? Assets.instance.materieRecenti
         : _creaListaSuggerimenti(materieData);
     List<FormulaData> suggerimentiFormule = query.isEmpty
         ? Assets.instance.formuleRecenti
-        : _creaListSuggerimentiFormule(materieData);
-    return (suggerimenti.isEmpty &
+        : _creaListaSuggerimentiFormule(materieData);
+
+    //controllo che abbia ricevuto dei risulati
+    return (suggerimentiMaterie.isEmpty &
             suggerimentiFormule.isEmpty &
             query.isNotEmpty)
         ? trovatoNullaWidget
         : ListView.builder(
-            itemCount: suggerimenti.length + suggerimentiFormule.length,
+            itemCount: suggerimentiMaterie.length + suggerimentiFormule.length,
             itemBuilder: (context, index) {
-              if (index < suggerimenti.length)
+              if (index < suggerimentiMaterie.length)
                 return materiaSuggeritaTile(
-                    suggerimenti[index], context, query.isEmpty, true);
+                    suggerimentiMaterie[index], context, query.isEmpty, true);
               else
                 return formulaSuggeriteTile(
-                    suggerimentiFormule[index - suggerimenti.length],
+                    suggerimentiFormule[index - suggerimentiMaterie.length],
                     context,
                     query.isEmpty,
                     true);
@@ -79,6 +84,7 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
           );
   }
 
+  //Widget per rappresentare un'immagine di ricerca fallita
   Widget get trovatoNullaWidget => Center(
         child: Container(
           child: Column(
@@ -101,6 +107,7 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
         ),
       );
 
+  //metodo che ritorna un widget ListTile associato ai dati della materia passata con testo evidenziato in base alla query di ricerca
   Widget materiaSuggeritaTile(
       MateriaData materiaData, context, bool recente, bool highlight) {
     return ListTile(
@@ -136,6 +143,7 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
     );
   }
 
+  //metodo che ritorna un widget ListTile associato ai dati della formula passata con testo evidenziato in base alla query di ricerca
   ListTile formulaSuggeriteTile(
       FormulaData formulaData, context, bool recente, bool highlight) {
     return ListTile(
@@ -170,6 +178,7 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
     );
   }
 
+  //Metodo crea una lista di MateriaData compatibili con la query di ricerca
   List<MateriaData> _creaListaSuggerimenti(List<MateriaData> materieData) {
     List<MateriaData> suggerimenti = materieData
         .where((materia) =>
@@ -181,7 +190,8 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
     return suggerimenti;
   }
 
-  List<FormulaData> _creaListSuggerimentiFormule(
+  //Metodo crea una lista di FormulaData compatibili con la query di ricerca
+  List<FormulaData> _creaListaSuggerimentiFormule(
       List<MateriaData> materieData) {
     List<FormulaData> suggerimenti = [];
     for (MateriaData materia in materieData)
@@ -191,11 +201,12 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
               formula.titolo.toLowerCase().contains(query.toLowerCase()))
           .toList());
     for (MateriaData materia in materieData)
-      suggerimenti.addAll(_creaListSuggerimentiFormule(materia.subMaterie));
+      suggerimenti.addAll(_creaListaSuggerimentiFormule(materia.subMaterie));
     return suggerimenti;
   }
 
   //taken from stackOverflow
+  //metodo che ritorna una lista di TextSpan con il loro testo evidenziato in base alla query di ricerca
   List<TextSpan> _highlightOccurrences(String source, String query) {
     if (query == null ||
         query.isEmpty ||

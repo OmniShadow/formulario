@@ -36,6 +36,7 @@ class Assets {
 
   //metodo per il caricamento iniziale dei dati
   Future setup() async {
+    //inizializzazione di Firebase
     await Firebase.initializeApp();
     //await _loadMaterie();
     await loadMaterieFirebase();
@@ -45,6 +46,7 @@ class Assets {
     await loadFaqFirebase();
   }
 
+  //Caricamente delle FAQ dal database di Firebase
   Future loadFaqFirebase() async {
     var doc = await FirebaseFirestore.instance.collection('faq').get();
     var faqs = doc.docs;
@@ -53,14 +55,21 @@ class Assets {
   }
 
   Future loadMaterieFirebase() async {
+    //resetto le variabili per memorizzare le materie e le formule
     _materieDataMap = {};
     FormulaData.n = 0;
     _formule = {};
+
+    //ottengo la collecion 'materie' da Firebase
     CollectionReference collection =
         FirebaseFirestore.instance.collection('materie');
+
     QuerySnapshot querySnapshot = await collection.get();
+
+    //leggo tutti i documenti associati alla collection 'materie'
     var documenti = querySnapshot.docs;
 
+    //per ogni documento che rappresenta una materia istanzio i dati delle materie e le memorizzo in _materieDataMap
     documenti.forEach((materia) {
       Map<String, dynamic> materiaMap = materia.data() as Map<String, dynamic>;
       String materiaNome = materiaMap['materia'];
@@ -68,8 +77,26 @@ class Assets {
       _materieDataMap[materiaNome] = MateriaData.fromJson(materiaMap, '');
     });
 
+    //una volta caricate le materie carico le formule
     _loadFormule();
   }
+
+  // Vecchio metodo per caricare le materie dai file .json
+  //   Future<void> loadMaterie() async {
+  //   try {
+  //     for (String materiaNome in materieNomi) {
+  //       final String jsonString = await rootBundle.loadString(
+  //           'assets/materieData/' + materiaNome.toLowerCase() + '.json');
+  //       var jsonResponse = await json.decode(jsonString);
+  //       MateriaData materiaData = MateriaData.fromJson(jsonResponse, '');
+  //       _materieDataMap[materiaNome] = materiaData;
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //   }
+
+  //   return Future<void>.delayed(Duration(seconds: 1));
+  // }
 
   //metodo per accedere alle materie
   MateriaData getMateriaData(String key) {
@@ -116,7 +143,7 @@ class Assets {
   //viene scritta su un file la lista di interi contenente gli id associati alle formule preferite
   Future _salvaPreferiti() async {
     final file = await _getLocalFile('preferiti');
-    if (await file.exists()) await file.delete();
+    file.openWrite();
 
     List<int> prefIds = [];
     for (FormulaData formula in _formulePreferite) {
@@ -173,7 +200,7 @@ class Assets {
   //viene scritta su un file la lista di interi contenente gli id associati alle formule recenti
   Future _salvaRecenti() async {
     final file = await _getLocalFile('recenti');
-    await file.delete();
+    file.openWrite();
     List<int> recentIds = [];
     for (FormulaData formula in _formuleRecenti) {
       recentIds.add(formula.id);
@@ -221,7 +248,7 @@ class Assets {
 
   Future _salvaUsername() async {
     final File file = await _getLocalFile('userdata.json');
-    await file.delete();
+    file.openWrite();
     String jsonString = json.encode(userData.toJson());
     file.writeAsString(jsonString);
   }
