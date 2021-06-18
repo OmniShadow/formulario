@@ -1,7 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:formulario/faqPage.dart';
+import 'package:formulario/main.dart';
 import 'package:formulario/profilePage.dart';
 import 'package:formulario/assets.dart';
 import 'package:formulario/constantsUtil.dart';
@@ -35,6 +37,14 @@ class _MyDrawerWidgetState extends State<MyDrawerWidget> {
             FaqWidget(),
             PreferitiWidget(),
             RecentiWidget(),
+            MaterialButton(
+              child: Text('Refresh formule'),
+              onPressed: () {
+                Assets.instance.loadMaterieFirebase();
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => MyApp()));
+              },
+            ),
           ],
         ),
       ),

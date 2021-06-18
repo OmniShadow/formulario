@@ -45,6 +45,10 @@ class MateriaData {
     return formuleAll;
   }
 
+  String toString() {
+    return (materiaTitle);
+  }
+
   //Metodo ricorsivo per istanziare un oggetto MateriaData da un file .json
   factory MateriaData.fromJson(
       Map<String, dynamic> parsedJson, String categoria) {

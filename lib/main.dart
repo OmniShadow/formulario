@@ -8,7 +8,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:formulario/materieSearchDelegate.dart';
 import 'package:formulario/myDrawerWidget.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 

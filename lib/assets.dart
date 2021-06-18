@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:formulario/formulaData.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -33,12 +35,32 @@ class Assets {
 
   //metodo per il caricamento iniziale dei dati
   Future setup() async {
-    await _loadMaterie();
-    _loadFormule();
+    await Firebase.initializeApp();
+    //await _loadMaterie();
+
     await _leggiPreferiti();
     await _leggiRecenti();
     await _leggiUsername();
-    return Future.delayed(Duration(seconds: 2));
+    await loadMaterieFirebase();
+  }
+
+  Future loadMaterieFirebase() async {
+    _materieDataMap = {};
+    FormulaData.n = 0;
+    _formule = {};
+    CollectionReference collection =
+        FirebaseFirestore.instance.collection('materie');
+    QuerySnapshot querySnapshot = await collection.get();
+    var documenti = querySnapshot.docs;
+
+    documenti.forEach((materia) {
+      Map<String, dynamic> materiaMap = materia.data() as Map<String, dynamic>;
+      String materiaNome = materiaMap['materia'];
+      materieNomi.add(materiaNome);
+      _materieDataMap[materiaNome] = MateriaData.fromJson(materiaMap, '');
+    });
+
+    _loadFormule();
   }
 
   //metodo per accedere alle materie
