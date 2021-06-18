@@ -20,7 +20,6 @@ class MyDrawerWidget extends StatefulWidget {
 class _MyDrawerWidgetState extends State<MyDrawerWidget> {
   @override
   Widget build(BuildContext context) {
-    print('Drawer ${Assets.instance.userData.username}');
     return Drawer(
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -37,14 +36,6 @@ class _MyDrawerWidgetState extends State<MyDrawerWidget> {
             FaqWidget(),
             PreferitiWidget(),
             RecentiWidget(),
-            MaterialButton(
-              child: Text('Refresh formule'),
-              onPressed: () {
-                Assets.instance.loadMaterieFirebase();
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => MyApp()));
-              },
-            ),
           ],
         ),
       ),
@@ -55,7 +46,6 @@ class _MyDrawerWidgetState extends State<MyDrawerWidget> {
 class ProfileDrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print('ProfileDrawerWidget ${Assets.instance.userData.username}');
     return ListTile(
       leading: Icon(Icons.account_box_rounded),
       title: Text('Profilo'),

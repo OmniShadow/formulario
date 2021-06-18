@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -55,7 +56,15 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class _MyHomePage extends StatelessWidget {
+class _MyHomePage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _MyHomePageState();
+  }
+}
+
+class _MyHomePageState extends State<_MyHomePage> {
   /*Homepage in cui sono presenti un iconbutton per la ricerca, un drawer
    e il body della homePage   */
   @override
@@ -77,6 +86,12 @@ class _MyHomePage extends StatelessWidget {
               showSearch(context: context, delegate: MaterieSearch.instance);
             },
           ),
+          IconButton(
+            icon: Icon(Icons.refresh_rounded),
+            onPressed: () {
+              setState(() {});
+            },
+          )
         ],
       ),
       drawer: MyDrawerWidget(),
@@ -122,26 +137,58 @@ class _MyHomePageBody extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Container(
+                width: 2000,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topLeft: const Radius.circular(70),
                       topRight: const Radius.circular(70)),
                   color: MyAppColors.formuleBackground,
                 ),
-                child: Padding(
-                  padding: EdgeInsets.all(0),
-                  //Parte del body della homePage che contiene i widget per navigare tra le materie
-                  child: MaterieManagerWidget(
-                    materieData: Assets.instance.materieNomi
-                        .map((e) => Assets.instance.getMateriaData(e))
-                        .toList(),
-                  ),
-                ),
+                //Parte del body della homePage che contiene i widget per navigare tra le materie
+                child: _MaterieHomePageWidget(),
               ),
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class _MaterieHomePageWidget extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _MaterieHomePageWidgetState();
+  }
+}
+
+class _MaterieHomePageWidgetState extends State<_MaterieHomePageWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: Assets.instance.loadMaterieFirebase(),
+      builder: (context, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return SizedBox(
+              width: 50,
+              height: 50,
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.transparent,
+                valueColor:
+                    AlwaysStoppedAnimation<Color>(MyAppColors.iconColor),
+              ),
+            );
+          case ConnectionState.done:
+            return MaterieManagerWidget(
+              materieData: Assets.instance.materieNomi
+                  .map((e) => Assets.instance.getMateriaData(e))
+                  .toList(),
+            );
+          default:
+            return Text('Loading...');
+        }
+      },
     );
   }
 }
@@ -199,11 +246,11 @@ class LoadingScreen extends StatelessWidget {
                 width: 60,
                 height: 60,
                 child: CircularProgressIndicator(
-                  backgroundColor: Colors.transparent,
-                  valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF332F2D)),
-                ),
+                    backgroundColor: Colors.transparent,
+                    valueColor:
+                        AlwaysStoppedAnimation<Color>(MyAppColors.iconColor)),
               ),
-            )
+            ),
           ],
         ),
       ),

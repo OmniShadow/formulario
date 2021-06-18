@@ -16,6 +16,7 @@ class Assets {
   List<FormulaData> _formulePreferite = [];
   List<FormulaData> _formuleRecenti = [];
   List<MateriaData> _materieRecenti = [];
+  var faqListMap = [];
 
   //istanza della classe UserData dove verranno memorizzati i dati forniti dall'utente
   UserData userData = UserData(
@@ -37,11 +38,18 @@ class Assets {
   Future setup() async {
     await Firebase.initializeApp();
     //await _loadMaterie();
-
+    await loadMaterieFirebase();
     await _leggiPreferiti();
     await _leggiRecenti();
     await _leggiUsername();
-    await loadMaterieFirebase();
+    await loadFaqFirebase();
+  }
+
+  Future loadFaqFirebase() async {
+    var doc = await FirebaseFirestore.instance.collection('faq').get();
+    var faqs = doc.docs;
+    var faqData = faqs[0].data();
+    faqListMap = faqData['faq'];
   }
 
   Future loadMaterieFirebase() async {
@@ -208,7 +216,6 @@ class Assets {
 
     if (userDataString.isNotEmpty) {
       userData = UserData.fromJson(json.decode(userDataString));
-      print(userData.username);
     }
   }
 

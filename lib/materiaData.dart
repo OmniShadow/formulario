@@ -3,6 +3,7 @@ import 'package:formulario/assets.dart';
 import 'package:formulario/constantsUtil.dart';
 import 'package:formulario/formulaData.dart';
 import 'package:formulario/formuleManager.dart';
+import 'package:formulario/main.dart';
 import 'package:formulario/materieManager.dart';
 
 class MateriaData {
