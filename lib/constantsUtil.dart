@@ -8,3 +8,8 @@ class MyAppColors {
   static const Color iconColor = Color(0xFF332F2D);
   static const Color shirtColor = Color(0xFFFF735D);
 }
+
+class MyAppConstants {
+  static const String title = 'Formulario';
+  static const Brightness brightness = Brightness.light;
+}

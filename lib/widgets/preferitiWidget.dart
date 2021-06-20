@@ -1,81 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
-import 'package:formulario/faqPage.dart';
-import 'package:formulario/main.dart';
-import 'package:formulario/profilePage.dart';
 import 'package:formulario/assets.dart';
 import 'package:formulario/constantsUtil.dart';
 import 'package:formulario/formuleManager.dart';
-import 'package:formulario/materieSearchDelegate.dart';
-
-class MyDrawerWidget extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _MyDrawerWidgetState();
-  }
-}
-
-//Il nostro drawer si divide in ProfilePage, Recenti, Preferiti e le FAQ
-class _MyDrawerWidgetState extends State<MyDrawerWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: Image.asset('assets/icons/insegnante.png'),
-            )
-          ],
-          title: Text(
-            'Formulario',
-            style: TextStyle(
-              fontFamily: 'Brandon-Grotesque-black',
-              fontStyle: FontStyle.normal,
-              fontSize: 26,
-            ),
-          ),
-        ),
-        body: ListView(
-          shrinkWrap: false,
-          children: [
-            ProfileDrawerWidget(),
-            FaqWidget(),
-            PreferitiWidget(),
-            RecentiWidget(),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-//Una volta cliccato sul nostro profilo apparirà il nome utente, email e le cose da fare, ovvero tutto ciò
-//che viene inserito dall'utente nel proprio profilo
-class ProfileDrawerWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(
-        Icons.account_box_rounded,
-        color: MyAppColors.iconColor,
-      ),
-      title: Text(
-        'Profilo',
-        style: TextStyle(
-          fontSize: 20,
-        ),
-      ),
-      onTap: () {
-        Route route = MaterialPageRoute(builder: (context) => ProfilePage());
-        Navigator.push(context, route); //vai al profilo
-      },
-    );
-  }
-}
 
 class PreferitiWidget extends StatefulWidget {
   @override
@@ -101,7 +29,7 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
         color: MyAppColors.shirtColor,
       ),
       title: InkWell(
-        onTap: () => Navigator.push(context, formulePreferitePage()),
+        onTap: () => Navigator.push(context, formulePreferitePage),
         child: Text(
           'Formule preferite',
           style: TextStyle(fontSize: 20),
@@ -149,7 +77,7 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
             .toList();
   }
 
-  MaterialPageRoute formulePreferitePage() {
+  MaterialPageRoute get formulePreferitePage {
     return MaterialPageRoute(
       builder: (context) => Scaffold(
         backgroundColor: MyAppColors.appBackground,
@@ -259,94 +187,4 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
       ),
     );
   }
-}
-
-class FaqWidget extends StatelessWidget {
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(
-        Icons.live_help_outlined,
-        color: MyAppColors.iconColor,
-      ),
-      title: Text(
-        'Faq',
-        style: TextStyle(fontSize: 20),
-      ),
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => NewPage1())); //vai al profilo
-      },
-    );
-  }
-}
-
-class RecentiWidget extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _RecentiWidgetState();
-  }
-}
-
-class _RecentiWidgetState extends State<RecentiWidget> {
-  @override
-  Widget build(BuildContext context) {
-    List<Widget> recenti = recentiWidget(context);
-    return ExpansionTile(
-      childrenPadding: EdgeInsets.only(left: 20),
-      initiallyExpanded: false,
-      leading: Icon(
-        Icons.history,
-        color: Colors.grey,
-      ),
-      title: Text(
-        'Recenti',
-        style: TextStyle(
-          color: Colors.grey,
-          fontSize: 20,
-        ),
-      ),
-      trailing: InkWell(
-        onTap: () => setState(() {
-          Assets.instance.clearRecenti();
-        }),
-        child: Icon(
-          Icons.delete_rounded,
-          color: Colors.grey,
-        ),
-      ),
-      children: recenti.isEmpty
-          ? [
-              ListTile(
-                title: Text(
-                  'Non ci sono dati recenti',
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ),
-            ]
-          : recenti,
-    );
-  }
-
-  List<Widget> recentiWidget(context) {
-    List<Widget> recenti = _getMaterieRecentiWidget(context);
-    recenti.addAll(_getFormuleRecentiWidget(context));
-    return recenti;
-  }
-
-  List<Widget> _getMaterieRecentiWidget(context) =>
-      Assets.instance.materieRecenti
-          .map(
-            (materia) => MaterieSearch.instance
-                .materiaSuggeritaTile(materia, context, true, false),
-          )
-          .toList();
-  List<Widget> _getFormuleRecentiWidget(context) =>
-      Assets.instance.formuleRecenti
-          .map(
-            (formula) => MaterieSearch.instance
-                .formulaSuggeriteTile(formula, context, true, false),
-          )
-          .toList();
 }

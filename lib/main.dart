@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -7,7 +6,16 @@ import 'package:formulario/constantsUtil.dart';
 import 'package:formulario/materieManager.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:formulario/materieSearchDelegate.dart';
-import 'package:formulario/myDrawerWidget.dart';
+import 'package:formulario/widgets/myDrawerWidget.dart';
+
+//costanti globali per l'applicazione
+
+ThemeData themeData = ThemeData(
+  accentColor: MyAppColors.iconColor,
+  brightness: MyAppConstants.brightness,
+  primaryColor: MyAppColors.appBackground,
+  fontFamily: 'Brandon-Grotesque-light',
+);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,21 +30,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  //titolo dell'applicazione
-  static const String _title = 'Formulario';
-  Brightness brightness = Brightness.light;
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       //Impostazione del tema generale dell'applicazione come colori e font
-      theme: ThemeData(
-        accentColor: MyAppColors.iconColor,
-        brightness: brightness,
-        primaryColor: MyAppColors.appBackground,
-        fontFamily: 'Brandon-Grotesque-light',
-      ),
-      title: _title,
+      theme: themeData,
+      title: MyAppConstants.title,
 
       /*Nella home passo un futurebuilder che rappresenta la schermata di caricamento
       alla fine di tale schermata apparirà la nostra interfaccia iniziale..*/
@@ -59,7 +58,6 @@ class _MyAppState extends State<MyApp> {
 class _MyHomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _MyHomePageState();
   }
 }
@@ -70,7 +68,7 @@ class _MyHomePageState extends State<_MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFDEBDF),
+      backgroundColor: MyAppColors.appBackground,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,

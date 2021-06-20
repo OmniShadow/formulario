@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:formulario/widgets/formulaWidget.dart';
 import 'formulaData.dart';
-import 'formulaWidget.dart';
 
 class FormuleManager extends StatelessWidget {
   final List<FormulaData> formule;

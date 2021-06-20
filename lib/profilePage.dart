@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:formulario/HomePageScreen.dart';
-import 'package:formulario/numbersWidget.dart';
 import 'package:formulario/Assets.dart';
+import 'package:formulario/widgets/numbersWidget.dart';
 import 'constantsUtil.dart';
 
 // ignore: camel_case_types
