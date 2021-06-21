@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:formulario/formulaData.dart';
 import 'package:path_provider/path_provider.dart';
@@ -41,7 +40,8 @@ class Assets {
     //await _loadMaterie();
     await loadMaterieFirebase();
     await _leggiPreferiti();
-    await _leggiRecenti();
+    await _leggiFormuleRecenti();
+    await _leggiMaterieRecenti();
     await _leggiUsername();
     await loadFaqFirebase();
   }
@@ -78,7 +78,19 @@ class Assets {
     });
 
     //una volta caricate le materie carico le formule
+    _loadAllMaterie();
     _loadFormule();
+  }
+
+  void _loadAllMaterie() {
+    List<MateriaData> materieList = [];
+    _materieDataMap.forEach((key, value) {
+      materieList.addAll(value.getMaterie());
+    });
+    materieList.forEach((element) {
+      _materieDataMap[element.categoria] = element;
+      materieNomi.add(element.categoria);
+    });
   }
 
   //Vecchio metodo utilizzato per caricare nella mappa _materieData i dati delle materie all'interno dei file .json
@@ -179,8 +191,12 @@ class Assets {
     if (!_formuleRecenti.contains(formula)) {
       if (_formuleRecenti.length >= maxRecenti) _formuleRecenti.removeAt(0);
       _formuleRecenti.add(formula);
-      _salvaRecenti();
-    }
+    } else
+      _salvaFormuleRecenti();
+  }
+
+  void removeFormulaRecente(FormulaData formula) {
+    _formuleRecenti.remove(formula);
   }
 
   //Stesso funzionamento dell'updateFormuleRecenti
@@ -188,20 +204,26 @@ class Assets {
     if (!_materieRecenti.contains(materia)) {
       if (_materieRecenti.length >= maxRecenti) _materieRecenti.removeAt(0);
       _materieRecenti.add(materia);
-    }
+    } else
+      _salvaMaterieRecenti();
+  }
+
+  void removeMateriaRecente(MateriaData materia) {
+    _materieRecenti.remove(materia);
   }
 
   //Questo metodo cancella le formule e le materie recenti
   void clearRecenti() {
     _formuleRecenti.clear();
     _materieRecenti.clear();
-    _salvaRecenti();
+    _salvaFormuleRecenti();
+    _salvaMaterieRecenti();
   }
 
   //A ogni formula vi è associato un id univoco, per salvare le formule recenti
   //viene scritta su un file la lista di interi contenente gli id associati alle formule recenti
-  Future _salvaRecenti() async {
-    final file = await _getLocalFile('recenti');
+  Future _salvaFormuleRecenti() async {
+    final file = await _getLocalFile('formuleRecenti');
     file.openWrite();
     List<int> recentIds = [];
     for (FormulaData formula in _formuleRecenti) {
@@ -212,14 +234,38 @@ class Assets {
 
   //Viene letta da file una lista di interi contenenti gli id delle formule recenti
   //e dalla mappa _formule e dagli id vengono recuperate le istanze delle formule recenti
-  Future _leggiRecenti() async {
+  Future _leggiFormuleRecenti() async {
     try {
-      final File file = await _getLocalFile('recenti');
+      final File file = await _getLocalFile('formuleRecenti');
       List<int> recentIds = [];
       recentIds.addAll(await file.readAsBytes());
       for (int id in recentIds) {
         updateFormuleRecenti(_formule[id]!);
       }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future _salvaMaterieRecenti() async {
+    final file = await _getLocalFile('materieRecenti');
+    file.openWrite();
+    String materieRecentiString = '';
+    _materieRecenti.forEach((element) {
+      materieRecentiString = '$materieRecentiString${element.categoria}\\';
+    });
+    await file.writeAsString(materieRecentiString);
+  }
+
+  //Viene letta da file una lista di interi contenenti gli id delle formule recenti
+  //e dalla mappa _formule e dagli id vengono recuperate le istanze delle formule recenti
+  Future _leggiMaterieRecenti() async {
+    try {
+      final File file = await _getLocalFile('materieRecenti');
+      String recentiString = (await file.readAsString());
+      recentiString.split('\\').forEach((element) {
+        updateMaterieRecenti(_materieDataMap[element]!);
+      });
     } catch (e) {
       print(e);
     }

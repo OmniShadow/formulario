@@ -195,8 +195,7 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
             materia.materiaTitle.toLowerCase().contains(query.toLowerCase()) ||
             materia.categoria.toLowerCase().contains(query.toLowerCase()))
         .toList();
-    for (MateriaData materia in materieData)
-      suggerimenti.addAll(_creaListaSuggerimenti(materia.subMaterie));
+
     return suggerimenti;
   }
 
@@ -210,8 +209,7 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
               formula.categoria.toLowerCase().contains(query.toLowerCase()) ||
               formula.titolo.toLowerCase().contains(query.toLowerCase()))
           .toList());
-    for (MateriaData materia in materieData)
-      suggerimenti.addAll(_creaListaSuggerimentiFormule(materia.subMaterie));
+
     return suggerimenti;
   }
 

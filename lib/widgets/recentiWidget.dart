@@ -26,7 +26,7 @@ class _RecentiWidgetState extends State<RecentiWidget> {
       title: InkWell(
         onTap: () => Navigator.push(
           context,
-          recentiPage,
+          MaterialPageRoute(builder: (context) => RecentiPage()),
         ),
         child: Text(
           'Recenti',
@@ -58,99 +58,6 @@ class _RecentiWidgetState extends State<RecentiWidget> {
     );
   }
 
-  MaterialPageRoute get recentiPage {
-    List<Widget> recenti = [];
-    recenti.addAll(Assets.instance!.materieRecenti.map((e) {
-      MateriaWidgetState materiaWidgetState = MateriaWidget(e).createState();
-      return Card(
-        child: ListTile(
-          leading: materiaWidgetState.materiaBoxWidget,
-          title: Text(
-            e.materiaTitle,
-            style: TextStyle(fontSize: 20),
-          ),
-          subtitle: Text(
-            e.categoria,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-        ),
-      );
-    }).toList());
-
-    recenti.addAll(Assets.instance!.formuleRecenti.map((e) {
-      return FormulaWidget(formulaData: e);
-    }).toList());
-
-    return MaterialPageRoute(
-      builder: (context) => Scaffold(
-        backgroundColor: MyAppColors.appBackground,
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          iconTheme: IconThemeData(
-            color: MyAppColors.iconColor,
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 65),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AspectRatio(
-                aspectRatio: 6.95,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
-                  child: AspectRatio(
-                    aspectRatio: 6.95,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          color: Color(0xFF332F2D),
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.history_rounded,
-                            color: MyAppColors.materieBackground,
-                          ),
-                          Text(
-                            'Recenti',
-                            maxLines: 1,
-                            style: TextStyle(
-                                fontFamily: 'Brandon-Grotesque-black',
-                                color: Colors.white,
-                                letterSpacing: 2.5,
-                                fontStyle: FontStyle.normal),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: recenti.isEmpty
-                    ? MaterieSearch.instance!.trovatoNullaWidget
-                    : ListView.builder(
-                        padding: EdgeInsets.all(0),
-                        itemCount: recenti.length,
-                        itemBuilder: (context, index) {
-                          return recenti[index];
-                        },
-                      ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   List<Widget> recentiWidget(context) {
     List<Widget> recenti = _getMaterieRecentiWidget(context);
     recenti.addAll(_getFormuleRecentiWidget(context));
@@ -171,4 +78,136 @@ class _RecentiWidgetState extends State<RecentiWidget> {
                 .formulaSuggeriteTile(formula, context, true, false),
           )
           .toList();
+}
+
+class RecentiPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return RecentiPageState();
+  }
+}
+
+class RecentiPageState extends State<RecentiPage> {
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> recenti = [];
+    recenti.addAll(Assets.instance!.materieRecenti.map((e) {
+      return Dismissible(
+        background: Container(
+          color: MyAppColors.shirtColor,
+          child: Center(
+              child: Text(
+            'Trascina per eliminare',
+            style: TextStyle(fontSize: 24),
+          )),
+        ),
+        key: Key(e.materiaTitle),
+        onDismissed: (d) {
+          setState(() {
+            Assets.instance!.removeMateriaRecente(e);
+          });
+        },
+        child: ListTile(
+          tileColor: Colors.white,
+          onTap: () => Navigator.push(context, e.getMateriaPage()),
+          leading: Image.asset(e.iconPath),
+          title: Text(
+            e.materiaTitle,
+            style: TextStyle(fontSize: 20),
+          ),
+          subtitle: Text(
+            e.categoria,
+            style: TextStyle(
+              fontSize: 16,
+            ),
+          ),
+        ),
+      );
+    }).toList());
+
+    recenti.addAll(Assets.instance!.formuleRecenti.map((e) {
+      return Dismissible(
+        key: Key(e.titolo),
+        background: Container(
+          color: MyAppColors.shirtColor,
+          child: Center(
+              child: Text(
+            'Trascina per eliminare',
+            style: TextStyle(fontSize: 24),
+          )),
+        ),
+        onDismissed: (d) {
+          setState(() {
+            Assets.instance!.removeFormulaRecente(e);
+          });
+        },
+        child: FormulaWidget(formulaData: e),
+      );
+    }).toList());
+
+    return Scaffold(
+      backgroundColor: MyAppColors.appBackground,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: MyAppColors.iconColor,
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 65),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AspectRatio(
+              aspectRatio: 6.95,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+                child: AspectRatio(
+                  aspectRatio: 6.95,
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: MyAppColors.iconColor,
+                        borderRadius: BorderRadius.all(Radius.circular(8))),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.history_rounded,
+                          color: MyAppColors.materieBackground,
+                        ),
+                        Text(
+                          'Recenti',
+                          maxLines: 1,
+                          style: TextStyle(
+                              fontFamily: 'Brandon-Grotesque-black',
+                              color: Colors.white,
+                              letterSpacing: 2.5,
+                              fontStyle: FontStyle.normal),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: recenti.isEmpty
+                  ? MaterieSearch.instance!.trovatoNullaWidget
+                  : ListView.builder(
+                      padding: EdgeInsets.all(0),
+                      itemCount: recenti.length,
+                      itemBuilder: (context, index) {
+                        return recenti[index];
+                      },
+                    ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

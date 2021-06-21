@@ -102,8 +102,8 @@ class _MyHomePageBody extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-            child: Image.asset('assets/icons/home.png'),
+            padding: const EdgeInsets.fromLTRB(35, 20, 35, 0),
+            child: Image.asset(MyAppConstants.homeIconPath),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 40, right: 40),

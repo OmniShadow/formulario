@@ -15,11 +15,14 @@ class FormuleManager extends StatelessWidget {
     // for (FormulaData formula in formule) {
     //   formuleWidgets.add(FormulaWidget(formula));
     // }
-    return ListView.builder(
+    return ListView.separated(
+      separatorBuilder: (context, index) => Divider(
+        color: Colors.transparent,
+        height: 5,
+      ),
       padding: EdgeInsets.all(0),
       itemCount: formuleWidgets.length,
       itemBuilder: (context, index) {
-        print("index:$index");
         return formuleWidgets[index];
       },
     );

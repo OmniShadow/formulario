@@ -182,7 +182,9 @@ class MateriaData {
                     ),
                   )),
             MaterialButton(
-              onPressed: () => Navigator.pushNamed(context, '/'),
+              onPressed: () {
+                Navigator.popUntil(context, ModalRoute.withName('/'));
+              },
               child: Icon(
                 Icons.home_rounded,
               ),

@@ -6,8 +6,8 @@ class MateriaWidget extends StatefulWidget {
   final MateriaData materiaData;
   MateriaWidget(this.materiaData);
   @override
-  MateriaWidgetState createState() {
-    return MateriaWidgetState(materiaData, tag);
+  _MateriaWidgetState createState() {
+    return _MateriaWidgetState(materiaData, tag);
   }
 
   void setTag(int tag) {
@@ -16,11 +16,11 @@ class MateriaWidget extends StatefulWidget {
   }
 }
 
-class MateriaWidgetState extends State<MateriaWidget> {
+class _MateriaWidgetState extends State<MateriaWidget> {
   MateriaData materiaData;
   int tag;
   Image? _iconWidget;
-  MateriaWidgetState(this.materiaData, this.tag) {
+  _MateriaWidgetState(this.materiaData, this.tag) {
     _iconWidget = Image.asset(materiaData.iconPath);
   }
 

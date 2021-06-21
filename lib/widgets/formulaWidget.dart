@@ -20,6 +20,8 @@ class _FormulaWidgetState extends State<FormulaWidget> {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
+      collapsedBackgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       initiallyExpanded: false,
       //Icona che quando premuta chiama un metodo per aggiungere o rimuovere la formula dai preferiti
       leading: InkWell(
