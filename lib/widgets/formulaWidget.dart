@@ -50,6 +50,31 @@ class _FormulaWidgetState extends State<FormulaWidget> {
     );
   }
 
+// class PreferitiButton extends StatefulWidget {
+//   final FormulaData formulaData;
+//   PreferitiButton(this.formulaData);
+//   @override
+//   _PreferitiButtonState createState() {
+//     return _PreferitiButtonState(formulaData);
+//   }
+// }
+
+// class _PreferitiButtonState extends State<PreferitiButton> {
+//   FormulaData formulaData;
+//   _PreferitiButtonState(this.formulaData);
+//   @override
+//   Widget build(BuildContext context) {
+//     return InkWell(
+//       onTap: () => addToFavourites(context),
+//       child: Icon(
+//         (formulaData.isFavourite
+//             ? Icons.favorite_rounded
+//             : Icons.favorite_border_rounded),
+//         color: MyAppColors.shirtColor,
+//       ),
+//     );
+//   }
+
   void addToFavourites(BuildContext context) {
     setState(() {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
