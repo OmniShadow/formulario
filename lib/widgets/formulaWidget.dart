@@ -5,23 +5,10 @@ import 'package:formulario/constantsUtil.dart';
 import 'package:formulario/formulaData.dart';
 
 // ignore: must_be_immutable
-class FormulaWidget extends StatefulWidget {
-  final FormulaData formulaData;
-  _FormulaState? _formulaState;
-  FormulaWidget(
-    this.formulaData,
-  ) {
-    _formulaState = _FormulaState(formulaData);
-  }
-  @override
-  _FormulaState createState() {
-    return _formulaState!;
-  }
-}
 
-class _FormulaState extends State<FormulaWidget> {
-  FormulaData formulaData;
-  _FormulaState(this.formulaData);
+class FormulaWidget extends StatelessWidget {
+  final FormulaData formulaData;
+  FormulaWidget(this.formulaData);
 
   //A ogni formula è associato un widget di tipo ExpansionTile che
   //quando espanso mostra una descrizione più approfondita della formula
@@ -30,15 +17,7 @@ class _FormulaState extends State<FormulaWidget> {
     return Card(
       child: ExpansionTile(
         //Icona che quando premuta chiama un metodo per aggiungere o rimuovere la formula dai preferiti
-        leading: InkWell(
-          onTap: () => addToFavourites(context),
-          child: Icon(
-            (formulaData.isFavourite
-                ? Icons.favorite_rounded
-                : Icons.favorite_border_rounded),
-            color: MyAppColors.shirtColor,
-          ),
-        ),
+        leading: PreferitiButton(formulaData),
         title: InkWell(
           onTap: () =>
               Navigator.push(context, formulaData.getFormulaMaterialPage()),
@@ -51,6 +30,32 @@ class _FormulaState extends State<FormulaWidget> {
         ),
         subtitle: Text(formulaData.titolo),
         children: [Text(formulaData.descrizione)],
+      ),
+    );
+  }
+}
+
+class PreferitiButton extends StatefulWidget {
+  final FormulaData formulaData;
+  PreferitiButton(this.formulaData);
+  @override
+  _PreferitiButtonState createState() {
+    return _PreferitiButtonState(formulaData);
+  }
+}
+
+class _PreferitiButtonState extends State<PreferitiButton> {
+  FormulaData formulaData;
+  _PreferitiButtonState(this.formulaData);
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => addToFavourites(context),
+      child: Icon(
+        (formulaData.isFavourite
+            ? Icons.favorite_rounded
+            : Icons.favorite_border_rounded),
+        color: MyAppColors.shirtColor,
       ),
     );
   }
