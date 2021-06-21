@@ -6,10 +6,7 @@ import 'package:formulario/widgets/numbersWidget.dart';
 class LoggedInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final user = Auth.instance!.user;
-    bool userNull = (user == null);
-    print(user);
-    print(userNull);
+    final user = Auth.instance!.currentUser!;
     return Scaffold(
       backgroundColor: MyAppColors.appBackground,
       appBar: AppBar(
@@ -48,14 +45,11 @@ class LoggedInPage extends StatelessWidget {
             ),
             child: CircleAvatar(
               radius: 50,
-              backgroundImage: userNull
-                  ? NetworkImage(
-                      'https://www.coopsai.it/wp-content/uploads/2018/01/blank-profile-picture-973460_640.png')
-                  : NetworkImage(user.photoURL!),
+              backgroundImage: NetworkImage(user.photoURL!),
             ),
           ),
           Text(
-            userNull ? 'Utente anonimo' : user.displayName!,
+            user.displayName!,
             style: TextStyle(
                 backgroundColor: MyAppColors.appBackground,
                 color: Colors.grey[800],
@@ -64,7 +58,7 @@ class LoggedInPage extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           Text(
-            userNull ? 'Email anonima' : user.email!,
+            user.email!,
             style: TextStyle(
                 backgroundColor: MyAppColors.appBackground,
                 color: Colors.grey[800],

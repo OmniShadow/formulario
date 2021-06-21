@@ -1,10 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:formulario/Assets.dart';
 import 'package:formulario/auth.dart';
-import 'package:formulario/googleSignInProvider.dart';
-import 'package:provider/provider.dart';
 import '../constantsUtil.dart';
 
 class SignUpPageScreen extends StatefulWidget {
@@ -78,25 +75,6 @@ class _SignUpPageScreenState extends State<SignUpPageScreen> {
                 color: MyAppColors.shirtColor,
               ),
               label: Text('Sign Up with Google'),
-            ),
-            ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.white,
-                onPrimary: Colors.black,
-                minimumSize: Size(double.infinity, 50),
-              ),
-              onPressed: () async {
-                // final provider =
-                //     Provider.of<GoogleSignInProvider>(context, listen: false);
-                // provider.googleLogin();
-                var user = await Auth.instance!.signInAnonymously();
-                print(user);
-              },
-              icon: FaIcon(
-                Icons.account_circle_rounded,
-                color: Colors.grey,
-              ),
-              label: Text('Sign Up Anonumously'),
             ),
             Spacer(),
           ],
