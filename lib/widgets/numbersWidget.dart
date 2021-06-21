@@ -6,12 +6,12 @@ class NumbersWidget extends StatelessWidget {
   Widget build(BuildContext context) => Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          buildButton(context, Assets.instance.formuleRecenti.length.toString(),
-              'Ricerche'),
+          buildButton(context,
+              Assets.instance!.formuleRecenti.length.toString(), 'Ricerche'),
           buildDivider(),
           buildButton(
               context,
-              Assets.instance.formulePreferite.length.toString(),
+              Assets.instance!.formulePreferite.length.toString(),
               'Formule Preferite'),
         ],
       );

@@ -7,15 +7,15 @@ import 'package:formulario/formulaData.dart';
 // ignore: must_be_immutable
 class FormulaWidget extends StatefulWidget {
   final FormulaData formulaData;
-  _FormulaState _formulaState;
+  _FormulaState? _formulaState;
   FormulaWidget(
     this.formulaData,
   ) {
     _formulaState = _FormulaState(formulaData);
   }
   @override
-  State<StatefulWidget> createState() {
-    return _formulaState;
+  _FormulaState createState() {
+    return _formulaState!;
   }
 }
 
@@ -69,6 +69,6 @@ class _FormulaState extends State<FormulaWidget> {
       formulaData.isFavourite = !formulaData.isFavourite;
     });
 
-    Assets.instance.updatePreferiti(formulaData);
+    Assets.instance!.updatePreferiti(formulaData);
   }
 }

@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:formulario/assets.dart';
@@ -41,7 +40,7 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
 
   //Nel caso in cui non ci fossero delle formule tra i preferiti comparirà una
   List<Widget> get widgetPreferiti {
-    return Assets.instance.formulePreferite.isEmpty
+    return Assets.instance!.formulePreferite.isEmpty
         ? [
             ListTile(
               title: Text(
@@ -50,7 +49,7 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
               ),
             ),
           ]
-        : Assets.instance.formulePreferite
+        : Assets.instance!.formulePreferite
             .map(
               (e) => ListTile(
                 onLongPress: () {
@@ -62,7 +61,7 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
                     e.isFavourite = !e.isFavourite;
                   });
 
-                  Assets.instance.updatePreferiti(e);
+                  Assets.instance!.updatePreferiti(e);
                 },
                 onTap: () =>
                     Navigator.push(context, e.getFormulaMaterialPage()),
@@ -112,10 +111,9 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
                             Icons.favorite_rounded,
                             color: MyAppColors.shirtColor,
                           ),
-                          AutoSizeText(
+                          Text(
                             'Formule preferite',
                             maxLines: 1,
-                            minFontSize: 1,
                             style: TextStyle(
                                 fontFamily: 'Brandon-Grotesque-black',
                                 color: Colors.white,
@@ -130,10 +128,10 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
               ),
               Expanded(
                 flex: 8,
-                child: Assets.instance.formulePreferite.isEmpty
+                child: Assets.instance!.formulePreferite.isEmpty
                     ? paginaVuotaPreferiti()
                     : FormuleManager(
-                        formule: Assets.instance.formulePreferite,
+                        formule: Assets.instance!.formulePreferite,
                       ),
               ),
             ],

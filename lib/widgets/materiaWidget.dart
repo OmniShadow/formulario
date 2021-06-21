@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:formulario/materiaData.dart';
 
 class MateriaWidget extends StatefulWidget {
   final MateriaData materiaData;
   MateriaWidget(this.materiaData);
   @override
-  State<StatefulWidget> createState() {
+  MateriaWidgetState createState() {
     return MateriaWidgetState(materiaData);
   }
 }
 
 class MateriaWidgetState extends State<MateriaWidget> {
   MateriaData materiaData;
-  Image _iconWidget;
+  Image? _iconWidget;
   MateriaWidgetState(this.materiaData) {
     _iconWidget = Image.asset(materiaData.iconPath);
   }
@@ -67,7 +66,7 @@ class MateriaWidgetState extends State<MateriaWidget> {
               padding: EdgeInsets.all(20),
               child: Hero(
                 tag: materiaData.materiaTitle,
-                child: _iconWidget,
+                child: _iconWidget!,
               ),
             ),
           ),
@@ -77,16 +76,15 @@ class MateriaWidgetState extends State<MateriaWidget> {
         padding: EdgeInsets.only(top: 7),
         child: Container(
           alignment: Alignment.center,
-          child: AutoSizeText(
+          child: Text(
             materiaData.materiaTitle.toUpperCase(),
-            wrapWords: false,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: 'Brandon-Grotesque-black',
               letterSpacing: 0.2,
               shadows: [
                 Shadow(
-                  color: Colors.grey[600],
+                  color: Colors.grey[600]!,
                   offset: Offset(-3, 0),
                 ),
               ],

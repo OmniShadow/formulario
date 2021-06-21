@@ -4,17 +4,17 @@ import 'package:formulario/formulaData.dart';
 import 'package:formulario/materiaData.dart';
 
 class MaterieSearch extends SearchDelegate<MateriaData> {
-  static MaterieSearch _materieSearch;
-  List<MateriaData> materieData;
+  static MaterieSearch? _materieSearch;
+  List<MateriaData> materieData = [];
 
   //Approccio singleton per la gestione delle istanze della classe MaterieSearch
   MaterieSearch._() {
-    materieData = Assets.instance.materieNomi
-        .map((e) => Assets.instance.getMateriaData(e))
+    materieData = Assets.instance!.materieNomi
+        .map((e) => Assets.instance!.getMateriaData(e))
         .toList();
   }
 
-  static MaterieSearch get instance => ((_materieSearch == null)
+  static MaterieSearch? get instance => ((_materieSearch == null)
       ? _materieSearch = MaterieSearch._()
       : _materieSearch);
 
@@ -29,7 +29,17 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
         progress: transitionAnimation,
       ),
       onPressed: () {
-        close(context, null);
+        close(
+            context,
+            MateriaData(
+              categoria: '',
+              colorValue: 0,
+              formule: [],
+              iconPath: '',
+              isFavouritable: false,
+              materiaTitle: '',
+              subMaterie: [],
+            ));
       },
     );
   }
@@ -57,10 +67,10 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
   @override
   Widget buildSuggestions(BuildContext context) {
     List<MateriaData> suggerimentiMaterie = query.isEmpty
-        ? Assets.instance.materieRecenti
+        ? Assets.instance!.materieRecenti
         : _creaListaSuggerimenti(materieData);
     List<FormulaData> suggerimentiFormule = query.isEmpty
-        ? Assets.instance.formuleRecenti
+        ? Assets.instance!.formuleRecenti
         : _creaListaSuggerimentiFormule(materieData);
 
     //controllo che abbia ricevuto dei risulati
@@ -112,7 +122,7 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
       MateriaData materiaData, context, bool recente, bool highlight) {
     return ListTile(
       onTap: () {
-        Assets.instance.updateMaterieRecenti(materiaData);
+        Assets.instance!.updateMaterieRecenti(materiaData);
         Navigator.push(context, materiaData.getMateriaPage());
       },
       leading: Icon(Icons.menu_book_rounded),
@@ -148,7 +158,7 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
       FormulaData formulaData, context, bool recente, bool highlight) {
     return ListTile(
       onTap: () {
-        Assets.instance.updateFormuleRecenti(formulaData);
+        Assets.instance!.updateFormuleRecenti(formulaData);
         Navigator.push(context, formulaData.getFormulaMaterialPage());
       },
       leading: Icon(Icons.functions_rounded),

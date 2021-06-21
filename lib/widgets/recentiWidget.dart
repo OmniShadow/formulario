@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:formulario/assets.dart';
 import 'package:formulario/constantsUtil.dart';
@@ -39,7 +38,7 @@ class _RecentiWidgetState extends State<RecentiWidget> {
       ),
       trailing: InkWell(
         onTap: () => setState(() {
-          Assets.instance.clearRecenti();
+          Assets.instance!.clearRecenti();
         }),
         child: Icon(
           Icons.delete_rounded,
@@ -61,7 +60,7 @@ class _RecentiWidgetState extends State<RecentiWidget> {
 
   MaterialPageRoute get recentiPage {
     List<Widget> recenti = [];
-    recenti.addAll(Assets.instance.materieRecenti.map((e) {
+    recenti.addAll(Assets.instance!.materieRecenti.map((e) {
       MateriaWidgetState materiaWidgetState = MateriaWidget(e).createState();
       return Card(
         child: ListTile(
@@ -80,7 +79,7 @@ class _RecentiWidgetState extends State<RecentiWidget> {
       );
     }).toList());
 
-    recenti.addAll(Assets.instance.formuleRecenti.map((e) {
+    recenti.addAll(Assets.instance!.formuleRecenti.map((e) {
       return FormulaWidget(e);
     }).toList());
 
@@ -118,10 +117,9 @@ class _RecentiWidgetState extends State<RecentiWidget> {
                             Icons.history_rounded,
                             color: MyAppColors.materieBackground,
                           ),
-                          AutoSizeText(
+                          Text(
                             'Recenti',
                             maxLines: 1,
-                            minFontSize: 1,
                             style: TextStyle(
                                 fontFamily: 'Brandon-Grotesque-black',
                                 color: Colors.white,
@@ -137,7 +135,7 @@ class _RecentiWidgetState extends State<RecentiWidget> {
               Expanded(
                 flex: 1,
                 child: recenti.isEmpty
-                    ? MaterieSearch.instance.trovatoNullaWidget
+                    ? MaterieSearch.instance!.trovatoNullaWidget
                     : ListView.builder(
                         padding: EdgeInsets.all(0),
                         itemCount: recenti.length,
@@ -160,16 +158,16 @@ class _RecentiWidgetState extends State<RecentiWidget> {
   }
 
   List<Widget> _getMaterieRecentiWidget(context) =>
-      Assets.instance.materieRecenti
+      Assets.instance!.materieRecenti
           .map(
-            (materia) => MaterieSearch.instance
+            (materia) => MaterieSearch.instance!
                 .materiaSuggeritaTile(materia, context, true, false),
           )
           .toList();
   List<Widget> _getFormuleRecentiWidget(context) =>
-      Assets.instance.formuleRecenti
+      Assets.instance!.formuleRecenti
           .map(
-            (formula) => MaterieSearch.instance
+            (formula) => MaterieSearch.instance!
                 .formulaSuggeriteTile(formula, context, true, false),
           )
           .toList();

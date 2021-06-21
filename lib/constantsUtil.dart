@@ -12,4 +12,7 @@ class MyAppColors {
 class MyAppConstants {
   static const String title = 'Formulario';
   static const Brightness brightness = Brightness.light;
+  static const String appIconPath = 'assets/icons/appIcon.png';
+  static const String teacherIconPath = 'assets/icons/insegnante.png';
+  static const String homeIconPath = 'assets/icons/home.png';
 }

@@ -14,7 +14,13 @@ class FormulaData {
 
   @override
   String toString() => ('Formula: $titolo ,ID: $id');
-  FormulaData({this.titolo, this.testo, this.categoria, this.descrizione}) {
+  FormulaData({
+    required this.titolo,
+    required this.testo,
+    required this.categoria,
+    required this.descrizione,
+    this.id = 0,
+  }) {
     id = n++; //id a incremento
   }
 
@@ -30,7 +36,7 @@ class FormulaData {
   }
   //Metodo per ottenere la pagina web con la ricerca su google della formula
   MaterialPageRoute getFormulaMaterialPage() {
-    Assets.instance.updateFormuleRecenti(this);
+    Assets.instance!.updateFormuleRecenti(this);
     return MaterialPageRoute(
         builder: (context) => Scaffold(
             appBar: AppBar(

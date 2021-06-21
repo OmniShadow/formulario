@@ -17,9 +17,9 @@ class NewPage1 extends StatelessWidget {
         ),
       ),
       body: ListView.builder(
-          itemCount: Assets.instance.faqListMap.length,
+          itemCount: Assets.instance!.faqListMap.length,
           itemBuilder: (context, index) {
-            Map<String, dynamic> faq = Assets.instance.faqListMap[index];
+            Map<String, dynamic> faq = Assets.instance!.faqListMap[index];
             return ExpansionTile(
               title: Text(faq['domanda']),
               children: [Text(faq['risposta'])],

@@ -5,7 +5,7 @@ import 'formulaData.dart';
 class FormuleManager extends StatelessWidget {
   final List<FormulaData> formule;
 
-  FormuleManager({this.formule});
+  FormuleManager({required this.formule});
 
   @override
   Widget build(BuildContext context) {

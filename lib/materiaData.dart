@@ -17,13 +17,13 @@ class MateriaData {
   int colorValue;
 
   MateriaData({
-    this.iconPath,
-    this.materiaTitle,
-    this.subMaterie,
-    this.formule,
-    this.isFavouritable,
-    this.colorValue,
-    this.categoria,
+    required this.iconPath,
+    required this.materiaTitle,
+    required this.subMaterie,
+    required this.formule,
+    required this.isFavouritable,
+    required this.colorValue,
+    required this.categoria,
   });
 
   //Metodo per ottenere tutte le sottomaterie
@@ -99,7 +99,7 @@ class MateriaData {
 
   //Metodo per ottenere la pagina associata alle sottomaterie o alle formule di questa materia
   MaterialPageRoute getMateriaPage() {
-    Assets.instance.updateMaterieRecenti(this);
+    Assets.instance!.updateMaterieRecenti(this);
     return MaterialPageRoute(
       builder: (context) => Scaffold(
         backgroundColor: MyAppColors.appBackground,

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:formulario/formulaData.dart';
 import 'package:path_provider/path_provider.dart';
@@ -26,11 +27,10 @@ class Assets {
   );
 
   //Approcio singleton per la gestione delle istanze della classe Assets.
-  static Assets _assets;
-
+  static Assets? _assets;
   Assets._();
 
-  static Assets get instance =>
+  static Assets? get instance =>
       (_assets == null ? _assets = Assets._() : _assets);
   /*_____________________________________________________________________*/
 
@@ -81,26 +81,28 @@ class Assets {
     _loadFormule();
   }
 
-  // Vecchio metodo per caricare le materie dai file .json
-  //   Future<void> loadMaterie() async {
+  //Vecchio metodo utilizzato per caricare nella mappa _materieData i dati delle materie all'interno dei file .json
+  //che si trovano nella cartella materieData
+  // Future _loadMaterie() async {
   //   try {
-  //     for (String materiaNome in materieNomi) {
-  //       final String jsonString = await rootBundle.loadString(
-  //           'assets/materieData/' + materiaNome.toLowerCase() + '.json');
+  //     List<String> paths = await _leggiNomi('materieData');
+  //     for (String path in paths) {
+  //       final String jsonString = await rootBundle.loadString(path);
   //       var jsonResponse = await json.decode(jsonString);
   //       MateriaData materiaData = MateriaData.fromJson(jsonResponse, '');
+
+  //       String materiaNome = path.split('/').last.split('.').first;
+  //       materieNomi.add(materiaNome);
   //       _materieDataMap[materiaNome] = materiaData;
   //     }
   //   } catch (e) {
   //     print(e);
   //   }
-
-  //   return Future<void>.delayed(Duration(seconds: 1));
   // }
 
   //metodo per accedere alle materie
   MateriaData getMateriaData(String key) {
-    return _materieDataMap[key];
+    return _materieDataMap[key]!;
   }
 
   //getters
@@ -160,7 +162,7 @@ class Assets {
       List<int> prefIds = [];
       prefIds.addAll(await file.readAsBytes());
       for (int id in prefIds) {
-        updatePreferiti(_formule[id]);
+        updatePreferiti(_formule[id]!);
       }
     } catch (e) {
       print(e);
@@ -216,7 +218,7 @@ class Assets {
       List<int> recentIds = [];
       recentIds.addAll(await file.readAsBytes());
       for (int id in recentIds) {
-        updateFormuleRecenti(_formule[id]);
+        updateFormuleRecenti(_formule[id]!);
       }
     } catch (e) {
       print(e);
@@ -257,39 +259,20 @@ class Assets {
   /*------Metodi per il caricamento delle materie dai file .json------*/
 
   //Metodo per creare una lista dei path dei file all'interno della cartella materieData in assets
-  Future<List<String>> _leggiNomi(String folderName) async {
-    final manifestContent = await rootBundle.loadString('AssetManifest.json');
-    final Map<String, dynamic> manifestMap = json.decode(manifestContent);
-    final List<String> paths = manifestMap.keys
-        .where((String key) => key.contains('$folderName/'))
-        .where((String key) => key.contains('.json'))
-        .toList();
-    return paths;
-  }
-
-  //Metodo per caricare nella mappa _materieData i dati delle materie all'interno dei file .json
-  //che si trovano nella cartella materieData
-  Future _loadMaterie() async {
-    try {
-      List<String> paths = await _leggiNomi('materieData');
-      for (String path in paths) {
-        final String jsonString = await rootBundle.loadString(path);
-        var jsonResponse = await json.decode(jsonString);
-        MateriaData materiaData = MateriaData.fromJson(jsonResponse, '');
-
-        String materiaNome = path.split('/').last.split('.').first;
-        materieNomi.add(materiaNome);
-        _materieDataMap[materiaNome] = materiaData;
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
+  // Future<List<String>> _leggiNomi(String folderName) async {
+  //   final manifestContent = await rootBundle.loadString('AssetManifest.json');
+  //   final Map<String, dynamic> manifestMap = json.decode(manifestContent);
+  //   final List<String> paths = manifestMap.keys
+  //       .where((String key) => key.contains('$folderName/'))
+  //       .where((String key) => key.contains('.json'))
+  //       .toList();
+  //   return paths;
+  // }
 
   //Metodo per caricare le formule in base al loro id nella mappa _formule
   void _loadFormule() {
     List<MateriaData> materie = [];
-    materie = materieNomi.map((e) => _materieDataMap[e]).toList();
+    materie = materieNomi.map((e) => _materieDataMap[e]!).toList();
     for (MateriaData materia in materie) {
       List<FormulaData> formule = materia.getFormule();
       for (FormulaData formula in formule) _formule[formula.id] = formula;
@@ -309,9 +292,9 @@ class UserData {
   String cosaFare;
 
   UserData({
-    this.username,
-    this.email,
-    this.cosaFare,
+    required this.username,
+    required this.email,
+    required this.cosaFare,
   });
 
   Map<String, dynamic> toJson() {

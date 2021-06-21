@@ -4,7 +4,7 @@ import 'package:formulario/widgets/materiaWidget.dart';
 
 class MaterieManagerWidget extends StatefulWidget {
   final List<MateriaData> materieData;
-  MaterieManagerWidget({this.materieData});
+  MaterieManagerWidget({required this.materieData});
   @override
   State<StatefulWidget> createState() {
     return _MaterieManagerState(materieData);
@@ -13,8 +13,9 @@ class MaterieManagerWidget extends StatefulWidget {
 
 class _MaterieManagerState extends State<MaterieManagerWidget> {
   List<MateriaData> materieData;
-  List<MateriaWidget> materieWidget;
-  _MaterieManagerState(this.materieData);
+  _MaterieManagerState(
+    this.materieData,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class _MaterieManagerState extends State<MaterieManagerWidget> {
   }
 
   List<MateriaWidget> creaMaterie() {
-    materieWidget = <MateriaWidget>[];
+    List<MateriaWidget> materieWidget = <MateriaWidget>[];
 
     for (MateriaData materiaData in materieData) {
       materieWidget.add(MateriaWidget(materiaData));

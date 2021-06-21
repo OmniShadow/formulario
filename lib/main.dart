@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:formulario/assets.dart';
 import 'package:formulario/constantsUtil.dart';
+import 'package:formulario/googleSignInProvider.dart';
 import 'package:formulario/materieManager.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:formulario/materieSearchDelegate.dart';
 import 'package:formulario/widgets/myDrawerWidget.dart';
+import 'package:provider/provider.dart';
 
 //costanti globali per l'applicazione
 
@@ -22,25 +22,21 @@ void main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _MyAppState();
-  }
-}
-
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // return ChangeNotifierProvider(
+    //   create: (context) => GoogleSignInProvider(),
+    //   child:
     return MaterialApp(
       //Impostazione del tema generale dell'applicazione come colori e font
       theme: themeData,
       title: MyAppConstants.title,
 
       /*Nella home passo un futurebuilder che rappresenta la schermata di caricamento
-      alla fine di tale schermata apparirà la nostra interfaccia iniziale..*/
+        alla fine di tale schermata apparirà la nostra interfaccia iniziale..*/
       home: FutureBuilder(
-          future: Assets.instance.setup(),
+          future: Assets.instance!.setup(),
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
@@ -48,7 +44,7 @@ class _MyAppState extends State<MyApp> {
               case ConnectionState.done:
                 return _MyHomePage();
               default:
-                return Image.asset('assets/icons/home.png');
+                return Text('Qualcosa è andato storto...');
             }
           }),
     );
@@ -81,7 +77,7 @@ class _MyHomePageState extends State<_MyHomePage> {
             icon: Icon(Icons.search_rounded),
             onPressed: () {
               //alla pressione di questo pulsante si apre la schermata di ricerca
-              showSearch(context: context, delegate: MaterieSearch.instance);
+              showSearch(context: context, delegate: MaterieSearch.instance!);
             },
           ),
           IconButton(
@@ -118,15 +114,16 @@ class _MyHomePageBody extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: MyAppColors.iconColor,
                     borderRadius: const BorderRadius.all(Radius.circular(8))),
-                child: AutoSizeText(
+                child: Text(
                   'FORMULARIO',
                   maxLines: 1,
-                  minFontSize: 37,
                   style: TextStyle(
-                      fontFamily: 'Brandon-Grotesque-black',
-                      color: Colors.white,
-                      letterSpacing: 2.5,
-                      fontStyle: FontStyle.normal),
+                    fontFamily: 'Brandon-Grotesque-black',
+                    color: Colors.white,
+                    letterSpacing: 2.5,
+                    fontStyle: FontStyle.normal,
+                    fontSize: 37,
+                  ),
                 ),
               ),
             ),
@@ -164,7 +161,7 @@ class _MaterieHomePageWidgetState extends State<_MaterieHomePageWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Assets.instance.loadMaterieFirebase(),
+      future: Assets.instance!.loadMaterieFirebase(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
@@ -179,8 +176,8 @@ class _MaterieHomePageWidgetState extends State<_MaterieHomePageWidget> {
             );
           case ConnectionState.done:
             return MaterieManagerWidget(
-              materieData: Assets.instance.materieNomi
-                  .map((e) => Assets.instance.getMateriaData(e))
+              materieData: Assets.instance!.materieNomi
+                  .map((e) => Assets.instance!.getMateriaData(e))
                   .toList(),
             );
           default:
@@ -219,15 +216,16 @@ class LoadingScreen extends StatelessWidget {
                                   color: Color(0xFF332F2D),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(8))),
-                              child: AutoSizeText(
+                              child: Text(
                                 'FORMULARIO',
                                 maxLines: 1,
-                                minFontSize: 37,
                                 style: TextStyle(
-                                    fontFamily: 'Brandon-Grotesque-black',
-                                    color: Colors.white,
-                                    letterSpacing: 2.5,
-                                    fontStyle: FontStyle.normal),
+                                  fontFamily: 'Brandon-Grotesque-black',
+                                  color: Colors.white,
+                                  letterSpacing: 2.5,
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 37,
+                                ),
                               ),
                             ),
                           ),
