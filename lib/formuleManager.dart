@@ -9,14 +9,17 @@ class FormuleManager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<FormulaWidget> formuleWidgets = [];
-    for (FormulaData formula in formule) {
-      formuleWidgets.add(FormulaWidget(formula));
-    }
+    List<FormulaWidget> formuleWidgets = formule.map((e) {
+      return FormulaWidget(formulaData: e);
+    }).toList();
+    // for (FormulaData formula in formule) {
+    //   formuleWidgets.add(FormulaWidget(formula));
+    // }
     return ListView.builder(
       padding: EdgeInsets.all(0),
       itemCount: formuleWidgets.length,
       itemBuilder: (context, index) {
+        print("index:$index");
         return formuleWidgets[index];
       },
     );

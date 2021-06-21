@@ -80,7 +80,7 @@ class _RecentiWidgetState extends State<RecentiWidget> {
     }).toList());
 
     recenti.addAll(Assets.instance!.formuleRecenti.map((e) {
-      return FormulaWidget(e);
+      return FormulaWidget(formulaData: e);
     }).toList());
 
     return MaterialPageRoute(
