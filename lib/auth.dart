@@ -10,6 +10,7 @@ abstract class AuthBase {
 }
 
 class Auth implements AuthBase {
+  User? user;
   final _firebaseAuth = FirebaseAuth.instance;
   static Auth? _auth;
   Auth._();
@@ -23,12 +24,14 @@ class Auth implements AuthBase {
   @override
   Future<User?> signInAnonymously() async {
     final userCredential = await _firebaseAuth.signInAnonymously();
+    user = userCredential.user;
     return userCredential.user;
   }
 
   @override
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
+    user = null;
   }
 
   @override
@@ -41,6 +44,7 @@ class Auth implements AuthBase {
       idToken: googleAuth.idToken,
       accessToken: googleAuth.accessToken,
     ));
+    user = userCredential.user;
     return userCredential.user;
   }
 }

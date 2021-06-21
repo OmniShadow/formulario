@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:formulario/materiaData.dart';
 import 'package:formulario/widgets/materiaWidget.dart';
@@ -37,7 +39,9 @@ class _MaterieManagerState extends State<MaterieManagerWidget> {
     List<MateriaWidget> materieWidget = <MateriaWidget>[];
 
     for (MateriaData materiaData in materieData) {
-      materieWidget.add(MateriaWidget(materiaData));
+      var materiaWidget = MateriaWidget(materiaData);
+      materiaWidget.setTag(Random().nextInt(10000));
+      materieWidget.add(materiaWidget);
     }
     return materieWidget;
   }
