@@ -79,6 +79,25 @@ class _SignUpPageScreenState extends State<SignUpPageScreen> {
               ),
               label: Text('Sign Up with Google'),
             ),
+            ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+                onPrimary: Colors.black,
+                minimumSize: Size(double.infinity, 50),
+              ),
+              onPressed: () async {
+                // final provider =
+                //     Provider.of<GoogleSignInProvider>(context, listen: false);
+                // provider.googleLogin();
+                var user = await Auth.instance!.signInAnonymously();
+                print(user);
+              },
+              icon: FaIcon(
+                Icons.account_circle_rounded,
+                color: Colors.grey,
+              ),
+              label: Text('Sign Up Anonumously'),
+            ),
             Spacer(),
           ],
         ),

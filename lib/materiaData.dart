@@ -1,12 +1,14 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:formulario/assets.dart';
 import 'package:formulario/constantsUtil.dart';
 import 'package:formulario/formulaData.dart';
 import 'package:formulario/formuleManager.dart';
-import 'package:formulario/main.dart';
 import 'package:formulario/materieManager.dart';
 
 class MateriaData {
+  int tag = 0;
   List<MateriaData> subMaterie;
   List<FormulaData> formule;
   String iconPath;
@@ -25,6 +27,10 @@ class MateriaData {
     required this.colorValue,
     required this.categoria,
   });
+
+  void setTag(int tag) {
+    this.tag = tag;
+  }
 
   //Metodo per ottenere tutte le sottomaterie
   List<MateriaData> getMaterie() {
@@ -129,7 +135,7 @@ class MateriaData {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Hero(
-                          tag: materiaTitle,
+                          tag: '$tag',
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Image.asset(iconPath),

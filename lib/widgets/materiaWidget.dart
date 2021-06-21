@@ -2,18 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:formulario/materiaData.dart';
 
 class MateriaWidget extends StatefulWidget {
+  int tag = 0;
   final MateriaData materiaData;
   MateriaWidget(this.materiaData);
   @override
   MateriaWidgetState createState() {
-    return MateriaWidgetState(materiaData);
+    return MateriaWidgetState(materiaData, tag);
+  }
+
+  void setTag(int tag) {
+    this.tag = tag;
+    materiaData.setTag(tag);
   }
 }
 
 class MateriaWidgetState extends State<MateriaWidget> {
   MateriaData materiaData;
+  int tag;
   Image? _iconWidget;
-  MateriaWidgetState(this.materiaData) {
+  MateriaWidgetState(this.materiaData, this.tag) {
     _iconWidget = Image.asset(materiaData.iconPath);
   }
 
@@ -65,7 +72,7 @@ class MateriaWidgetState extends State<MateriaWidget> {
             child: Padding(
               padding: EdgeInsets.all(20),
               child: Hero(
-                tag: materiaData.materiaTitle,
+                tag: '$tag',
                 child: _iconWidget!,
               ),
             ),
