@@ -165,8 +165,6 @@ class _MaterieHomePageWidgetState extends State<_MaterieHomePageWidget> {
     materiePrincipali.addAll(Assets.instance!.materieNomi
         .where((element) => !element.contains(':'))
         .map((e) => Assets.instance!.getMateriaData(e)));
-    print('MateriePrincipali: $materiePrincipali');
-    print('MaterieNomi: ${Assets.instance!.materieNomi}');
 
     return FutureBuilder(
       future: Assets.instance!.loadMaterieFirebase(),
