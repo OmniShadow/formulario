@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:formulario/assets.dart';
 import 'package:formulario/constantsUtil.dart';
 import 'package:formulario/googleSignInProvider.dart';
+import 'package:formulario/materiaData.dart';
 import 'package:formulario/materieManager.dart';
 import 'package:formulario/materieSearchDelegate.dart';
 import 'package:formulario/widgets/myDrawerWidget.dart';
@@ -160,6 +161,13 @@ class _MaterieHomePageWidget extends StatefulWidget {
 class _MaterieHomePageWidgetState extends State<_MaterieHomePageWidget> {
   @override
   Widget build(BuildContext context) {
+    List<MateriaData> materiePrincipali = [];
+    materiePrincipali.addAll(Assets.instance!.materieNomi
+        .where((element) => !element.contains(':'))
+        .map((e) => Assets.instance!.getMateriaData(e)));
+    print('MateriePrincipali: $materiePrincipali');
+    print('MaterieNomi: ${Assets.instance!.materieNomi}');
+
     return FutureBuilder(
       future: Assets.instance!.loadMaterieFirebase(),
       builder: (context, snapshot) {
@@ -176,9 +184,7 @@ class _MaterieHomePageWidgetState extends State<_MaterieHomePageWidget> {
             );
           case ConnectionState.done:
             return MaterieManagerWidget(
-              materieData: Assets.instance!.materieNomi
-                  .map((e) => Assets.instance!.getMateriaData(e))
-                  .toList(),
+              materieData: materiePrincipali,
             );
           default:
             return Text('Loading...');

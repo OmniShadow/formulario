@@ -45,10 +45,11 @@ class FormulaData {
             body: Column(
               children: [
                 FittedBox(
+                  fit: BoxFit.scaleDown,
                   child: Card(
                     child: Math.tex(
                       testo,
-                      textScaleFactor: 7.0,
+                      textScaleFactor: 5.0,
                     ),
                   ),
                 ),

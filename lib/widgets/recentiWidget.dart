@@ -110,7 +110,11 @@ class RecentiPageState extends State<RecentiPage> {
         child: ListTile(
           tileColor: Colors.white,
           onTap: () => Navigator.push(context, e.getMateriaPage()),
-          leading: Image.asset(e.iconPath),
+          leading: SizedBox(
+            width: 50,
+            height: 50,
+            child: Image.asset(e.iconPath),
+          ),
           title: Text(
             e.materiaTitle,
             style: TextStyle(fontSize: 20),

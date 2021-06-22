@@ -73,7 +73,7 @@ class Assets {
     documenti.forEach((materia) {
       Map<String, dynamic> materiaMap = materia.data() as Map<String, dynamic>;
       String materiaNome = materiaMap['materia'];
-      materieNomi.add(materiaNome);
+      if (!materieNomi.contains(materiaNome)) materieNomi.add(materiaNome);
       _materieDataMap[materiaNome] = MateriaData.fromJson(materiaMap, '');
     });
 
@@ -89,7 +89,8 @@ class Assets {
     });
     materieList.forEach((element) {
       _materieDataMap[element.categoria] = element;
-      materieNomi.add(element.categoria);
+      if (!materieNomi.contains(element.categoria))
+        materieNomi.add(element.categoria);
     });
   }
 
