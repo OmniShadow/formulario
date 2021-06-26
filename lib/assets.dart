@@ -18,13 +18,6 @@ class Assets {
   List<MateriaData> _materieRecenti = [];
   var faqListMap = [];
 
-  //istanza della classe UserData dove verranno memorizzati i dati forniti dall'utente
-  UserData userData = UserData(
-    username: '',
-    email: '',
-    cosaFare: '',
-  );
-
   //Approcio singleton per la gestione delle istanze della classe Assets.
   static Assets? _assets;
   Assets._();
@@ -42,7 +35,6 @@ class Assets {
     await _leggiPreferiti();
     await _leggiFormuleRecenti();
     await _leggiMaterieRecenti();
-    await _leggiUsername();
     await loadFaqFirebase();
   }
 
@@ -273,36 +265,8 @@ class Assets {
   }
   /*_________________________________________________________*/
 
-  /*-----Metodi per update, salvataggio e lettura dei dati dell'utente-----*/
-  void updateUsername(String username, String email, String cosaFare) {
-    if (username == UserData.DEFAULT_USERNAME) username = '';
-    if (email == UserData.DEFAULT_EMAIL) email = '';
-    if (cosaFare == UserData.DEFAULT_COSAFARE) cosaFare = '';
-    this.userData = UserData(
-      username: username,
-      email: email,
-      cosaFare: cosaFare,
-    );
-    _salvaUsername();
-  }
 
-  Future _leggiUsername() async {
-    final File file = await _getLocalFile('userdata.json');
-    String userDataString = await file.readAsString();
-
-    if (userDataString.isNotEmpty) {
-      userData = UserData.fromJson(json.decode(userDataString));
-    }
-  }
-
-  Future _salvaUsername() async {
-    final File file = await _getLocalFile('userdata.json');
-    file.openWrite();
-    String jsonString = json.encode(userData.toJson());
-    file.writeAsString(jsonString);
-  }
-  /*_________________________________________________________*/
-
+  
   /*------Metodi per il caricamento delle materie dai file .json------*/
 
   //Metodo per creare una lista dei path dei file all'interno della cartella materieData in assets
@@ -329,36 +293,3 @@ class Assets {
 
 }
 
-class UserData {
-  //Classe contenente i dati personali dell'utente
-  static const String DEFAULT_USERNAME = 'Username';
-  static const String DEFAULT_EMAIL = 'Email';
-  static const String DEFAULT_COSAFARE = 'Dimmi cosa vuoi fare';
-  String email;
-  String username;
-  String cosaFare;
-
-  UserData({
-    required this.username,
-    required this.email,
-    required this.cosaFare,
-  });
-
-  Map<String, dynamic> toJson() {
-    return {
-      'username': username,
-      'email': email,
-      'cosaFare': cosaFare,
-    };
-  }
-
-  factory UserData.fromJson(Map<String, dynamic> jsonMap) {
-    return UserData(
-      username: jsonMap['username'],
-      email: jsonMap['email'],
-      cosaFare: jsonMap['cosaFare'],
-    );
-  }
-  @override
-  String toString() => json.encode(toJson());
-}

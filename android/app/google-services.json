@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "1012251764163-1om70qka1413tusld0pijeuskdcgh0qt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.formulario",
+            "certificate_hash": "0fc82bb50a3190e79d4f758bc693c2f9881aa2c8"
+          }
+        },
+        {
           "client_id": "1012251764163-1op4rprq6oahf34ddhvapj487hfdfvls.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

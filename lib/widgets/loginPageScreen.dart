@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:formulario/assets.dart';
 import 'package:formulario/auth.dart';
 import '../constantsUtil.dart';
 
@@ -10,13 +9,6 @@ class SignUpPageScreen extends StatefulWidget {
 }
 
 class _SignUpPageScreenState extends State<SignUpPageScreen> {
-  static String username = UserData.DEFAULT_USERNAME;
-  static String email = UserData.DEFAULT_EMAIL;
-  static String cosaFare = UserData.DEFAULT_COSAFARE;
-  var controller1 = TextEditingController(text: username);
-  var controller2 = TextEditingController(text: email);
-  var controller3 = TextEditingController(text: cosaFare);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,9 +57,6 @@ class _SignUpPageScreenState extends State<SignUpPageScreen> {
                 minimumSize: Size(double.infinity, 50),
               ),
               onPressed: () async {
-                // final provider =
-                //     Provider.of<GoogleSignInProvider>(context, listen: false);
-                // provider.googleLogin();
                 await Auth.instance!.signInWithGoogle();
               },
               icon: FaIcon(
@@ -80,52 +69,6 @@ class _SignUpPageScreenState extends State<SignUpPageScreen> {
           ],
         ),
       ),
-      // body: Builder(builder: (context) {
-      //   return Padding(
-      //     padding: const EdgeInsets.all(8.0),
-      //     child: Column(
-      //       children: <Widget>[
-      //         Text(
-      //           'Dammi il tuo nome, la tua email e ciò che vuoi fare oggi:',
-      //           textAlign: TextAlign.center,
-      //           style: TextStyle(
-      //               backgroundColor: MyAppColors.appBackground,
-      //               color: Colors.grey[800],
-      //               fontWeight: FontWeight.bold,
-      //               fontSize: 22),
-      //         ),
-      //         TextField(
-      //           controller: controller1,
-      //           onTap: () => controller1.text = '',
-      //           onChanged: (text) {
-      //             username = text;
-      //           },
-      //         ),
-      //         TextField(
-      //           controller: controller2,
-      //           onTap: () => controller2.text = '',
-      //           onChanged: (text) {
-      //             email = text;
-      //           },
-      //         ),
-      //         TextField(
-      //           controller: controller3,
-      //           onTap: () => controller3.text = '',
-      //           onChanged: (text) {
-      //             cosaFare = text;
-      //           },
-      //         ),
-      //         MaterialButton(
-      //           onPressed: () {
-      //             Assets.instance.updateUsername(username, email, cosaFare);
-      //             setState(() {});
-      //           },
-      //           child: Text('Invia'),
-      //         ),
-      //       ],
-      //     ),
-      //   );
-      // }),
     );
   }
 }
