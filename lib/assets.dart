@@ -184,8 +184,8 @@ class Assets {
     if (!_formuleRecenti.contains(formula)) {
       if (_formuleRecenti.length >= maxRecenti) _formuleRecenti.removeAt(0);
       _formuleRecenti.add(formula);
-    } else
-      _salvaFormuleRecenti();
+    }
+    _salvaFormuleRecenti();
   }
 
   void removeFormulaRecente(FormulaData formula) {
@@ -197,8 +197,8 @@ class Assets {
     if (!_materieRecenti.contains(materia)) {
       if (_materieRecenti.length >= maxRecenti) _materieRecenti.removeAt(0);
       _materieRecenti.add(materia);
-    } else
-      _salvaMaterieRecenti();
+    }
+    _salvaMaterieRecenti();
   }
 
   void removeMateriaRecente(MateriaData materia) {
@@ -265,8 +265,6 @@ class Assets {
   }
   /*_________________________________________________________*/
 
-
-  
   /*------Metodi per il caricamento delle materie dai file .json------*/
 
   //Metodo per creare una lista dei path dei file all'interno della cartella materieData in assets
@@ -292,4 +290,3 @@ class Assets {
   /*_____________________________________________________________________*/
 
 }
-
