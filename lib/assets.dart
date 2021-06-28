@@ -16,6 +16,9 @@ class Assets {
   List<FormulaData> _formulePreferite = [];
   List<FormulaData> _formuleRecenti = [];
   List<MateriaData> _materieRecenti = [];
+
+  bool update = false;
+
   var faqListMap = [];
 
   //Approcio singleton per la gestione delle istanze della classe Assets.
@@ -30,8 +33,13 @@ class Assets {
   Future setup() async {
     //inizializzazione di Firebase
     await Firebase.initializeApp();
-    //await _loadMaterie();
-    await loadMaterieFirebase();
+    if (await _localDatabaseExists() && !update)
+      await _loadMaterieLocal();
+    else {
+      await _loadMaterieFirebase();
+      update = false;
+    }
+
     await _leggiPreferiti();
     await _leggiFormuleRecenti();
     await _leggiMaterieRecenti();
@@ -46,7 +54,8 @@ class Assets {
     faqListMap = faqData['faq'];
   }
 
-  Future loadMaterieFirebase() async {
+  Future _loadMaterieFirebase() async {
+    print('Loading from firebase');
     //resetto le variabili per memorizzare le materie e le formule
     _materieDataMap = {};
     FormulaData.n = 0;
@@ -72,6 +81,7 @@ class Assets {
     //una volta caricate le materie carico le formule
     _loadAllMaterie();
     _loadFormule();
+    await _salvaMaterieLocal();
   }
 
   void _loadAllMaterie() {
@@ -86,11 +96,48 @@ class Assets {
     });
   }
 
-  //Vecchio metodo utilizzato per caricare nella mappa _materieData i dati delle materie all'interno dei file .json
-  //che si trovano nella cartella materieData
+  Future<bool> _localDatabaseExists() async {
+    var path = await _localPath;
+    var dir = Directory('$path/materie');
+    return dir.exists();
+  }
+
+  Future _salvaMaterieLocal() async {
+    var path = await _localPath;
+    var dir = Directory('$path/materie');
+    if (!await dir.exists()) dir.create();
+    List<String> nomiMateriePrincipali = Assets.instance!.materieNomi
+        .where((element) => !element.contains(':'))
+        .toList();
+    nomiMateriePrincipali.forEach((nome) {
+      File materiaFile = File('${dir.path}/$nome');
+      materiaFile.writeAsString(json.encode(_materieDataMap[nome]!.toJson()));
+    });
+  }
+
+  Future _loadMaterieLocal() async {
+    print('Loading locally');
+    var path = await _localPath;
+    var dir = Directory('$path/materie');
+    dir.list(recursive: false, followLinks: false).forEach((element) async {
+      File materiaFile = File(element.path);
+      String materiaFileString = await materiaFile.readAsString();
+
+      Map<String, dynamic> materiaMap = json.decode(materiaFileString);
+      String materiaNome = materiaMap['materia'];
+      if (!materieNomi.contains(materiaNome)) materieNomi.add(materiaNome);
+      _materieDataMap[materiaNome] = MateriaData.fromJson(materiaMap, '');
+    });
+
+    _loadAllMaterie();
+    _loadFormule();
+  }
+
+  //Vecchio metodo utilizzato per leggere i dati delle materie dai file json nella cartella assets
+
   // Future _loadMaterie() async {
   //   try {
-  //     List<String> paths = await _leggiNomi('materieData');
+  //     List<String> paths = await _leggiNomiAssets('materieData');
   //     for (String path in paths) {
   //       final String jsonString = await rootBundle.loadString(path);
   //       var jsonResponse = await json.decode(jsonString);
@@ -104,6 +151,19 @@ class Assets {
   //     print(e);
   //   }
   // }
+
+  /*------Metodi per il caricamento delle materie dai file .json------*/
+
+  //Metodo per creare una lista dei path dei file all'interno della cartella materieData in assets
+  Future<List<String>> _leggiNomiAssets(String folderName) async {
+    final manifestContent = await rootBundle.loadString('AssetManifest.json');
+    final Map<String, dynamic> manifestMap = json.decode(manifestContent);
+    final List<String> paths = manifestMap.keys
+        .where((String key) => key.contains('$folderName/'))
+        .where((String key) => key.contains('.json'))
+        .toList();
+    return paths;
+  }
 
   //metodo per accedere alle materie
   MateriaData getMateriaData(String key) {
@@ -264,19 +324,6 @@ class Assets {
     }
   }
   /*_________________________________________________________*/
-
-  /*------Metodi per il caricamento delle materie dai file .json------*/
-
-  //Metodo per creare una lista dei path dei file all'interno della cartella materieData in assets
-  // Future<List<String>> _leggiNomi(String folderName) async {
-  //   final manifestContent = await rootBundle.loadString('AssetManifest.json');
-  //   final Map<String, dynamic> manifestMap = json.decode(manifestContent);
-  //   final List<String> paths = manifestMap.keys
-  //       .where((String key) => key.contains('$folderName/'))
-  //       .where((String key) => key.contains('.json'))
-  //       .toList();
-  //   return paths;
-  // }
 
   //Metodo per caricare le formule in base al loro id nella mappa _formule
   void _loadFormule() {

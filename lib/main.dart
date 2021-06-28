@@ -84,6 +84,7 @@ class _MyHomePageState extends State<_MyHomePage> {
           IconButton(
             icon: Icon(Icons.refresh_rounded),
             onPressed: () {
+              Assets.instance!.update = true;
               setState(() {});
             },
           )
@@ -167,7 +168,7 @@ class _MaterieHomePageWidgetState extends State<_MaterieHomePageWidget> {
         .map((e) => Assets.instance!.getMateriaData(e)));
 
     return FutureBuilder(
-      future: Assets.instance!.loadMaterieFirebase(),
+      future: Assets.instance!.setup(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:

@@ -24,6 +24,12 @@ class FormulaData {
     id = n++; //id a incremento
   }
 
+  Map<String, dynamic> toJson() => {
+        'titolo': titolo,
+        'testo': testo,
+        'descrizione': descrizione,
+      };
+
   //Metodo per istanziare un oggetto di tipo FormulaData da un file .json
   factory FormulaData.fromJson(
       Map<String, dynamic> parsedJson, String categoria) {

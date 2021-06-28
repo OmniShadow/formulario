@@ -1,18 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:formulario/assets.dart';
+import 'package:formulario/widgets/preferitiWidget.dart';
+import 'package:formulario/widgets/recentiWidget.dart';
 
 class NumbersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          buildButton(context,
-              Assets.instance!.formuleRecenti.length.toString(), 'Ricerche'),
+          buildButton(
+            context,
+            (Assets.instance!.formuleRecenti.length +
+                    Assets.instance!.materieRecenti.length)
+                .toString(),
+            'Ricerche',
+            () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => RecentiPage()));
+            },
+          ),
           buildDivider(),
           buildButton(
-              context,
-              Assets.instance!.formulePreferite.length.toString(),
-              'Formule Preferite'),
+            context,
+            Assets.instance!.formulePreferite.length.toString(),
+            'Formule Preferite',
+            () {
+              Route route =
+                  MaterialPageRoute(builder: (context) => PreferitiPage());
+              Navigator.push(context, route);
+            },
+          ),
         ],
       );
 
@@ -21,10 +38,11 @@ class NumbersWidget extends StatelessWidget {
         child: VerticalDivider(),
       );
 
-  Widget buildButton(BuildContext context, String value, String text) =>
+  Widget buildButton(
+          BuildContext context, String value, String text, Function() f) =>
       MaterialButton(
         padding: EdgeInsets.symmetric(vertical: 4),
-        onPressed: () {},
+        onPressed: f,
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         child: Column(
           mainAxisSize: MainAxisSize.min,

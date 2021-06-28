@@ -36,7 +36,6 @@ class MaterieSearch extends SearchDelegate<MateriaData> {
               colorValue: 0,
               formule: [],
               iconPath: '',
-              isFavouritable: false,
               materiaTitle: '',
               subMaterie: [],
             ));

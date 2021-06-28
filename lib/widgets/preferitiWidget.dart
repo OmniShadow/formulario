@@ -28,7 +28,12 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
         color: MyAppColors.shirtColor,
       ),
       title: InkWell(
-        onTap: () => Navigator.push(context, formulePreferitePage),
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => PreferitiPage(),
+          ),
+        ),
         child: Text(
           'Formule preferite',
           style: TextStyle(fontSize: 20),
@@ -75,73 +80,74 @@ class _PreferitiWidgetState extends State<PreferitiWidget> {
             )
             .toList();
   }
+}
 
-  MaterialPageRoute get formulePreferitePage {
-    return MaterialPageRoute(
-      builder: (context) => Scaffold(
-        backgroundColor: MyAppColors.appBackground,
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          iconTheme: IconThemeData(
-            color: MyAppColors.iconColor,
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
+class PreferitiPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: MyAppColors.appBackground,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: MyAppColors.iconColor,
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 65),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AspectRatio(
-                aspectRatio: 6.95,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
-                  child: AspectRatio(
-                    aspectRatio: 6.95,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          color: Color(0xFF332F2D),
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.favorite_rounded,
-                            color: MyAppColors.shirtColor,
-                          ),
-                          Text(
-                            'Formule preferite',
-                            maxLines: 1,
-                            style: TextStyle(
-                                fontFamily: 'Brandon-Grotesque-black',
-                                color: Colors.white,
-                                letterSpacing: 2.5,
-                                fontStyle: FontStyle.normal),
-                          ),
-                        ],
-                      ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 65),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AspectRatio(
+              aspectRatio: 6.95,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(50, 10, 50, 10),
+                child: AspectRatio(
+                  aspectRatio: 6.95,
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: Color(0xFF332F2D),
+                        borderRadius: BorderRadius.all(Radius.circular(8))),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.favorite_rounded,
+                          color: MyAppColors.shirtColor,
+                        ),
+                        Text(
+                          'Formule preferite',
+                          maxLines: 1,
+                          style: TextStyle(
+                              fontFamily: 'Brandon-Grotesque-black',
+                              color: Colors.white,
+                              letterSpacing: 2.5,
+                              fontStyle: FontStyle.normal),
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ),
-              Expanded(
-                flex: 8,
-                child: Assets.instance!.formulePreferite.isEmpty
-                    ? paginaVuotaPreferiti()
-                    : FormuleManager(
-                        formule: Assets.instance!.formulePreferite,
-                      ),
-              ),
-            ],
-          ),
+            ),
+            Expanded(
+              flex: 8,
+              child: Assets.instance!.formulePreferite.isEmpty
+                  ? paginaVuotaPreferiti
+                  : FormuleManager(
+                      formule: Assets.instance!.formulePreferite,
+                    ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  Widget paginaVuotaPreferiti() {
+  Widget get paginaVuotaPreferiti {
     return SizedBox(
       height: 200,
       child: Container(

@@ -14,8 +14,6 @@ class MateriaData {
   String iconPath;
   String materiaTitle;
   String categoria;
-  bool isFavouritable = false;
-  bool isFavourite = false;
   int colorValue;
 
   MateriaData({
@@ -23,7 +21,6 @@ class MateriaData {
     required this.materiaTitle,
     required this.subMaterie,
     required this.formule,
-    required this.isFavouritable,
     required this.colorValue,
     required this.categoria,
   });
@@ -53,7 +50,19 @@ class MateriaData {
   }
 
   String toString() {
-    return (materiaTitle);
+    return toJson().toString();
+  }
+
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> materiaMap = {};
+
+    materiaMap['materia'] = materiaTitle;
+    materiaMap['icona'] = iconPath;
+    materiaMap['color'] = colorValue.toString();
+    materiaMap['materie'] = subMaterie;
+    materiaMap['formule'] = formule;
+
+    return materiaMap;
   }
 
   //Metodo ricorsivo per istanziare un oggetto MateriaData da un file .json
@@ -98,7 +107,6 @@ class MateriaData {
       materiaTitle: parsedJson['materia'] as String,
       subMaterie: subMaterieData,
       formule: formuleData,
-      isFavouritable: parsedJson['isFavouritable'],
       categoria: categoria,
     );
   }
