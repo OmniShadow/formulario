@@ -82,10 +82,22 @@ class _MyHomePageState extends State<_MyHomePage> {
             },
           ),
           IconButton(
-            icon: Icon(Icons.refresh_rounded),
+            icon: Icon(Icons.update_rounded),
             onPressed: () {
               Assets.instance!.update = true;
               setState(() {});
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Materie e formule aggiornate!'),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(100),
+                      bottom: Radius.circular(100),
+                    ),
+                  ),
+                  duration: Duration(milliseconds: 1000),
+                ),
+              );
             },
           )
         ],
