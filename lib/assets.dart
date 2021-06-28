@@ -33,13 +33,11 @@ class Assets {
   Future setup() async {
     //inizializzazione di Firebase
     await Firebase.initializeApp();
-    if (await _localDatabaseExists() && !update)
-      await _loadMaterieLocal();
-    else {
+    if (update || !await _localDatabaseExists()) {
       await _loadMaterieFirebase();
       update = false;
-    }
-
+    } else
+      await _loadMaterieLocal();
     await _leggiPreferiti();
     await _leggiFormuleRecenti();
     await _leggiMaterieRecenti();
